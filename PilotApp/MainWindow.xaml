@@ -9,5 +9,7 @@
     Width="800"
     Height="450"
     mc:Ignorable="d">
-    <Grid />
+    <Grid >
+        <Rectangle HorizontalAlignment="Left" Height="250" Margin="179,74,0,0" Stroke="Black" VerticalAlignment="Top" Width="433"/>
+    </Grid>
 </Window>
