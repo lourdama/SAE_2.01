@@ -9,12 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Sources\" />
-    <Folder Include="View\" />
+    <None Remove="Sans titre.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Npgsql" Version="9.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Sans titre.jpg" />
   </ItemGroup>
 
 </Project>

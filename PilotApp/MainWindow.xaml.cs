@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using PilotApp.View;
+using System.Reflection.Metadata;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +21,7 @@ namespace PilotApp
         public MainWindow()
         {
             InitializeComponent();
+            pageVisible.Content = new PageConnexion();
         }
     }
 }

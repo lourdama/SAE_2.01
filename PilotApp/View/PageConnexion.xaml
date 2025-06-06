@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="PilotApp.View.PageConnexion"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PilotApp.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        
+        <Image Source="/Image2.png" Stretch="Fill"/>
+        <Label Content="Login" Margin="340,118,398,302" Width="62" Height="30"/>
+        <TextBox x:Name="login" Margin="340,150,340,274" TextWrapping="Wrap" Text="" Width="120" Height="20" />
+        <Label Content="Mot de passe" Margin="340,188,366,232" Width="94" Height="30"/>
+        <TextBox x:Name="mdp" Margin="340,223,340,207" TextWrapping="Wrap" Text="" Width="120" Height="20" />
+        <Button x:Name="connexion" Content="Connexion" Margin="367,260,367,170" Click="connexion_Click" Width="66" Height="20"/>
+    </Grid>
+</UserControl>
