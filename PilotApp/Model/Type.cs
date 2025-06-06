@@ -81,7 +81,7 @@ namespace PilotApp.Model
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    lesTypes.Add(new Type((int)dr["numtype"], entreprise.LesCategories.SingleOrDefault(c => c.Id == (int)dr["numcategorie"]), (string)dr["libelletype"]));
+                    lesTypes.Add(new Type((int)dr["numtype"], entreprise.LesTypes.SingleOrDefault(c => c.Id == (int)dr["numcategorie"]), (string)dr["libelletype"]));
                 }
             }
             return lesTypes;
