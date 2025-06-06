@@ -12,6 +12,7 @@ namespace PilotApp.Model
         private string nom;
         private ObservableCollection<Role> lesRoles;
         private ObservableCollection<Couleur> lesCouleurs;
+        private ObservableCollection<Categorie> lesCategorie;
         private ObservableCollection<TypePointe> lesTypesPointes;
         private ObservableCollection<Type> lesTypes;
         private ObservableCollection<Produit> lesProduits;
