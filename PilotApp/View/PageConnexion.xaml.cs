@@ -21,24 +21,25 @@ namespace PilotApp.View
     /// </summary>
     public partial class PageConnexion : UserControl
     {
-        public MainWindow mainWindow;
+        private MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
         public PageConnexion()
         {
             InitializeComponent();
-            
+
         }
 
         private void butConnexion_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show($"Login : {login.Text} Mot de passe : {mdp.Text}");
             ChargeData();
+            MessageBox.Show(mainWindow.Pilot.LesCouleurs.Count.ToString());
 
         }
         public void ChargeData()
         {
             try
             {
-                mainWindow.Pilot = new Entreprise("Pension dog");
+                mainWindow.Pilot = new Entreprise("Pilot");
 
             }
             catch (Exception ex)
@@ -48,4 +49,5 @@ namespace PilotApp.View
                 Application.Current.Shutdown();
             }
         }
+    }
 }

@@ -21,10 +21,12 @@ namespace PilotApp
     public partial class MainWindow : Window
     {
         public Entreprise Pilot { get; set; }
+        public string test = "test";
         public MainWindow()
         {
             InitializeComponent();
             pageVisible.Content = new PageConnexion();
+
         }
     }
 }

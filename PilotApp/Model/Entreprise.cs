@@ -11,10 +11,12 @@ namespace PilotApp.Model
     {
         private string nom;
         private ObservableCollection<Role> lesRoles;
+        private ObservableCollection<Couleur> lesCouleurs;
 
         public Entreprise(string nom)
         {
             this.Nom = nom;
+            this.LesCouleurs = new ObservableCollection<Couleur>(new Couleur().FindAll());
         }
 
         public string Nom
@@ -27,6 +29,19 @@ namespace PilotApp.Model
             set
             {
                 this.nom = value;
+            }
+        }
+
+        public ObservableCollection<Couleur> LesCouleurs
+        {
+            get
+            {
+                return this.lesCouleurs;
+            }
+
+            set
+            {
+                this.lesCouleurs = value;
             }
         }
     }
