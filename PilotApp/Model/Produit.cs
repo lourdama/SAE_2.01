@@ -164,13 +164,22 @@ namespace PilotApp.Model
         {
 
             List<Produit> lesProduits = new List<Produit>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from produit p join couleurproduit cp on cp.numproduit = p.numproduit;"))
+            using (NpgsqlCommand cmdSelectProduit = new NpgsqlCommand("select * from produit;"))
+            using (NpgsqlCommand cmdSelectCouleurProduit = new NpgsqlCommand("select * from couleurproduit;"))
             {
-                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelectProduit);
+                DataTable dtCouleur = DataAccess.Instance.ExecuteSelect(cmdSelectCouleurProduit);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    lesProduits.Add(new Produit((int)dr["p.numproduit"], entreprise.LesTypesPointes.SingleOrDefault(c => c.Id == (int)dr["numtypepointe"]), entreprise.LesTypes.SingleOrDefault(c => c.Id == (int)dr["numtype"]), 
-                        entreprise.LesCouleurs.Where(c => c.Id == (int)dr["cp.numcouleur"]).ToList(), (string)dr["codeproduit"], (string)dr["nomproduit"], (double)dr["prixvente"], (int)dr["quantitestock"], (bool)dr["disponible"]));
+                    List<Couleur> lesCouleurs = new List<Couleur>();
+                    foreach (DataRow drCouleur in dtCouleur.Rows)
+                    {
+                        if (drCouleur["numproduit"] == dr["numproduit"])
+                            lesCouleurs.Add(entreprise.LesCouleurs.SingleOrDefault(c => c.Id == (int)drCouleur["numcouleur"]));
+                    }
+                        lesProduits.Add(new Produit((int)dr["numproduit"], entreprise.LesTypesPointes.SingleOrDefault(c => c.Id == (int)dr["numtypepointe"]), entreprise.LesTypes.SingleOrDefault(c => c.Id == (int)dr["numtype"]), 
+                        lesCouleurs, (string)dr["codeproduit"], (string)dr["nomproduit"], (double)dr["prixvente"], (int)dr["quantitestock"], (bool)dr["disponible"]));
+                
                 }
             }
             return lesProduits;
