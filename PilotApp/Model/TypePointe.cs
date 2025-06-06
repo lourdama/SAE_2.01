@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +54,18 @@ namespace PilotApp.Model
             return obj is TypePointe pointe &&
                    this.Id == pointe.Id &&
                    this.Nom == pointe.Nom;
+        }
+
+        public List<TypePointe> FindAll()
+        {
+            List<TypePointe> lesTypesPointes = new List<TypePointe>();
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from typepointe ;"))
+            {
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                foreach (DataRow dr in dt.Rows)
+                    lesTypesPointes.Add(new TypePointe((Int32)dr["numtypepointe"], (String)dr["libelletypepointe"]));
+            }
+            return lesTypesPointes;
         }
     }
 }

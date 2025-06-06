@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -156,6 +158,22 @@ namespace PilotApp.Model
         {
             return obj is Produit produit &&
                    this.Code == produit.Code;
+        }
+
+        public List<Produit> FindAll(Entreprise entreprise)
+        {
+
+            List<Produit> lesProduits = new List<Produit>();
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from produit ;"))
+            {
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                foreach (DataRow dr in dt.Rows)
+                {
+                    lesProduits.Add(new Produit((int)dr["numproduit"], entreprise.LesTypesPointes.SingleOrDefault(c => c.Id == (int)dr["numtypepointe"]), entreprise.LesTypes.SingleOrDefault(c => c.Id == (int)dr["numtype"]), 
+                        entreprise.LesCouleurs.FindAll()));
+                }
+            }
+            return lesProduits;
         }
     }
 }
