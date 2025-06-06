@@ -10,7 +10,14 @@
     Height="600"
     mc:Ignorable="d">
     <Grid x:Name="mainGrid">
-        <ContentControl x:Name="pageVisible" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="750"/>
+        </Grid.ColumnDefinitions>
+        <ContentControl x:Name="pageVisible" Grid.Column="1" />
+        <ContentControl x:Name="menuVisible" Grid.Column="0" />
+
+
     </Grid>
 
 </Window>

@@ -42,6 +42,7 @@ namespace PilotApp.View
                 mainWindow.login = login.Text;
                 mainWindow.mdp = mdp.Text;
                 mainWindow.Pilot = new Entreprise("Pilot");
+                
 
             }
             catch (Exception ex)

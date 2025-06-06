@@ -20,6 +20,8 @@ namespace PilotApp.Model
         public Entreprise(string nom)
         {
             this.Nom = nom;
+            this.LesRoles = new ObservableCollection<Role>(new Role().FindAll());
+
             this.LesCouleurs = new ObservableCollection<Couleur>(new Couleur().FindAll());
         }
 
@@ -98,6 +100,19 @@ namespace PilotApp.Model
             set
             {
                 this.lesCategories = value;
+            }
+        }
+
+        public ObservableCollection<Role> LesRoles
+        {
+            get
+            {
+                return this.lesRoles;
+            }
+
+            set
+            {
+                this.lesRoles = value;
             }
         }
     }
