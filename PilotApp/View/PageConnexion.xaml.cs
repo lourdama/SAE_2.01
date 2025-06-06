@@ -42,6 +42,7 @@ namespace PilotApp.View
                 mainWindow.login = login.Text;
                 mainWindow.mdp = mdp.Text;
                 mainWindow.Pilot = new Entreprise("Pilot");
+                Accueil();
                 
 
             }
@@ -51,6 +52,18 @@ namespace PilotApp.View
                 LogError.Log(ex, "Erreur SQL");
                 Application.Current.Shutdown();
             }
+        }
+        public void Accueil()
+        {
+            Employe employe = new Employe();
+            foreach (Employe employeTemp in mainWindow.Pilot.LesEmployes)
+            {
+                if (employeTemp.Login ==  login.Text)
+                {
+                    employe = employeTemp;
+                }
+            }
+            MessageBox.Show($"Bienvenue {employe.Prenom} {employe.Nom} vous êtes un {employe.UnRole.Nom} ");
         }
     }
 }
