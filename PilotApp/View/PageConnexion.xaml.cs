@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PilotApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +21,31 @@ namespace PilotApp.View
     /// </summary>
     public partial class PageConnexion : UserControl
     {
+        public MainWindow mainWindow;
         public PageConnexion()
         {
             InitializeComponent();
+            
         }
 
-        private void connexion_Click(object sender, RoutedEventArgs e)
+        private void butConnexion_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show($"Login : {login.Text} Mot de passe : {mdp.Text}");
-            DataAccess();
+            ChargeData();
+
         }
-    }
+        public void ChargeData()
+        {
+            try
+            {
+                mainWindow.Pilot = new Entreprise("Pension dog");
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problème lors de récupération des données, veuillez consulter votre admin");
+                LogError.Log(ex, "Erreur SQL");
+                Application.Current.Shutdown();
+            }
+        }
 }

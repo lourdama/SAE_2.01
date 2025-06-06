@@ -1,4 +1,6 @@
-﻿using PilotApp.View;
+﻿using PilotApp.Model;
+using PilotApp.View;
+using System;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Windows;
@@ -18,6 +20,7 @@ namespace PilotApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public Entreprise Pilot { get; set; }
         public MainWindow()
         {
             InitializeComponent();

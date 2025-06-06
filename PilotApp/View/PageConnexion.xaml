@@ -13,6 +13,6 @@
         <TextBox x:Name="login" Margin="340,150,340,274" TextWrapping="Wrap" Text="" Width="120" Height="20" />
         <Label Content="Mot de passe" Margin="340,188,366,232" Width="94" Height="30"/>
         <TextBox x:Name="mdp" Margin="340,223,340,207" TextWrapping="Wrap" Text="" Width="120" Height="20" />
-        <Button x:Name="connexion" Content="Connexion" Margin="367,260,367,170" Click="connexion_Click" Width="66" Height="20"/>
+        <Button x:Name="butConnexion" Content="Connexion" Margin="367,260,367,170" Click="butConnexion_Click" Width="66" Height="20"/>
     </Grid>
 </UserControl>
