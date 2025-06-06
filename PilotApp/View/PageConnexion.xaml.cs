@@ -30,15 +30,17 @@ namespace PilotApp.View
 
         private void butConnexion_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show($"Login : {login.Text} Mot de passe : {mdp.Text}");
             ChargeData();
             MessageBox.Show(mainWindow.Pilot.LesCouleurs.Count.ToString());
+            
 
         }
         public void ChargeData()
         {
             try
             {
+                mainWindow.login = login.Text;
+                mainWindow.mdp = mdp.Text;
                 mainWindow.Pilot = new Entreprise("Pilot");
 
             }

@@ -5,15 +5,17 @@ using System.Data;
 using System.Windows;
 using Microsoft.Extensions.Logging;
 using Npgsql;
+using PilotApp.View;
 
 
 namespace PilotApp.Model
 {
 
-    public  class DataAccess
+    public class DataAccess
     {
         private static readonly DataAccess instance = new DataAccess();
-        private readonly string connectionString = "Host=srv-peda-new;Port=5433;Username=lourdama;Password=g4MEfv;Database=sae201_pilot;Options='-c search_path=lourdama'";
+        private MainWindow mainWindow = (MainWindow)Application.Current.MainWindow;
+        private string connectionString;
         private NpgsqlConnection connection;
 
         public static DataAccess Instance
@@ -24,17 +26,30 @@ namespace PilotApp.Model
             }
         }
 
+        public string ConnectionString
+        {
+            get
+            {
+                return this.connectionString;
+            }
+
+            set
+            {
+                this.connectionString = value;
+            }
+        }
+
         //  Constructeur privé pour empêcher l'instanciation multiple
         private DataAccess()
         {
-            
+            this.ConnectionString = $"Host=srv-peda-new;Port=5433;Username={mainWindow.login};Password={mainWindow.mdp};Database=sae201_pilot;Options='-c search_path=lourdama'";
             try
             {
-                connection = new NpgsqlConnection(connectionString);
+                connection = new NpgsqlConnection(ConnectionString);
             }
             catch (Exception ex)
             {
-                LogError.Log(ex, "Pb de connexion GetConnection \n" + connectionString);
+                LogError.Log(ex, "Pb de connexion GetConnection \n" + ConnectionString);
                 throw;
             }
         }
@@ -51,7 +66,7 @@ namespace PilotApp.Model
                 }
                 catch (Exception ex)
                 {
-                    LogError.Log(ex, "Pb de connexion GetConnection \n" + connectionString);
+                    LogError.Log(ex, "Pb de connexion GetConnection \n" + ConnectionString);
                     throw;                
                 }
             }

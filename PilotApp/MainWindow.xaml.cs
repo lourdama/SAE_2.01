@@ -21,7 +21,8 @@ namespace PilotApp
     public partial class MainWindow : Window
     {
         public Entreprise Pilot { get; set; }
-        public string test = "test";
+        public string login;
+        public string mdp;
         public MainWindow()
         {
             InitializeComponent();
