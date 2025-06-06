@@ -12,6 +12,9 @@ namespace PilotApp.Model
         private string nom;
         private ObservableCollection<Role> lesRoles;
         private ObservableCollection<Couleur> lesCouleurs;
+        private ObservableCollection<TypePointe> lesTypesPointes;
+        private ObservableCollection<Type> lesTypes;
+        private ObservableCollection<Produit> lesProduits;
 
         public Entreprise(string nom)
         {
@@ -42,6 +45,45 @@ namespace PilotApp.Model
             set
             {
                 this.lesCouleurs = value;
+            }
+        }
+
+        public ObservableCollection<Type> LesTypes
+        {
+            get
+            {
+                return lesTypes;
+            }
+
+            set
+            {
+                lesTypes = value;
+            }
+        }
+
+        public ObservableCollection<Produit> LesProduits
+        {
+            get
+            {
+                return this.lesProduits;
+            }
+
+            set
+            {
+                this.lesProduits = value;
+            }
+        }
+
+        public ObservableCollection<TypePointe> LesTypesPointes
+        {
+            get
+            {
+                return this.lesTypesPointes;
+            }
+
+            set
+            {
+                this.lesTypesPointes = value;
             }
         }
     }

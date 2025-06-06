@@ -164,13 +164,13 @@ namespace PilotApp.Model
         {
 
             List<Produit> lesProduits = new List<Produit>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from produit ;"))
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from produit p join couleurproduit cp on cp.numproduit = p.numproduit;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
                 {
-                    lesProduits.Add(new Produit((int)dr["numproduit"], entreprise.LesTypesPointes.SingleOrDefault(c => c.Id == (int)dr["numtypepointe"]), entreprise.LesTypes.SingleOrDefault(c => c.Id == (int)dr["numtype"]), 
-                        entreprise.LesCouleurs.FindAll()));
+                    lesProduits.Add(new Produit((int)dr["p.numproduit"], entreprise.LesTypesPointes.SingleOrDefault(c => c.Id == (int)dr["numtypepointe"]), entreprise.LesTypes.SingleOrDefault(c => c.Id == (int)dr["numtype"]), 
+                        entreprise.LesCouleurs.Where(c => c.Id == (int)dr["cp.numcouleur"]).ToList(), (string)dr["codeproduit"], (string)dr["nomproduit"], (double)dr["prixvente"], (int)dr["quantitestock"], (bool)dr["disponible"]));
                 }
             }
             return lesProduits;
