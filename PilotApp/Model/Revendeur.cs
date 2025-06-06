@@ -106,7 +106,7 @@ namespace PilotApp.Model
         public List<Revendeur> FindAll()
         {
             List<Revendeur> lesRevendeurs = new List<Revendeur>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from typepointe ;"))
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from revendeur ;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)

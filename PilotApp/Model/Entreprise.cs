@@ -11,18 +11,30 @@ namespace PilotApp.Model
     {
         private string nom;
         private ObservableCollection<Role> lesRoles;
+        private ObservableCollection<Employe> lesEmployes;
         private ObservableCollection<Couleur> lesCouleurs;
+        private ObservableCollection<ModeTransport> lesModesTransports;
+        private ObservableCollection<Revendeur> lesRevendeurs;
         private ObservableCollection<Categorie> lesCategories;
         private ObservableCollection<TypePointe> lesTypesPointes;
         private ObservableCollection<Type> lesTypes;
         private ObservableCollection<Produit> lesProduits;
+        private ObservableCollection<Commande> lesCommandes;
+
 
         public Entreprise(string nom)
         {
             this.Nom = nom;
             this.LesRoles = new ObservableCollection<Role>(new Role().FindAll());
-
+            this.LesEmployes = new ObservableCollection<Employe>(new Employe().FindAll(this));
             this.LesCouleurs = new ObservableCollection<Couleur>(new Couleur().FindAll());
+            this.LesModesTransports = new ObservableCollection<ModeTransport>(new ModeTransport().FindAll());
+            this.LesRevendeurs = new ObservableCollection<Revendeur>(new Revendeur().FindAll());
+            this.LesCategories = new ObservableCollection<Categorie>(new Categorie().FindAll());
+            this.LesTypesPointes = new ObservableCollection<TypePointe>(new TypePointe().FindAll());
+            this.LesTypes = new ObservableCollection<Type>(new Type().FindAll(this));
+            this.LesProduits = new ObservableCollection<Produit>(new Produit().FindAll(this));
+            //this.LesCommandes = new ObservableCollection<Commande>(new Commande.FindAll());
         }
 
         public string Nom
@@ -113,6 +125,58 @@ namespace PilotApp.Model
             set
             {
                 this.lesRoles = value;
+            }
+        }
+
+        public ObservableCollection<Employe> LesEmployes
+        {
+            get
+            {
+                return this.lesEmployes;
+            }
+
+            set
+            {
+                this.lesEmployes = value;
+            }
+        }
+
+        public ObservableCollection<ModeTransport> LesModesTransports
+        {
+            get
+            {
+                return this.lesModesTransports;
+            }
+
+            set
+            {
+                this.lesModesTransports = value;
+            }
+        }
+
+        public ObservableCollection<Revendeur> LesRevendeurs
+        {
+            get
+            {
+                return this.lesRevendeurs;
+            }
+
+            set
+            {
+                this.lesRevendeurs = value;
+            }
+        }
+
+        public ObservableCollection<Commande> LesCommandes
+        {
+            get
+            {
+                return this.lesCommandes;
+            }
+
+            set
+            {
+                this.lesCommandes = value;
             }
         }
     }

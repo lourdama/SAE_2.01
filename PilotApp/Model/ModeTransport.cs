@@ -59,7 +59,7 @@ namespace PilotApp.Model
         public List<ModeTransport> FindAll()
         {
             List<ModeTransport> lesModeTransports = new List<ModeTransport>();
-            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from typepointe ;"))
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select * from modetransport ;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)

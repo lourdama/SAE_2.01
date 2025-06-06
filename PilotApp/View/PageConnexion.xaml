@@ -10,9 +10,9 @@
         
         <Image Source="/Image2.png" Stretch="Fill"/>
         <Label Content="Login" Margin="267,117,421,303" Width="62" Height="30"/>
-        <TextBox x:Name="login" Margin="267,163,363,267" TextWrapping="Wrap" Text="" Width="120" Height="20" />
+        <TextBox x:Name="login" Margin="267,163,363,267" TextWrapping="Wrap" Text="lourdama" Width="120" Height="20" />
         <Label Content="Mot de passe" Margin="267,203,389,217" Width="94" Height="30"/>
-        <TextBox x:Name="mdp" Margin="267,233,363,197" TextWrapping="Wrap" Text="" Width="120" Height="20" />
+        <TextBox x:Name="mdp" Margin="267,233,363,197" TextWrapping="Wrap" Text="g4MEfv" Width="120" Height="20" />
         <Button x:Name="butConnexion" Content="Connexion" Margin="267,271,417,159" Click="butConnexion_Click" Width="66" Height="20"/>
         
     </Grid>

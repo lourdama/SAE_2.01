@@ -16,7 +16,7 @@ namespace PilotApp.Model
         private List<Couleur> lesCouleurs;
         private string code;
         private string nom;
-        private double prixVente;
+        private decimal prixVente;
         private int quantiteStock;
         private bool disponible;
 
@@ -24,7 +24,7 @@ namespace PilotApp.Model
         {
         }
 
-        public Produit(int id, TypePointe unTypePointe, Type unType, List<Couleur> lesCouleurs, string code, string nom, double prixVente, int quantiteStock, bool disponible)
+        public Produit(int id, TypePointe unTypePointe, Type unType, List<Couleur> lesCouleurs, string code, string nom, decimal prixVente, int quantiteStock, bool disponible)
         {
             this.Id = id;
             this.UnTypePointe = unTypePointe;
@@ -115,7 +115,7 @@ namespace PilotApp.Model
             }
         }
 
-        public double PrixVente
+        public decimal PrixVente
         {
             get
             {
@@ -178,7 +178,7 @@ namespace PilotApp.Model
                             lesCouleurs.Add(entreprise.LesCouleurs.SingleOrDefault(c => c.Id == (int)drCouleur["numcouleur"]));
                     }
                         lesProduits.Add(new Produit((int)dr["numproduit"], entreprise.LesTypesPointes.SingleOrDefault(c => c.Id == (int)dr["numtypepointe"]), entreprise.LesTypes.SingleOrDefault(c => c.Id == (int)dr["numtype"]), 
-                        lesCouleurs, (string)dr["codeproduit"], (string)dr["nomproduit"], (double)dr["prixvente"], (int)dr["quantitestock"], (bool)dr["disponible"]));
+                        lesCouleurs, (string)dr["codeproduit"], (string)dr["nomproduit"], (decimal)dr["prixvente"], (int)dr["quantitestock"], (bool)dr["disponible"]));
                 
                 }
             }

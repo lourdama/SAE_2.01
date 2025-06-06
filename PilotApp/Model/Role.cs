@@ -55,7 +55,7 @@ namespace PilotApp.Model
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
-                    lesRoles.Add(new Role((Int32)dr["numrole"], (String)dr["libelle"]));
+                    lesRoles.Add(new Role((Int32)dr["numrole"], (String)dr["libellerole"]));
             }
             return lesRoles;
         }

@@ -17,6 +17,10 @@ namespace PilotApp.Model
         private string mdp;
         private string login;
 
+        public Employe()
+        {
+        }
+
         public Employe(int id, Role unRole, string nom, string prenom, string mdp, string login)
         {
             this.Id = id;
