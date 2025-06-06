@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TD3_BindingBDPension.Model;
 
 namespace PilotApp.View
 {
@@ -28,6 +29,7 @@ namespace PilotApp.View
         private void connexion_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show($"Login : {login.Text} Mot de passe : {mdp.Text}");
+            DataAccess();
         }
     }
 }

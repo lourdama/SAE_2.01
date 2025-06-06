@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:PilotApp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Pilot software"
-    Width="800"
-    Height="450"
+    Width="900"
+    Height="600"
     mc:Ignorable="d">
     <Grid x:Name="mainGrid">
         <ContentControl x:Name="pageVisible" />

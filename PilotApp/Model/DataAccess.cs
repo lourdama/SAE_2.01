@@ -13,7 +13,7 @@ namespace PilotApp.Model
     public  class DataAccess
     {
         private static readonly DataAccess instance = new DataAccess();
-        private readonly string connectionString = "Host=srv-peda-new;Port=5433;Username=lourdama;Password=g4MEfv;Database=sae201_pilot;Options='-c search_path=lourdama'";
+        private readonly string connectionString = "Host=srv-peda-new;Port=5433;Username=lourama;Password=g4MEfv;Database=sae201_pilot;Options='-c search_path=lourdama'";
         private NpgsqlConnection connection;
 
         public static DataAccess Instance
