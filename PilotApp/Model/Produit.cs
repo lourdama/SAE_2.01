@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PilotApp.Model
 {
-    public class Produit
+    public class Produit : ICrud<Produit>, INotifyPropertyChanged
     {
         private int id;
         private TypePointe unTypePointe;
@@ -19,6 +20,8 @@ namespace PilotApp.Model
         private decimal prixVente;
         private int quantiteStock;
         private bool disponible;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public Produit()
         {
@@ -314,5 +317,21 @@ namespace PilotApp.Model
             return nb;
         }
 
+        public void Read()
+        {
+            //Méthode existante mais utilisée de manière pour des raisons de la modélisation de la BDD
+            throw new NotImplementedException();
+        }
+
+        public List<Produit> FindAll()
+        {
+            //Méthode existante mais utilisée de manière pour des raisons de la modélisation de la BDD
+            throw new NotImplementedException();
+        }
+
+        public List<Produit> FindBySelection(string criteres)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

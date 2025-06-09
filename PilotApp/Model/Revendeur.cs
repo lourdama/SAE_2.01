@@ -114,5 +114,76 @@ namespace PilotApp.Model
             }
             return lesRevendeurs;
         }
+
+        public int Create()
+        {
+            int nb = 0;
+            using (var cmdInsert = new NpgsqlCommand("insert into revendeur (raisonsociale,adresserue,adressecp,adresseville ) " +
+                "values (@raisonsociale,@adresserue,@adressecp,@adresseville) RETURNING numrevendeur"))
+            {
+                cmdInsert.Parameters.AddWithValue("raisonsociale", this.RaisonSociale);
+                cmdInsert.Parameters.AddWithValue("adresserue", this.Rue);
+                cmdInsert.Parameters.AddWithValue("adressecp", this.CodePostal);
+                cmdInsert.Parameters.AddWithValue("adresseville", this.Ville);
+                nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
+            }
+            this.Id = nb;
+            return nb;
+        }
+
+        public void Read()
+        {
+            using (var cmdSelect = new NpgsqlCommand("select * from  revendeur  where numrevendeur =@id;"))
+            {
+                cmdSelect.Parameters.AddWithValue("id", this.id);
+
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
+                this.RaisonSociale = (String)dt.Rows[0]["raisonsociale"];
+                this.Rue = (String)dt.Rows[0]["adresserue"];
+                this.CodePostal = (String)dt.Rows[0]["adressecp"];
+                this.Ville = (String)dt.Rows[0]["adresseville"];
+
+            }
+
+        }
+
+        public int Update()
+        {
+            using (var cmdUpdate = new NpgsqlCommand("update revendeur set raisonsociale =@raisonsociale ,  adresserue = @adresserue,  " +
+                "adressecp = @adressecp, adresseville = @adresseville  where numrevendeur =@id;"))
+            {
+                cmdUpdate.Parameters.AddWithValue("raisonsociale", this.RaisonSociale);
+                cmdUpdate.Parameters.AddWithValue("adresserue", this.Rue);
+                cmdUpdate.Parameters.AddWithValue("adressecp", this.CodePostal);
+                cmdUpdate.Parameters.AddWithValue("adresseville", this.Ville);
+                cmdUpdate.Parameters.AddWithValue("id", this.Id);
+                return DataAccess.Instance.ExecuteSet(cmdUpdate);
+            }
+        }
+
+        public List<Revendeur> FindBySelection(string criteres)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Delete()
+        {
+            using (var cmdUpdate = new NpgsqlCommand("delete from chiens  where numrevendeur =@id;"))
+            {
+                cmdUpdate.Parameters.AddWithValue("id", this.Id);
+                return DataAccess.Instance.ExecuteSet(cmdUpdate);
+            }
+        }
+
+        public int FindNbCommande()
+        {
+            int nb = 0;
+            using (NpgsqlCommand cmdSelect = new NpgsqlCommand("select count(*) from commande where numrevendeur = @id; "))
+            {
+                cmdSelect.Parameters.AddWithValue("id", this.Id);
+                return (int)(Int64)DataAccess.Instance.ExecuteSelectUneValeur(cmdSelect);
+            }
+            return nb;
+        }
     }
 }
