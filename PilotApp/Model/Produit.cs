@@ -224,11 +224,10 @@ namespace PilotApp.Model
                 List<Couleur> lesCouleurs = new List<Couleur>();
                 foreach (DataRow drCouleur in dtCouleur.Rows)
                 {
-                    if (drCouleur["numproduit"] == dt.Rows[0]["numproduit"])
                         lesCouleurs.Add(entreprise.LesCouleurs.SingleOrDefault(c => c.Id == (int)drCouleur["numcouleur"]));
                 }
                 this.Id = (int)dt.Rows[0]["numproduit"];
-                this.UnTypePointe = entreprise.LesTypesPointes.SingleOrDefault(c => c.Id == (int)dt.Rows[0]["numtypepointe"])
+                this.UnTypePointe = entreprise.LesTypesPointes.SingleOrDefault(c => c.Id == (int)dt.Rows[0]["numtypepointe"]);
                 this.UnType = entreprise.LesTypes.SingleOrDefault(c => c.Id == (int)dt.Rows[0]["numtype"]);
                 this.LesCouleurs = lesCouleurs;
                 this.Code = (string)dt.Rows[0]["codeproduit"];
@@ -244,8 +243,6 @@ namespace PilotApp.Model
         {
             using (var cmdUpdate = new NpgsqlCommand("update produit set numtypepointe =@numtypepointe ,  numtype = @numtype,  codeproduit = @codeproduit, " +
                 "nomproduit = @nomproduit, prixvente = @prixvente, quantitestock = @quantitestock, disponible = @disponible where numproduit =@id;"))
-            using (var cmdUpdateCP = new NpgsqlCommand("update couleurproduit set  numcouleur = @numcouleur where numproduit =@id;"))
-
             {
                 cmdUpdate.Parameters.AddWithValue("numtypepointe", this.UnTypePointe.Id);
                 cmdUpdate.Parameters.AddWithValue("numtype", this.UnType.Id);
@@ -331,13 +328,13 @@ namespace PilotApp.Model
 
         public void Read()
         {
-            //Méthode existante mais utilisée de manière pour des raisons de la modélisation de la BDD
+            //Méthode existante mais utilisée d'une autre manière pour des raisons de la modélisation de la BDD
             throw new NotImplementedException();
         }
 
         public List<Produit> FindAll()
         {
-            //Méthode existante mais utilisée de manière pour des raisons de la modélisation de la BDD
+            //Méthode existante mais utilisée d'une autre manière pour des raisons de la modélisation de la BDD
             throw new NotImplementedException();
         }
 

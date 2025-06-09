@@ -1,6 +1,7 @@
 ﻿using Npgsql;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,15 @@ using System.Threading.Tasks;
 
 namespace PilotApp.Model
 {
-    public class Revendeur
+    public class Revendeur : ICrud<Revendeur>, INotifyPropertyChanged
     {
         private int id;
         private string raisonSociale;
         private string rue;
         private string ville;
         private string codePostal;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         public Revendeur()
         {
