@@ -1,0 +1,167 @@
+﻿<ui:FluentWindow x:Class="PilotApp.Views.MainWindow"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+                Title="Pilot - Gestion des ventes" 
+                Height="800" 
+                Width="1200"
+                WindowStartupLocation="CenterScreen"
+                Loaded="MainWindow_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Barre de titre personnalisée -->
+        <Border Grid.Row="0" 
+                Background="#FF1976D2" 
+                Height="60">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" 
+                           Orientation="Horizontal" 
+                           VerticalAlignment="Center" 
+                           Margin="20,0">
+                    <TextBlock Text="PILOT" 
+                              FontSize="20" 
+                              FontWeight="Bold" 
+                              Foreground="White" 
+                              VerticalAlignment="Center"/>
+                    <TextBlock Text=" - Gestion des ventes" 
+                              FontSize="14" 
+                              Foreground="White" 
+                              VerticalAlignment="Center" 
+                              Opacity="0.8"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" 
+                           Orientation="Horizontal" 
+                           VerticalAlignment="Center" 
+                           Margin="20,0">
+                    <ui:SymbolIcon Symbol="Person24" 
+                                  Foreground="White" 
+                                  Margin="0,0,5,0"/>
+                    <TextBlock Text="{Binding CurrentUser.Name}" 
+                              Foreground="White" 
+                              VerticalAlignment="Center" 
+                              Margin="0,0,10,0"/>
+                    <TextBlock Text="{Binding CurrentUser.Role}" 
+                              Foreground="White" 
+                              VerticalAlignment="Center" 
+                              Opacity="0.8" 
+                              Margin="0,0,15,0"/>
+                    <ui:Button Content="Déconnexion"
+                              Command="{Binding LogoutCommand}"
+                              Appearance="Transparent"
+                              Foreground="White"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Navigation et contenu principal -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="250"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Menu de navigation -->
+            <Border Grid.Column="0" 
+                    Background="#FFF5F5F5" 
+                    BorderBrush="#FFEEEEEE" 
+                    BorderThickness="0,0,1,0">
+
+                <ui:NavigationView x:Name="NavigationView"
+                                  IsBackButtonVisible="Collapsed"
+                                  OpenPaneLength="250"
+                                  PaneDisplayMode="Left">
+
+                    <ui:NavigationView.MenuItems>
+
+                        <!-- Menu Commercial -->
+                        <ui:NavigationViewItem Content="Commandes"
+                                             Icon="{ui:SymbolIcon Cart24}"
+                                             Tag="commandes">
+                            <ui:NavigationViewItem.Style>
+                                <Style TargetType="ui:NavigationViewItem">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsCommercial}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ui:NavigationViewItem.Style>
+                        </ui:NavigationViewItem>
+
+                        <ui:NavigationViewItem Content="Mes Commandes"
+                                             Icon="{ui:SymbolIcon ClipboardTask24}"
+                                             Tag="mescommandes">
+                            <ui:NavigationViewItem.Style>
+                                <Style TargetType="ui:NavigationViewItem">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsCommercial}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ui:NavigationViewItem.Style>
+                        </ui:NavigationViewItem>
+
+                        <ui:NavigationViewItem Content="Revendeurs"
+                                             Icon="{ui:SymbolIcon StoreMicrosoft24}"
+                                             Tag="revendeurs">
+                            <ui:NavigationViewItem.Style>
+                                <Style TargetType="ui:NavigationViewItem">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsCommercial}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ui:NavigationViewItem.Style>
+                        </ui:NavigationViewItem>
+
+                        <!-- Menu commun -->
+                        <ui:NavigationViewItem Content="Produits"
+                                             Icon="{ui:SymbolIcon Box24}"
+                                             Tag="produits"/>
+
+                        <!-- Menu Responsable Production -->
+                        <ui:NavigationViewItem Content="Gestion Produits"
+                                             Icon="{ui:SymbolIcon Settings24}"
+                                             Tag="gestionproduits">
+                            <ui:NavigationViewItem.Style>
+                                <Style TargetType="ui:NavigationViewItem">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsResponsableProduction}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ui:NavigationViewItem.Style>
+                        </ui:NavigationViewItem>
+
+                    </ui:NavigationView.MenuItems>
+                </ui:NavigationView>
+            </Border>
+
+            <!-- Zone de contenu principal -->
+            <Border Grid.Column="1" 
+                    Background="White">
+                <ContentPresenter x:Name="MainContentPresenter"
+                                Content="{Binding CurrentView}"/>
+            </Border>
+
+        </Grid>
+    </Grid>
+</ui:FluentWindow>
