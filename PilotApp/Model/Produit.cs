@@ -295,6 +295,18 @@ namespace PilotApp.Model
             }
         }
 
+        public int UpdateDisponibilite()
+        {
+            this.Disponible = !this.Disponible;
+            using (var cmdUpdateDisponibilite = new NpgsqlCommand("update produit set  disponible = @disponible where numproduit =@id;"))
+
+            {
+                cmdUpdateDisponibilite.Parameters.AddWithValue("disponible", this.Disponible);
+                cmdUpdateDisponibilite.Parameters.AddWithValue("id", this.Id);
+                return DataAccess.Instance.ExecuteSet(cmdUpdateDisponibilite);
+            }
+        }
+
         public int FindNbCouleur()
         {
             int nb = 0;
