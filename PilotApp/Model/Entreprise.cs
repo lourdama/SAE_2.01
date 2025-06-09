@@ -34,7 +34,7 @@ namespace PilotApp.Model
             this.LesTypesPointes = new ObservableCollection<TypePointe>(new TypePointe().FindAll());
             this.LesTypes = new ObservableCollection<Type>(new Type().FindAll(this));
             this.LesProduits = new ObservableCollection<Produit>(new Produit().FindAll(this));
-            //this.LesCommandes = new ObservableCollection<Commande>(new Commande.FindAll());
+            this.LesCommandes = new ObservableCollection<Commande>(new Commande().FindAll(this));
         }
 
         public string Nom

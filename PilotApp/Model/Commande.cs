@@ -14,7 +14,7 @@ namespace PilotApp.Model
         private Employe employe;
         private ModeTransport modeTransport;
         private Revendeur revendeur;
-        private Dictionary<Produit, decimal[,]> sousCommandes;
+        private Dictionary<Produit, decimal[]> lesSousCommandes;
         private DateTime dateCommande;
         private DateTime dateLivraison;
         private decimal prix;
@@ -23,13 +23,13 @@ namespace PilotApp.Model
         {
         }
 
-        public Commande(int id, Employe employe, ModeTransport modeTransport, Revendeur revendeur, Dictionary<Produit, decimal[,]> sousCommandes, DateTime dateCommande, DateTime dateLivraison, decimal prix)
+        public Commande(int id, Employe employe, ModeTransport modeTransport, Revendeur revendeur, Dictionary<Produit, decimal[]> lesSousCommandes, DateTime dateCommande, DateTime dateLivraison, decimal prix)
         {
             this.Id = id;
             this.Employe = employe;
             this.ModeTransport = modeTransport;
             this.Revendeur = revendeur;
-            this.SousCommandes = sousCommandes;
+            this.LesSousCommandes = lesSousCommandes;
             this.DateCommande = dateCommande;
             this.DateLivraison = dateLivraison;
             this.Prix = prix;
@@ -87,16 +87,16 @@ namespace PilotApp.Model
             }
         }
 
-        public Dictionary<Produit, decimal[,]> SousCommandes
+        public Dictionary<Produit, decimal[]> LesSousCommandes
         {
             get
             {
-                return sousCommandes;
+                return lesSousCommandes;
             }
 
             set
             {
-                sousCommandes = value;
+                lesSousCommandes = value;
             }
         }
 
@@ -152,13 +152,26 @@ namespace PilotApp.Model
         {
 
             List<Commande> lesCommandes = new List<Commande>();
-            using (NpgsqlCommand cmdSelectProduit = new NpgsqlCommand("select * from commande;"))
+            using (NpgsqlCommand cmdSelectCommande = new NpgsqlCommand("select * from commande;"))
+            using (NpgsqlCommand cmdSelectProduitCommande = new NpgsqlCommand("select * from produitcommande;"))
             {
-                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelectProduit);
+                DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelectCommande);
+                DataTable dtPC = DataAccess.Instance.ExecuteSelect(cmdSelectProduitCommande);
                 foreach (DataRow dr in dt.Rows)
                 {
+                    Dictionary<Produit, decimal[]> lesSousCommandes = new Dictionary<Produit, decimal[]>();
+                    foreach (DataRow drPC in dtPC.Rows)
+                    {
+                        if (drPC["numcommande"] == dr["numcommande"])
+                        {
+                            decimal[] coupleQuantitePrix = new decimal[2];
+                            coupleQuantitePrix[0] = (decimal)drPC["quantitecommande"];
+                            coupleQuantitePrix[1] = (decimal)drPC["prix"];
+                            lesSousCommandes.Add(entreprise.LesProduits.SingleOrDefault(c => c.Id == (int)drPC["numproduit"]), coupleQuantitePrix);
+                        }
+                    }
                     lesCommandes.Add(new Commande((int)dr["numcommande"], entreprise.LesEmployes.SingleOrDefault(c => c.Id == (int)dr["numemploye"]), entreprise.LesModesTransports.SingleOrDefault(c => c.Id == (int)dr["numtransport"]),
-                        entreprise.LesRevendeurs.SingleOrDefault(c => c.Id == (int)dr["numrevendeur"]), new Dictionary<Produit, decimal[,]>(), (DateTime)dr["datecommande"], (DateTime)dr["datelivraison"], (decimal)dr["prixtotal"]));
+                        entreprise.LesRevendeurs.SingleOrDefault(c => c.Id == (int)dr["numrevendeur"]), lesSousCommandes, (DateTime)dr["datecommande"], (DateTime)dr["datelivraison"], (decimal)dr["prixtotal"]));
 
                 }
             }
