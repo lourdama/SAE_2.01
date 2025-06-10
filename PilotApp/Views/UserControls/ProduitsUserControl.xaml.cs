@@ -26,6 +26,16 @@ namespace PilotApp.Views.UserControls
             this.DataContext = MainWindow.Instance.Pilot.LesProduits;
         }
 
+       /* private bool RechercheMotClefSejour(object obj)
+        {
+            if (String.IsNullOrEmpty(textMotClefChienSejour.Text) && String.IsNullOrEmpty(textMotClefBoxSejour.Text) && String.IsNullOrEmpty(textMotClefDateSejour.Text))
+                return true;
+            Sejour unSejour = obj as Sejour;
+            return (unSejour.UnChien.Nom.StartsWith(textMotClefChienSejour.Text, StringComparison.OrdinalIgnoreCase))
+                && (unSejour.UnBox.NumBox.ToString().StartsWith(textMotClefBoxSejour.Text, StringComparison.OrdinalIgnoreCase))
+                && ((unSejour.DateDebut.ToString().Contains(textMotClefDateSejour.Text, StringComparison.OrdinalIgnoreCase)) || (unSejour.DateFin.ToString().Contains(textMotClefDateSejour.Text, StringComparison.OrdinalIgnoreCase)));
+        }*/
+
         private void butAjouter_Click(object sender, RoutedEventArgs e)
         {
 
@@ -40,5 +50,12 @@ namespace PilotApp.Views.UserControls
         {
 
         }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+
     }
 }
