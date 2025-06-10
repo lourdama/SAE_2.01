@@ -9,40 +9,63 @@
     d:DesignHeight="950"
     d:DesignWidth="724"
     mc:Ignorable="d">
-    <Grid Margin="0,378,0,0">
-        <ui:Card
-            Margin="20,0,20,57"
-            VerticalAlignment="Bottom"
-            Background="#E4FFFFFF">
-            <StackPanel x:Name="panelFormCommande">
-                <Label Width="200" Content="Employé" />
-                <ComboBox Width="200" ItemsSource="{Binding UnEmploye.Nom}" />
-                <Label Width="200" Content="Mode de transport" />
-                <ComboBox Width="200" ItemsSource="{Binding FontFamilies}" />
-                <Label Width="200" Content="Revendeur" />
-                <ComboBox Width="200" ItemsSource="{Binding FontFamilies}" />
-                <Label Width="200" Content="Date commande" />
-                <DatePicker Width="200" VerticalAlignment="Stretch" />
-                <Label Width="200" Content="Date de livraison" />
-                <DatePicker Width="200" VerticalAlignment="Stretch" />
-                <Label Width="200" Content="Prix total" />
-                <ui:NumberBox Width="200" Icon="CurrencyDollarEuro24" />
-                <ui:Button
-                    x:Name="butAjouterProduit"
-                    Width="200"
-                    Margin="0,20,0,0"
-                    HorizontalAlignment="Center"
-                    Appearance="Success"
-                    Content="Ajouter un produit" />
-                <ui:Button
-                    x:Name="butValiderCommande"
-                    Width="200"
-                    Margin="0,20,0,0"
-                    HorizontalAlignment="Center"
-                    Appearance="Success"
-                    Click="butValiderCommande_Click"
-                    Content="ValiderCommande" />
-            </StackPanel>
-        </ui:Card>
-    </Grid>
+    <StackPanel x:Name="panelFormCommande" Background="White">
+        <Label
+            Width="200"
+            VerticalAlignment="Stretch"
+            Content="Employé" />
+        <ComboBox
+            Width="200"
+            VerticalAlignment="Stretch"
+            DisplayMemberPath="Nom"
+            ItemsSource="{Binding LesEmployes}" />
+        <Label
+            Width="200"
+            VerticalAlignment="Stretch"
+            Content="Mode de transport" />
+        <ComboBox
+            Width="200"
+            VerticalAlignment="Stretch"
+            DisplayMemberPath="Nom"
+            ItemsSource="{Binding LesModesTransports}" />
+        <Label
+            Width="200"
+            VerticalAlignment="Stretch"
+            Content="Revendeur" />
+        <ComboBox
+            Width="200"
+            VerticalAlignment="Stretch"
+            DisplayMemberPath="RaisonSociale"
+            ItemsSource="{Binding LesRevendeurs}" />
+        <Label
+            Width="200"
+            VerticalAlignment="Stretch"
+            Content="Date commande" />
+        <DatePicker Width="200" VerticalAlignment="Stretch" />
+        <Label
+            Width="200"
+            VerticalAlignment="Stretch"
+            Content="Date de livraison" />
+        <DatePicker Width="200" VerticalAlignment="Stretch" />
+        <Label
+            Width="200"
+            VerticalAlignment="Stretch"
+            Content="Prix total" />
+        <TextBox Width="205" VerticalAlignment="Stretch" />
+        <ui:Button
+            x:Name="butAjouterProduit"
+            Width="200"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Stretch"
+            Appearance="Success"
+            Content="Ajouter un produit" />
+        <ui:Button
+            x:Name="butValiderCommande"
+            Width="200"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Stretch"
+            Appearance="Success"
+            Click="butValiderCommande_Click"
+            Content="ValiderCommande" />
+    </StackPanel>
 </UserControl>

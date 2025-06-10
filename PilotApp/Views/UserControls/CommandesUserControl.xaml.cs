@@ -31,18 +31,10 @@ namespace PilotApp.Views.UserControls
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)
         {
-            Commande commande = new Commande();
-            MainWindow.Instance.vueActuelle.Content = new AjouterCommandeUserControl(commande, Action.Creer);
 
-            try
-            {
-                commande.Id = commande.Create();
-                MainWindow.Instance.Pilot.LesCommandes.Add(commande);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(MainWindow.Instance, "La commande n'a pas pu être créé.", "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            Commande uneCommande = new Commande();
+            MainWindow.Instance.vueActuelle.Content = new AjouterCommandeUserControl(uneCommande, Action.Creer);
+
 
 
         }

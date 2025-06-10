@@ -1,6 +1,7 @@
 ﻿using PilotApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
@@ -24,38 +25,36 @@ namespace PilotApp.Views.UserControls
     public partial class AjouterCommandeUserControl : UserControl
     {
         private Action action;
-        public AjouterCommandeUserControl(Commande uneCommande,Action action)
+        private Commande commande;
+
+        public AjouterCommandeUserControl(Commande commande, Action actions)
         {
             InitializeComponent();
+            this.commande = commande;
             this.action = action;
+            this.DataContext = MainWindow.Instance.Pilot;
 
             if (action == Action.Creer)
-            {
                 butValiderCommande.Content = "Créer";
-            }
             else
-            {
                 butValiderCommande.Content = "Modifier";
-            }
         }
 
         private void butValiderCommande_Click(object sender, RoutedEventArgs e)
         {
-
-            // validation des champs
-            bool ok = true;
-            foreach (UIElement uie in panelFormCommande.Children)
+            try
             {
-                if (uie is TextBox txt)
-                    txt.GetBindingExpression(TextBox.TextProperty).UpdateSource();
-                if (Validation.GetHasError(uie))
-                    ok = false;
+                commande.Create();
+                MainWindow.Instance.Pilot.LesCommandes.Add(commande);
+                MainWindow.Instance.vueActuelle.Content = new CommandesUserControl();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur lors de la création de la commande.");
             }
 
-            if (ok)   = true;
-            else MessageBox.Show("Veuillez corriger les erreurs.");
         }
 
-    }
+
     }
 }
