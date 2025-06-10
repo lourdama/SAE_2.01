@@ -174,11 +174,22 @@
                     </ui:NavigationView.MenuItems>
                 </ui:NavigationView>
             </Border>
-
-            <!--  Zone de contenu principal  -->
             <Border Grid.Column="1" Background="White" Height="728">
                 <ContentControl x:Name="vueActuelle"/>
             </Border>
+
+            <TextBlock Grid.Column="1" Foreground="Black" Height="666" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,40,0,0" Width="911" FontSize="15">
+                <Run Text="Bonjour " FontSize="40" />
+                <Run Text="{Binding EmployeConnecte.Prenom}" FontSize="40" />
+                <Run Text="" FontSize="40" />
+                <Run Text="{Binding EmployeConnecte.Nom}" FontSize="40" />
+                <LineBreak/> 
+                <Run Text="Bienvenue dans votre espace" FontSize="30" />
+                <Run Text="" FontSize="30" />
+                <Run Text="{Binding EmployeConnecte.UnRole.Nom}" FontSize="30" />
+                
+            </TextBlock>
+
 
         </Grid>
     </Grid>

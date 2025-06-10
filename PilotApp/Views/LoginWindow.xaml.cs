@@ -38,6 +38,10 @@ namespace PilotApp.Views
                 mainWindow.Show();
                 this.Close();
             }
+            else
+            {
+                messageErreur.Visibility = Visibility.Visible;
+            }
                  
             
         }
