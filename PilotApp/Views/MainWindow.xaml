@@ -8,7 +8,6 @@
     Height="800"
     Loaded="MainWindow_Loaded"
     WindowStartupLocation="CenterScreen">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -54,22 +53,26 @@
                         Margin="0,0,5,0"
                         Foreground="White"
                         Symbol="Person24" />
-                    <TextBlock
-                        Margin="0,0,10,0"
-                        VerticalAlignment="Center"
-                        Foreground="White"
-                        Text="{Binding CurrentUser.Name}" />
+
+                    <TextBlock Foreground="White" Height="20">
+                        <Run Text="{Binding EmployeConnecte.Nom}" />
+                        <Run Text="{Binding EmployeConnecte.Prenom}" />
+                        <Run Text=" | " />
+                        <Run Text="{Binding EmployeConnecte.UnRole.Nom}" />
+                    </TextBlock>
                     <TextBlock
                         Margin="0,0,15,0"
                         VerticalAlignment="Center"
                         Foreground="White"
                         Opacity="0.8"
-                        Text="{Binding CurrentUser.Role}" />
-                    <ui:Button x:Name="DeconnexionButton"
+                        Text="{Binding EmployeConnecte.Role}" />
+                    <ui:Button
+                        x:Name="DeconnexionButton"
                         Appearance="Transparent"
+                        Click="DeconnexionButton_Click"
                         Command="{Binding LogoutCommand}"
                         Content="Déconnexion"
-                        Foreground="White" Click="DeconnexionButton_Click"  />
+                        Foreground="White" />
                 </StackPanel>
             </Grid>
         </Border>
@@ -105,7 +108,7 @@
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsCommercial}" Value="True">
+                                        <DataTrigger Binding="{Binding EstCommercial}" Value="True">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -121,7 +124,7 @@
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsCommercial}" Value="True">
+                                        <DataTrigger Binding="{Binding EstCommercial}" Value="True">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -137,7 +140,7 @@
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsCommercial}" Value="True">
+                                        <DataTrigger Binding="{Binding EstCommercial}" Value="True">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -160,7 +163,7 @@
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsResponsableProduction}" Value="True">
+                                        <DataTrigger Binding="{Binding EstResponsable}" Value="True">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>

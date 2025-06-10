@@ -1,31 +1,33 @@
-﻿<UserControl x:Class="PilotApp.Views.UserControls.AjouterProduitCommandeUserControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:PilotApp.Views.UserControls"
-             xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-             mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="350">
+﻿<UserControl
+    x:Class="PilotApp.Views.UserControls.AjouterProduitCommandeUserControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:PilotApp.Views.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    d:DesignHeight="350"
+    d:DesignWidth="350"
+    mc:Ignorable="d">
     <Grid>
         <ui:Card
-    Margin="20,0,20,57"
-    VerticalAlignment="Bottom"
-    Background="#E4FFFFFF">
+            Margin="20,0,20,57"
+            VerticalAlignment="Bottom"
+            Background="#E4FFFFFF">
             <StackPanel x:Name="panelFormProduit">
                 <Label Width="200" Content="Produit" />
-                <ComboBox Width="200" ItemsSource="{Binding FontFamilies}" />
+                <ui:AutoSuggestBox Width="200" ItemsSource="{Binding FontFamilies}" />
                 <Label Width="200" Content="Quantité" />
                 <ui:NumberBox Width="200" Icon="CurrencyDollarEuro24" />
                 <Label Width="200" Content="Prix total" />
-                <ui:TextBox Width="200"  />
+                <ui:TextBox Width="200" IsReadOnly="True" />
                 <ui:Button
-            x:Name="butAjouterProduit"
-            Width="200"
-            Margin="0,20,0,0"
-            HorizontalAlignment="Center"
-            Appearance="Success"
-            Content="Ajouter un produit" />
+                    x:Name="butAjouterProduit"
+                    Width="200"
+                    Margin="0,20,0,0"
+                    HorizontalAlignment="Center"
+                    Appearance="Success"
+                    Content="Ajouter un produit" />
             </StackPanel>
         </ui:Card>
     </Grid>
