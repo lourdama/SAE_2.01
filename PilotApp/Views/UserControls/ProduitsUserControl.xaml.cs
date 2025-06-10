@@ -23,6 +23,22 @@ namespace PilotApp.Views.UserControls
         public ProduitsUserControl()
         {
             InitializeComponent();
+            this.DataContext = MainWindow.Instance.Pilot.LesProduits;
+        }
+
+        private void butAjouter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void butModifier_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void butSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

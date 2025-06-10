@@ -39,7 +39,7 @@
                     Width="200"
                     Margin="0,20,0,0"
                     HorizontalAlignment="Center"
-                    Appearance="Success"
+                    Appearance="Success"                   
                     Content="ValiderCommande" />
             </StackPanel>
         </ui:Card>

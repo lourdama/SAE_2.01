@@ -29,5 +29,21 @@ namespace PilotApp.Views.UserControls
 
         }
 
+        private void butAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            AjouterCommandeUserControl wCom = new AjouterCommandeUserControl();
+            
+
+        }
+
+        private void butModifier_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void butSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
