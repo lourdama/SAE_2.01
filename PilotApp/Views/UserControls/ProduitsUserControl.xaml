@@ -122,7 +122,7 @@
                     Command="{Binding ViewModel.SingleCheckedCommand, Mode=OneWay}"
                     CommandParameter="1"
                     Content="Disponible"
-                    IsChecked="{Binding ViewModel.OptionOneCheckBoxChecked, Mode=TwoWay}" Checked="CheckBox_Checked" />
+                    IsChecked="{Binding ViewModel.OptionOneCheckBoxChecked, Mode=TwoWay}" />
             <CheckBox
                     Margin="24,0,0,0"
                     Command="{Binding ViewModel.SingleCheckedCommand, Mode=OneWay}"
