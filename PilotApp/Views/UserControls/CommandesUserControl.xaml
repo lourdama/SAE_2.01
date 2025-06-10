@@ -18,7 +18,8 @@
                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" />
                 <DataGridTextColumn Binding="{Binding DateCommande}" Header="Date commande" />
                 <DataGridTextColumn Binding="{Binding DateLivraison}" Header="Livraison" />
-                <DataGridTextColumn Binding="{Binding Prix}" Header="Prix" />
+                <DataGridTextColumn Binding="{Binding Prix, StringFormat={}{0} €}" Header="Prix" >
+                </DataGridTextColumn>
                 <DataGridTextColumn Binding="{Binding UnEmploye.Nom}" Header="Employé" />
                 <DataGridTextColumn Binding="{Binding UnRevendeur.RaisonSociale}" Header="Revendeur" />
                 <DataGridTextColumn Binding="{Binding UnModeTransport.Nom}" Header="Transport" />
