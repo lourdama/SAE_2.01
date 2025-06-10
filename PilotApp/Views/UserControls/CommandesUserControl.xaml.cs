@@ -1,6 +1,7 @@
 ﻿using PilotApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,13 @@ namespace PilotApp.Views.UserControls
     /// </summary>
     public partial class CommandesUserControl : UserControl
     {
-        public CommandesUserControl()
+        private MainWindow mainWindow = MainWindow.Instance;
+        public CommandesUserControl(ObservableCollection<Commande> lesCommandes)
         {
             InitializeComponent();
+            this.DataContext = lesCommandes;
+
         }
-        
+
     }
 }
