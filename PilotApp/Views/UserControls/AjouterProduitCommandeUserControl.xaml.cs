@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PilotApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,12 +22,16 @@ namespace PilotApp.Views.UserControls
     /// </summary>
     public partial class AjouterProduitCommandeUserControl : UserControl
     {
+        private Commande commande;
         private Action action;
+
         public AjouterProduitCommandeUserControl()
         {
             InitializeComponent();
-            this.DataContext = MainWindow.Instance.Pilot.LesProduits;
+            this.commande = commande;
             this.action = action;
+
+            this.DataContext = this;
 
             if (action == Action.Creer)
             {
