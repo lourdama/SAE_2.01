@@ -12,10 +12,7 @@ namespace PilotApp.Services
     {
         private MainWindow mainWindow = MainWindow.Instance ;
         private readonly DataAccess _dataAccess;
-        private Employe _currentUser;
 
-        public Employe CurrentUser => _currentUser;
-        public bool EstAuthentifie => _currentUser != null;
 
         public AuthenticationService(string login, string mdp)
         {
@@ -29,7 +26,7 @@ namespace PilotApp.Services
                 mainWindow.login = login;
                 mainWindow.mdp = mdp;
                 mainWindow.Pilot = new Entreprise("Pilot");
-                //Accueil();
+                
 
 
             }
@@ -41,146 +38,46 @@ namespace PilotApp.Services
             }
         }
 
-
-        private Employe AuthentifierUser(string username)
+        public void ChargeEmploye()
         {
-                try
-                {
-
-                    // Requête SQL pour authentifier l'utilisateur
-                    string query = @"
-                        SELECT e.numemploye, e.nom, e.prenom, e.login, 
-                               r.numrole, r.nomrole
-                        FROM employe e
-                        INNER JOIN role r ON e.numrole = r.numrole
-                        WHERE e.login = @login ";
-
-                    using (var cmd = new NpgsqlCommand(query))
-                    {
-                        cmd.Parameters.AddWithValue("@login", username);
-
-                        DataTable result = _dataAccess.ExecuteSelect(cmd);
-
-                        if (result.Rows.Count > 0)
-                        {
-                            DataRow row = result.Rows[0];
-
-                            // Création de l'objet Role
-                            var role = new Role(
-                                Convert.ToInt32(row["id_role"]),
-                                row["nom_role"].ToString()
-                            );
-
-                            // Création de l'objet Employe
-                            var employe = new Employe
-                            {
-                                Id = Convert.ToInt32(row["id_employe"]),
-                                Nom = row["nom"].ToString(),
-                                Prenom = row["prenom"].ToString(),
-                                Login = row["login"].ToString(),
-                                Mdp = row["mdp"].ToString(),
-                                UnRole = role
-                            };
-
-                            return employe;
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    LogError.Log(ex, "Erreur lors de l'authentification en base de données");
-                    throw;
-                }
-
-                return null;
-            
-        }
-
-        public void Logout()
-        {
-            _currentUser = null;
-        }
-
-        public bool ARole(Role role)
-        {
-            return _currentUser?.UnRole?.Id == role?.Id;
-        }
-
-        public bool ARole(UserRole userRole)
-        {
-            if (_currentUser?.UnRole == null) return false;
-
-            return userRole switch
+            mainWindow.employeconnecte = new Employe();
+            foreach (Employe employeTemp in mainWindow.Pilot.LesEmployes)
             {
-                UserRole.Commercial => _currentUser.UnRole.Nom.Equals("Commercial"),
-                UserRole.ResponsableProduction => _currentUser.UnRole.Nom.Equals("Responsable de production"),
-                _ => false
-            };
+                if (employeTemp.Login == mainWindow.login)
+                {
+                    mainWindow.employeconnecte = employeTemp;
+                }
+            }
         }
 
-        public bool IsCommercial => ARole(UserRole.Commercial);
-        public bool IsResponsableProduction => ARole(UserRole.ResponsableProduction);
-
-        // Méthode pour vérifier si l'utilisateur existe (utile pour la validation)
-        public bool UserExists(string username)
+        public bool ARole(roleUtilisateur role)
         {
-                try
-                {
-                    string query = "SELECT COUNT(*) FROM employes WHERE login = @login";
-
-                    using (var cmd = new NpgsqlCommand(query))
-                    {
-                        cmd.Parameters.AddWithValue("@login", username);
-
-                        object result = _dataAccess.ExecuteSelectUneValeur(cmd);
-                        return Convert.ToInt32(result) > 0;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    LogError.Log(ex, $"Erreur lors de la vérification d'existence de l'utilisateur: {username}");
-                    return false;
-                }
+            return (roleUtilisateur)mainWindow.employeconnecte.UnRole.Id == roleUtilisateur.Administrateur ||(roleUtilisateur) mainWindow.employeconnecte.UnRole.Id == role;
         }
 
-        // Méthode pour obtenir tous les rôles disponibles
-        public List<Role> GetAllRoles()
+        public bool EstCommercial
         {
+            get
+            {
+                return ARole(roleUtilisateur.Commercial);
+            }
 
-                var roles = new List<Role>();
-
-                try
-                {
-                    string query = "SELECT numrole, nomrole FROM roles ORDER BY nom_role";
-
-                    using (var cmd = new NpgsqlCommand(query))
-                    {
-                        DataTable result = _dataAccess.ExecuteSelect(cmd);
-
-                        foreach (DataRow row in result.Rows)
-                        {
-                            roles.Add(new Role(
-                                Convert.ToInt32(row["numrole"]),
-                                row["nomrole"].ToString()
-                            ));
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    LogError.Log(ex, "Erreur lors de la récupération des rôles");
-                    throw;
-                }
-
-                return roles;
+           
         }
+        public bool EstResponsable
+        {
+            get
+            {
+                return ARole(roleUtilisateur.ResponsableProduction);
+            }
+        }       
     }
 }
 
 // Enum pour les rôles (compatible avec votre classe Role)
 namespace PilotApp.Models
 {
-    public enum UserRole
+    public enum roleUtilisateur
     {
         Commercial = 1,
         ResponsableProduction = 2,
