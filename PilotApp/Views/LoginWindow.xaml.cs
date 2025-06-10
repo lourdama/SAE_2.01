@@ -1,4 +1,5 @@
-﻿using PilotApp.ViewModels;
+﻿using PilotApp.Services;
+using PilotApp.ViewModels;
 using System;
 using System.ComponentModel;
 using System.Linq;
@@ -89,9 +90,11 @@ namespace PilotApp.Views
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            
             var mainWindow = new MainWindow();
+            new AuthenticationService(UsernameTextBox.Text, PasswordBox.Text);
             mainWindow.Show();
-            this.Close();
+            this.Close();     
         }
     }
 }

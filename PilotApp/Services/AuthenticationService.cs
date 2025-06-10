@@ -3,38 +3,44 @@ using System.Threading.Tasks;
 using System.Data;
 using Npgsql;
 using PilotApp.Models;
+using PilotApp.Views;
+using System.Windows;
 
 namespace PilotApp.Services
 {
     public class AuthenticationService
     {
+        private MainWindow mainWindow = MainWindow.Instance ;
         private readonly DataAccess _dataAccess;
         private Employe _currentUser;
 
         public Employe CurrentUser => _currentUser;
         public bool EstAuthentifie => _currentUser != null;
 
-        public AuthenticationService(string username, string password)
+        public AuthenticationService(string login, string mdp)
         {
-            _dataAccess = DataAccess.Instance;
-            Login(username, password);
-        }
+            ChargeData(login, mdp);
 
-        public bool Login(string username, string password)
+        }
+        public void ChargeData(string login, string mdp)
         {
-            
             try
             {
-                // Utilisation de votre DataAccess existant pour l'authentification
-                _currentUser = AuthentifierUser(username);
-                return _currentUser != null;
+                mainWindow.login = login;
+                mainWindow.mdp = mdp;
+                mainWindow.Pilot = new Entreprise("Pilot");
+                //Accueil();
+
+
             }
             catch (Exception ex)
             {
-                LogError.Log(ex, $"Erreur lors de l'authentification pour l'utilisateur: {username}");
-                return false;
+                MessageBox.Show("Problème lors de récupération des données, veuillez consulter votre admin");
+                LogError.Log(ex, "Erreur SQL");
+                Application.Current.Shutdown();
             }
         }
+
 
         private Employe AuthentifierUser(string username)
         {
