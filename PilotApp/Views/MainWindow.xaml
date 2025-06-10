@@ -176,7 +176,7 @@
             </Border>
 
             <!--  Zone de contenu principal  -->
-            <Border Grid.Column="1" Background="White">
+            <Border Grid.Column="1" Background="White" Height="728">
                 <ContentControl x:Name="vueActuelle"/>
             </Border>
 
