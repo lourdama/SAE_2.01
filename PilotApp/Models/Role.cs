@@ -32,7 +32,9 @@ namespace PilotApp.Models
 
             set
             {
-                this.id = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    this.id = value;
+                else throw new ArgumentException("L'id ne peut être null.");
             }
         }
 
@@ -45,7 +47,9 @@ namespace PilotApp.Models
 
             set
             {
-                this.nom = value;
+                if (MiseEnForme.NEstPasNullOuWhitespace(value))
+                    this.nom = MiseEnForme.FormaterString(value);
+                else throw new ArgumentException("Le nom ne peut être null.");
             }
         }
         public List<Role> FindAll()

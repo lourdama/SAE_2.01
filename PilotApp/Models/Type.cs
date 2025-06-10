@@ -34,7 +34,9 @@ namespace PilotApp.Models
 
             set
             {
-                id = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    this.id = value;
+                else throw new ArgumentException("L'id ne peut être null.");
             }
         }
 
@@ -47,7 +49,9 @@ namespace PilotApp.Models
 
             set
             {
-                uneCategorie = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    uneCategorie = value;
+                else throw new ArgumentException("La catégorie ne peut être null.");
             }
         }
 
@@ -60,7 +64,9 @@ namespace PilotApp.Models
 
             set
             {
-                this.nom = value;
+                if (MiseEnForme.NEstPasNullOuWhitespace(value))
+                    this.nom = MiseEnForme.FormaterString(value);
+                else throw new ArgumentException("Le nom ne peut être null.");
             }
         }
 

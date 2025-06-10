@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace PilotApp.Models
@@ -41,7 +42,9 @@ namespace PilotApp.Models
 
             set
             {
-                this.id = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    this.id = value;
+                else throw new ArgumentException("L'id ne peut être null.");
             }
         }
 
@@ -54,7 +57,9 @@ namespace PilotApp.Models
 
             set
             {
-                this.raisonSociale = value;
+                if (MiseEnForme.NEstPasNullOuWhitespace(value))
+                    this.raisonSociale = value;
+                else throw new ArgumentException("La raisonsociale ne peut être null.");
             }
         }
 
@@ -67,7 +72,9 @@ namespace PilotApp.Models
 
             set
             {
-                this.rue = value;
+                if (MiseEnForme.NEstPasNullOuWhitespace(value))
+                    this.rue = MiseEnForme.FormaterString(value);
+                else throw new ArgumentException("La rue ne peut être null.");
             }
         }
 
@@ -80,7 +87,9 @@ namespace PilotApp.Models
 
             set
             {
-                this.ville = value;
+                if (MiseEnForme.NEstPasNullOuWhitespace(value))
+                    this.ville = MiseEnForme.FormaterString(value);
+                else throw new ArgumentException("La ville ne peut être null.");
             }
         }
 
@@ -93,7 +102,10 @@ namespace PilotApp.Models
 
             set
             {
-                this.codePostal = value;
+                Regex regexCodePostal = new Regex(@"^\d{5}$");
+                if (MiseEnForme.NEstPasNullOuWhitespace(value) && regexCodePostal.IsMatch(value))
+                    this.codePostal = value;
+                else throw new ArgumentException("Le code postal ne peut être null ou respecter le format ");
             }
         }
 

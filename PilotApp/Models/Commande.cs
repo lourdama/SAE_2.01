@@ -46,7 +46,9 @@ namespace PilotApp.Models
 
             set
             {
-                id = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    id = value;
+                else throw new ArgumentException("L'id ne peut être null.");
             }
         }
 
@@ -59,7 +61,9 @@ namespace PilotApp.Models
 
             set
             {
-                unEmploye = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    unEmploye = value;
+                else throw new ArgumentException("L'employe ne peut être null.");
             }
         }
 
@@ -72,7 +76,9 @@ namespace PilotApp.Models
 
             set
             {
-                unModeTransport = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    unModeTransport = value;
+                else throw new ArgumentException("Le mode de transport ne peut être null.");
             }
         }
 
@@ -85,7 +91,9 @@ namespace PilotApp.Models
 
             set
             {
-                unRevendeur = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    unRevendeur = value;
+                else throw new ArgumentException("Le revendeur ne peut être null.");
             }
         }
 
@@ -98,7 +106,17 @@ namespace PilotApp.Models
 
             set
             {
-                lesSousCommandes = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    if (value.Count != 0)
+                    {
+                        foreach (KeyValuePair<Produit, decimal[]> uneSousCommande in this.LesSousCommandes)
+                        {
+                            if (!MiseEnForme.EstEntre(uneSousCommande.Value[0], 0) || !MiseEnForme.EstEntre(uneSousCommande.Value[1], 0) || uneSousCommande.Key == null)
+                                throw new ArgumentException("Une sous commande ne doit pas contenir de produit null ni de quantié ou prix négatif");
+                        }
+                        lesSousCommandes = value;
+                    }
+                    else throw new ArgumentException("Les sous commandes ne peut être null ou ne rien contenir");
             }
         }
 
@@ -111,7 +129,9 @@ namespace PilotApp.Models
 
             set
             {
-                dateCommande = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    dateCommande = value;
+                else throw new ArgumentException("La date de commande ne peut être null.");
             }
         }
 

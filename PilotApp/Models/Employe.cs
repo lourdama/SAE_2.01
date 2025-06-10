@@ -40,7 +40,9 @@ namespace PilotApp.Models
 
             set
             {
-                this.id = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    this.id = value;
+                else throw new ArgumentException("L'id ne peut être null.");
             }
         }
 
@@ -53,7 +55,9 @@ namespace PilotApp.Models
 
             set
             {
-                this.unRole = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    this.unRole = value;
+                else throw new ArgumentException("Le role ne peut être null.");
             }
         }
 
@@ -66,7 +70,9 @@ namespace PilotApp.Models
 
             set
             {
-                this.nom = value;
+                if (MiseEnForme.NEstPasNullOuWhitespace(value))
+                    this.nom = MiseEnForme.FormaterString(value);
+                else throw new ArgumentException("Le nom ne peut être null.");
             }
         }
 
@@ -79,7 +85,9 @@ namespace PilotApp.Models
 
             set
             {
-                this.prenom = value;
+                if (MiseEnForme.NEstPasNullOuWhitespace(value))
+                    this.prenom = MiseEnForme.FormaterString(value);
+                else throw new ArgumentException("Le prénom ne peut être null.");
             }
         }
 
@@ -92,7 +100,9 @@ namespace PilotApp.Models
 
             set
             {
-                this.mdp = value;
+                if (MiseEnForme.NEstPasNullOuWhitespace(value))
+                    this.mdp = value;
+                else throw new ArgumentException("Le mot de passe ne peut être null.");
             }
         }
 
@@ -105,7 +115,10 @@ namespace PilotApp.Models
 
             set
             {
-                this.login = value;
+                if (MiseEnForme.NEstPasNullOuWhitespace(value))
+                    this.login = value;
+                else throw new ArgumentException("Le login ne peut être null.");
+
             }
         }
         public List<Employe> FindAll(Entreprise entreprise)

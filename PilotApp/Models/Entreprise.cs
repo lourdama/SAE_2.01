@@ -46,7 +46,9 @@ namespace PilotApp.Models
 
             set
             {
-                this.nom = value;
+                if (MiseEnForme.NEstPasNullOuWhitespace(value))
+                    this.nom = value;
+                else throw new ArgumentException("Le nom ne peut être null.");
             }
         }
 

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace PilotApp.Models
@@ -49,7 +50,9 @@ namespace PilotApp.Models
 
             set
             {
-                id = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    this.id = value;
+                else throw new ArgumentException("L'id ne peut être null.");
             }
         }
 
@@ -62,7 +65,9 @@ namespace PilotApp.Models
 
             set
             {
-                unTypePointe = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    unTypePointe = value;
+                else throw new ArgumentException("Le typepointe ne peut être null.");
             }
         }
 
@@ -75,7 +80,9 @@ namespace PilotApp.Models
 
             set
             {
-                unType = value;
+                if (MiseEnForme.NEstPasNull(value))
+                    unType = value;
+                else throw new ArgumentException("Le type ne peut être null.");
             }
         }
 
@@ -88,7 +95,9 @@ namespace PilotApp.Models
 
             set
             {
-                lesCouleurs = value;
+                if (MiseEnForme.NEstPasNull(value) && value.Count != 0)
+                    lesCouleurs = value;
+                else throw new ArgumentException("Un produit ne peut pas n'avoir aucune couleur");
             }
         }
 
@@ -101,7 +110,10 @@ namespace PilotApp.Models
 
             set
             {
-                code = value;
+                Regex regexCodeProduit = new Regex(@"^C\d{4}$", RegexOptions.IgnoreCase);
+                if (MiseEnForme.NEstPasNullOuWhitespace(value) && regexCodeProduit.IsMatch(value))
+                    code = value;
+                else throw new ArgumentException("Le code ne peut être null et doit respecter le format");
             }
         }
 
@@ -114,7 +126,9 @@ namespace PilotApp.Models
 
             set
             {
-                nom = value;
+                if (MiseEnForme.NEstPasNullOuWhitespace(value))
+                    nom = MiseEnForme.FormaterString(value);
+                else throw new ArgumentException("Le code ne peut être null.");
             }
         }
 
@@ -127,7 +141,9 @@ namespace PilotApp.Models
 
             set
             {
-                prixVente = value;
+                if (MiseEnForme.NEstPasNull(value) && MiseEnForme.EstEntre(value,0))
+                    prixVente = value;
+                else throw new ArgumentException("Le prix ne peut être null ou négatif");
             }
         }
 
@@ -140,7 +156,9 @@ namespace PilotApp.Models
 
             set
             {
-                quantiteStock = value;
+                if (MiseEnForme.NEstPasNull(value) && MiseEnForme.EstEntre(value, 0))
+                    quantiteStock = value;
+                else throw new ArgumentException("Le prix ne peut être null ou négatif");
             }
         }
 
