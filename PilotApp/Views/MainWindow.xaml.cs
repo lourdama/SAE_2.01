@@ -36,5 +36,13 @@ namespace PilotApp.Views
                 viewModel.InitializeNavigation(MainContentPresenter);
             }
         }
+
+        private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (DataContext is MainViewModel viewModel)
+            {
+                viewModel.Logout();
+            }
+        }
     }
 }

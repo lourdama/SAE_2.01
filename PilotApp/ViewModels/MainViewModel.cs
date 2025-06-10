@@ -6,6 +6,7 @@ using PilotApp.Views.UserControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Wpf.Ui.Controls;
 
 namespace PilotApp.ViewModels
 {
@@ -77,7 +78,7 @@ namespace PilotApp.ViewModels
             }
         }
 
-        private void Logout()
+        public void Logout()
         {
             _authService.Logout();
 
@@ -86,7 +87,7 @@ namespace PilotApp.ViewModels
             loginWindow.DataContext = new LoginViewModel();
 
             // Fermer la fenêtre principale
-            var mainWindow = Application.Current.Windows.OfType<Window>().FirstOrDefault(w => w is MainWindow);
+            var mainWindow = Application.Current.Windows.OfType<FluentWindow>().FirstOrDefault(w => w is MainWindow);
             mainWindow?.Close();
 
             loginWindow.Show();

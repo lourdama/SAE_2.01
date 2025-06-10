@@ -12,19 +12,21 @@ namespace PilotApp.Services
         private Employe _currentUser;
 
         public Employe CurrentUser => _currentUser;
-        public bool IsAuthenticated => _currentUser != null;
+        public bool EstAuthentifie => _currentUser != null;
 
-        public AuthenticationService()
+        public AuthenticationService(string username, string password)
         {
-            //_dataAccess = DataAccess.Instance;
+            _dataAccess = DataAccess.Instance;
+            Login(username, password);
         }
 
-        public async Task<bool> LoginAsync(string username, string password)
+        public bool Login(string username, string password)
         {
+            
             try
             {
                 // Utilisation de votre DataAccess existant pour l'authentification
-                _currentUser = await AuthenticateUserAsync(username, password);
+                _currentUser = AuthentifierUser(username);
                 return _currentUser != null;
             }
             catch (Exception ex)
@@ -34,24 +36,22 @@ namespace PilotApp.Services
             }
         }
 
-        private async Task<Employe> AuthenticateUserAsync(string username, string password)
+        private Employe AuthentifierUser(string username)
         {
-            return await Task.Run(() =>
-            {
                 try
                 {
+
                     // Requête SQL pour authentifier l'utilisateur
                     string query = @"
                         SELECT e.numemploye, e.nom, e.prenom, e.login, 
                                r.numrole, r.nomrole
-                        FROM employes e
-                        INNER JOIN roles r ON e.numrole = r.numrole
+                        FROM employe e
+                        INNER JOIN role r ON e.numrole = r.numrole
                         WHERE e.login = @login ";
 
                     using (var cmd = new NpgsqlCommand(query))
                     {
                         cmd.Parameters.AddWithValue("@login", username);
-                        cmd.Parameters.AddWithValue("@password", password); // En production, utilisez un hash
 
                         DataTable result = _dataAccess.ExecuteSelect(cmd);
 
@@ -87,7 +87,7 @@ namespace PilotApp.Services
                 }
 
                 return null;
-            });
+            
         }
 
         public void Logout()
@@ -95,31 +95,29 @@ namespace PilotApp.Services
             _currentUser = null;
         }
 
-        public bool HasRole(Role role)
+        public bool ARole(Role role)
         {
             return _currentUser?.UnRole?.Id == role?.Id;
         }
 
-        public bool HasRole(UserRole userRole)
+        public bool ARole(UserRole userRole)
         {
             if (_currentUser?.UnRole == null) return false;
 
             return userRole switch
             {
-                UserRole.Commercial => _currentUser.UnRole.Nom.Equals("Commercial", StringComparison.OrdinalIgnoreCase),
-                UserRole.ResponsableProduction => _currentUser.UnRole.Nom.Equals("Responsable de production", StringComparison.OrdinalIgnoreCase),
+                UserRole.Commercial => _currentUser.UnRole.Nom.Equals("Commercial"),
+                UserRole.ResponsableProduction => _currentUser.UnRole.Nom.Equals("Responsable de production"),
                 _ => false
             };
         }
 
-        public bool IsCommercial => HasRole(UserRole.Commercial);
-        public bool IsResponsableProduction => HasRole(UserRole.ResponsableProduction);
+        public bool IsCommercial => ARole(UserRole.Commercial);
+        public bool IsResponsableProduction => ARole(UserRole.ResponsableProduction);
 
         // Méthode pour vérifier si l'utilisateur existe (utile pour la validation)
-        public async Task<bool> UserExistsAsync(string username)
+        public bool UserExists(string username)
         {
-            return await Task.Run(() =>
-            {
                 try
                 {
                     string query = "SELECT COUNT(*) FROM employes WHERE login = @login";
@@ -137,19 +135,17 @@ namespace PilotApp.Services
                     LogError.Log(ex, $"Erreur lors de la vérification d'existence de l'utilisateur: {username}");
                     return false;
                 }
-            });
         }
 
         // Méthode pour obtenir tous les rôles disponibles
-        public async Task<List<Role>> GetAllRolesAsync()
+        public List<Role> GetAllRoles()
         {
-            return await Task.Run(() =>
-            {
+
                 var roles = new List<Role>();
 
                 try
                 {
-                    string query = "SELECT id_role, nom_role FROM roles ORDER BY nom_role";
+                    string query = "SELECT numrole, nomrole FROM roles ORDER BY nom_role";
 
                     using (var cmd = new NpgsqlCommand(query))
                     {
@@ -158,8 +154,8 @@ namespace PilotApp.Services
                         foreach (DataRow row in result.Rows)
                         {
                             roles.Add(new Role(
-                                Convert.ToInt32(row["id_role"]),
-                                row["nom_role"].ToString()
+                                Convert.ToInt32(row["numrole"]),
+                                row["nomrole"].ToString()
                             ));
                         }
                     }
@@ -171,7 +167,6 @@ namespace PilotApp.Services
                 }
 
                 return roles;
-            });
         }
     }
 }
@@ -182,6 +177,7 @@ namespace PilotApp.Models
     public enum UserRole
     {
         Commercial = 1,
-        ResponsableProduction = 2
+        ResponsableProduction = 2,
+        Administrateur = 3
     }
 }
