@@ -5,25 +5,38 @@ namespace PilotApp.Services
 {
     public class NavigationService
     {
-        private ContentPresenter _contentPresenter;
+        private ContentPresenter contentPresenter;
 
-        public void Initialize(ContentPresenter contentPresenter)
+        public ContentPresenter ContentPresenter
         {
-            _contentPresenter = contentPresenter;
-        }
-
-        public void NavigateTo(UserControl view)
-        {
-            if (_contentPresenter != null)
+            get
             {
-                _contentPresenter.Content = view;
+                return this.contentPresenter;
+            }
+
+            set
+            {
+                this.contentPresenter = value;
             }
         }
 
-        public void NavigateTo<T>() where T : UserControl, new()
+        public void Initialize(ContentPresenter contentPresenter)
+        {
+            this.ContentPresenter = contentPresenter;
+        }
+
+        public void NaviguerVers(UserControl view)
+        {
+            if (this.ContentPresenter != null)
+            {
+                ContentPresenter.Content = view;
+            }
+        }
+
+        public void NaviguerVers<T>() where T : UserControl, new()
         {
             var view = new T();
-            NavigateTo(view);
+            NaviguerVers(view);
         }
     }
 }
