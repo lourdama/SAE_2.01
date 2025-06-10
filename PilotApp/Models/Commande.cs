@@ -26,7 +26,7 @@ namespace PilotApp.Models
         {
         }
 
-        public Commande(int id, Employe unEmploye, ModeTransport unModeTransport, Revendeur unRevendeur, Dictionary<Produit, decimal[]> lesSousCommandes, DateTime dateCommande, DateTime? dateLivraison, decimal prix)
+        public Commande(int id, Employe unEmploye, ModeTransport unModeTransport, Revendeur unRevendeur, Dictionary<Produit, decimal[]> lesSousCommandes, DateTime dateCommande, DateTime? dateLivraison)
         {
             this.Id = id;
             this.UnEmploye = unEmploye;
@@ -35,7 +35,6 @@ namespace PilotApp.Models
             this.LesSousCommandes = lesSousCommandes;
             this.DateCommande = dateCommande;
             this.DateLivraison = dateLivraison;
-            this.Prix = prix;
         }
 
         public int Id
@@ -133,13 +132,15 @@ namespace PilotApp.Models
         {
             get
             {
+                decimal prix = 0;
+                foreach (KeyValuePair<Produit, decimal[]> uneSousCommande in this.LesSousCommandes)
+                {
+                    prix += uneSousCommande.Value[1];
+
+                }
                 return this.prix;
             }
 
-            set
-            {
-                this.prix = value;
-            }
         }
 
         public override bool Equals(object? obj)
@@ -179,7 +180,7 @@ namespace PilotApp.Models
                         dateLivraison = (DateTime)dr["datelivraison"];
                     }
                     lesCommandes.Add(new Commande((int)dr["numcommande"], entreprise.LesEmployes.SingleOrDefault(c => c.Id == (int)dr["numemploye"]), entreprise.LesModesTransports.SingleOrDefault(c => c.Id == (int)dr["numtransport"]),
-                        entreprise.LesRevendeurs.SingleOrDefault(c => c.Id == (int)dr["numrevendeur"]), lesSousCommandes, (DateTime)dr["datecommande"], dateLivraison, (decimal)dr["prixtotal"]));
+                        entreprise.LesRevendeurs.SingleOrDefault(c => c.Id == (int)dr["numrevendeur"]), lesSousCommandes, (DateTime)dr["datecommande"], dateLivraison));
 
                 }
             }
@@ -236,7 +237,6 @@ namespace PilotApp.Models
                 this.LesSousCommandes = lesSousCommandes;
                 this.DateCommande = (DateTime)dt.Rows[0]["datecommande"];
                 this.DateLivraison = (DateTime)dt.Rows[0]["datelivraison"];
-                this.Prix = (decimal)dt.Rows[0]["prixtotal"];
             }
 
         }
