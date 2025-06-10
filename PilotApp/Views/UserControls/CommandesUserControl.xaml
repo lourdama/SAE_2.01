@@ -4,61 +4,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:System="clr-namespace:System;assembly=System.Runtime"
     xmlns:model="clr-namespace:PilotApp.Models"
-    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
+    Width="215"
+    Height="100">
 
-    <Grid>
-        <ui:Card Height="173" Margin="50,0,50,0">
-            <StackPanel>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="138*" />
-                        <ColumnDefinition Width="139*" />
-                    </Grid.ColumnDefinitions>
+    <StackPanel Background="White">
 
-                    <TextBlock
-                        FontSize="24"
-                        FontWeight="Bold"
-                        Text="Gestion des Commandes" />
+        <DataGrid
+            x:Name="dgCommandes"
+            Width="161"
+            Height="86"
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            ItemsSource="{Binding LesCommandes}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" />
+            </DataGrid.Columns>
+        </DataGrid>
 
-
-                    <ui:DataGrid
-                        Grid.Column="0"
-                        Margin="0,50,0,0"
-                        ItemsSource="{Binding LesCommandes, Mode=TwoWay}">
-                        <DataGrid.Columns>
-
-                            <DataGridTextColumn
-                                Width="*"
-                                Binding="{Binding Id, ValidatesOnExceptions=true}"
-                                Header="NumCommande" />
-                            <DataGridTextColumn
-                                Width="*"
-                                Binding="{Binding DateCommande, ValidatesOnExceptions=true}"
-                                Header="DateCommande" />
-                            <DataGridTextColumn
-                                Width="*"
-                                Binding="{Binding DateLivraison, ValidatesOnExceptions=true}"
-                                Header="DateLivraison" />
-                            <DataGridTextColumn
-                                Width="*"
-                                Binding="{Binding Prix, ValidatesOnExceptions=true}"
-                                Header="Prix" />
-
-                        </DataGrid.Columns>
-                    </ui:DataGrid>
-                    <ui:Button
-                        Grid.Column="1"
-                        Appearance="Primary"
-                        Icon="AddCircle24" />
-
-                </Grid>
-
-
-
-
-
-
-            </StackPanel>
-        </ui:Card>
-    </Grid>
+    </StackPanel>
 </UserControl>

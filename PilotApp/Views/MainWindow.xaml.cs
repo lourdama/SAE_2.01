@@ -36,19 +36,13 @@ namespace PilotApp.Views
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
             // Initialiser la navigation si le DataContext est un MainViewModel
-            if (DataContext is MainViewModel viewModel)
-            {
-                viewModel.InitializeNavigation(MainContentPresenter);
-            }
+           
             
         }
 
         private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
         {
-            if (DataContext is MainViewModel viewModel)
-            {
-                viewModel.Logout();
-            }
+            
         }
     }
 }
