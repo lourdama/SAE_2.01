@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using Wpf.Ui.Controls;
+using PilotApp.Views.UserControls;
 
 namespace PilotApp.Views
 {
@@ -34,8 +35,9 @@ namespace PilotApp.Views
             var mainWindow = new MainWindow();
             new AuthenticationService(UsernameTextBox.Text, PasswordBoxMDP.Password);
             if (MainWindow.Instance.connexion)
-            {
+            {          
                 mainWindow.Show();
+                MainWindow.Instance.vueActuelle.Content = new Accueil();
                 this.Close();
             }
             else

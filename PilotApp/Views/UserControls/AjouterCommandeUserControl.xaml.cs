@@ -52,10 +52,10 @@ namespace PilotApp.Views.UserControls
                     ok = false;
             }
 
-            if (ok)   = true;
-            else MessageBox.Show("Veuillez corriger les erreurs.");
+            /*if (ok) 
+            else MessageBox.Show("Veuillez corriger les erreurs.");*/
         }
 
     }
-    }
+    
 }
