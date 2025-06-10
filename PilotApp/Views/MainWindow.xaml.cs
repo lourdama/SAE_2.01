@@ -31,7 +31,10 @@ namespace PilotApp.Views
         public string login { get; set; }
         public string mdp { get; set; }
         public Employe EmployeConnecte { get; set; }
-       
+
+        public bool connexion { get; set; }
+
+
         public MainWindow()
         {
             InitializeComponent();

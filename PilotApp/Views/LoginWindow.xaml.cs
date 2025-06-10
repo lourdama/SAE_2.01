@@ -33,8 +33,12 @@ namespace PilotApp.Views
             
             var mainWindow = new MainWindow();
             new AuthenticationService(UsernameTextBox.Text, PasswordBoxMDP.Password);
-            mainWindow.Show();
-            this.Close();     
+            if (MainWindow.Instance.connexion)
+            {
+                mainWindow.Show();
+                this.Close();
+            }
+                 
             
         }
 

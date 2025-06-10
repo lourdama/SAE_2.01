@@ -17,7 +17,6 @@ namespace PilotApp.Models
         private LoginWindow loginWindow = (LoginWindow)Application.Current.MainWindow;
         private string connectionString;
         private NpgsqlConnection connection;
-        private MainWindow mainWindow = MainWindow.Instance;
 
         public static DataAccess Instance
         {
@@ -43,7 +42,7 @@ namespace PilotApp.Models
         //  Constructeur privé pour empêcher l'instanciation multiple
         private DataAccess()
         {
-            this.ConnectionString = $"Host=srv-peda-new;Port=5433;Username={mainWindow.login};Password={mainWindow.mdp};Database=sae201_pilot;Options='-c search_path=lourdama'";
+            this.ConnectionString = $"Host=srv-peda-new;Port=5433;Username={MainWindow.Instance.login};Password={MainWindow.Instance.mdp};Database=sae201_pilot;Options='-c search_path=lourdama'";
             try
             {
                 connection = new NpgsqlConnection(ConnectionString);
@@ -63,15 +62,10 @@ namespace PilotApp.Models
             {
                 try
                 {
-                    mainWindow = MainWindow.Instance;
-                    this.ConnectionString = $"Host=srv-peda-new;Port=5433;Username={mainWindow.login};Password={mainWindow.mdp};Database=sae201_pilot;Options='-c search_path=lourdama'";
+                    this.ConnectionString = $"Host=srv-peda-new;Port=5433;Username={MainWindow.Instance.login} ;Password= {MainWindow.Instance.mdp};Database=sae201_pilot;Options='-c search_path=lourdama'";
                     connection = new NpgsqlConnection(ConnectionString);
                 }
-                catch (Exception ex)
-                {
-                    LogError.Log(ex, "Pb de connexion GetConnection \n" + ConnectionString);
-                    throw;                
-                }
+                catch { }
             }
 
         
