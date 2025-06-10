@@ -1,5 +1,4 @@
 ﻿using PilotApp.Models;
-using PilotApp.Views;
 using System;
 using System.Reflection.Metadata;
 using System.Text;
@@ -12,7 +11,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using PilotApp.ViewModels;
 using Wpf.Ui.Controls;
 using System.Windows;
 using System.ComponentModel;
@@ -36,15 +34,11 @@ namespace PilotApp.Views
             InitializeComponent();
             Instance = this;
             DataContext = this;
-            System.Windows.MessageBox.Show( EstCommercial.ToString()+ EstResponsable.ToString()+ EstAdmin.ToString());
         }
 
 
         public void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            DataContext = this;
-            System.Windows.MessageBox.Show(EstCommercial.ToString() + EstResponsable.ToString() + EstAdmin.ToString());
-
 
         }
 

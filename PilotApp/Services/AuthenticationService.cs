@@ -16,7 +16,7 @@ namespace PilotApp.Services
 
         public AuthenticationService(string login, string mdp)
         {
-            ChargeData(login, mdp);
+            ChargeData(login.ToLower(), mdp);
             ChargeEmploye();
 
         }
@@ -54,8 +54,6 @@ namespace PilotApp.Services
             mainWindow.EstAdmin = ARole(roleUtilisateur.Administrateur);
             MainWindow.Instance.DataContext = null;
             MainWindow.Instance.DataContext = MainWindow.Instance;
-            MessageBox.Show("Données chargées");
-            //mainWindow.MainWindow_Loaded();
 
         }
 

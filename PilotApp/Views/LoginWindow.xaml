@@ -112,8 +112,7 @@
                                    Icon="{ui:SymbolIcon Person24}"
                                    Height="39"
                                    FontSize="14"
-                                   Margin="0,0,0,16"
-                                   Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}">
+                                   Margin="0,0,0,16">
                             <ui:TextBox.Style>
                                 <Style TargetType="ui:TextBox" BasedOn="{StaticResource {x:Type ui:TextBox}}">
                                     <Setter Property="BorderBrush" Value="#CED4DA"/>
@@ -133,13 +132,12 @@
                         </ui:TextBox>
 
                         <!-- Champ mot de passe -->
-                        <ui:PasswordBox x:Name="PasswordBox"
+                        <ui:PasswordBox x:Name="PasswordBoxMDP"
                                        PlaceholderText="Mot de passe"
                                        Icon="{ui:SymbolIcon LockClosed24}"
                                        Height="44"
                                        FontSize="14"
-                                       Margin="0,0,0,16"
-                                       Password="{Binding Password, UpdateSourceTrigger=PropertyChanged}">
+                                       Margin="0,0,0,16">
                             <ui:PasswordBox.Style>
                                 <Style TargetType="ui:PasswordBox" BasedOn="{StaticResource {x:Type ui:PasswordBox}}">
                                     <Setter Property="BorderBrush" Value="#CED4DA"/>
