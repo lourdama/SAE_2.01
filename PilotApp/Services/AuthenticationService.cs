@@ -17,6 +17,7 @@ namespace PilotApp.Services
         public AuthenticationService(string login, string mdp)
         {
             ChargeData(login, mdp);
+            ChargeEmploye();
 
         }
         public void ChargeData(string login, string mdp)
@@ -48,10 +49,14 @@ namespace PilotApp.Services
                     mainWindow.EmployeConnecte = employeTemp;
                 }
             }
-             mainWindow.EstCommercial = ARole(roleUtilisateur.Commercial);
-             mainWindow.EstResponsable = ARole(roleUtilisateur.ResponsableProduction);
-             mainWindow.EstAdmin = ARole(roleUtilisateur.Administrateur);
-            
+            mainWindow.EstCommercial = ARole(roleUtilisateur.Commercial);
+            mainWindow.EstResponsable = ARole(roleUtilisateur.ResponsableProduction);
+            mainWindow.EstAdmin = ARole(roleUtilisateur.Administrateur);
+            MainWindow.Instance.DataContext = null;
+            MainWindow.Instance.DataContext = MainWindow.Instance;
+            MessageBox.Show("Données chargées");
+            //mainWindow.MainWindow_Loaded();
+
         }
 
         public bool ARole(roleUtilisateur role)

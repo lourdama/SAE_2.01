@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using PilotApp.ViewModels;
 using Wpf.Ui.Controls;
 using System.Windows;
+using System.ComponentModel;
 
 namespace PilotApp.Views
 {
@@ -35,13 +36,16 @@ namespace PilotApp.Views
             InitializeComponent();
             Instance = this;
             DataContext = this;
+            System.Windows.MessageBox.Show( EstCommercial.ToString()+ EstResponsable.ToString()+ EstAdmin.ToString());
         }
 
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+
+        public void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            // Initialiser la navigation si le DataContext est un MainViewModel
-           
-            
+            DataContext = this;
+            System.Windows.MessageBox.Show(EstCommercial.ToString() + EstResponsable.ToString() + EstAdmin.ToString());
+
+
         }
 
         private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
