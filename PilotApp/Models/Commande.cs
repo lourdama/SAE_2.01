@@ -173,8 +173,13 @@ namespace PilotApp.Models
                             lesSousCommandes.Add(entreprise.LesProduits.SingleOrDefault(c => c.Id == (int)drPC["numproduit"]), coupleQuantitePrix);
                         }
                     }
+                    DateTime dateLivraison = DateTime.MinValue;
+                    if (!(dr["datelivraison"] ==DBNull.Value))
+                    {
+                        dateLivraison = (DateTime)dr["datelivraison"];
+                    }
                     lesCommandes.Add(new Commande((int)dr["numcommande"], entreprise.LesEmployes.SingleOrDefault(c => c.Id == (int)dr["numemploye"]), entreprise.LesModesTransports.SingleOrDefault(c => c.Id == (int)dr["numtransport"]),
-                        entreprise.LesRevendeurs.SingleOrDefault(c => c.Id == (int)dr["numrevendeur"]), lesSousCommandes, (DateTime)dr["datecommande"], (DateTime)dr["datelivraison"], (decimal)dr["prixtotal"]));
+                        entreprise.LesRevendeurs.SingleOrDefault(c => c.Id == (int)dr["numrevendeur"]), lesSousCommandes, (DateTime)dr["datecommande"], dateLivraison, (decimal)dr["prixtotal"]));
 
                 }
             }

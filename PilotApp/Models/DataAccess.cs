@@ -43,8 +43,10 @@ namespace PilotApp.Models
         private DataAccess()
         {
             //String pour l'IUT
+            
             this.ConnectionString = $"Host=srv-peda-new;Port=5433;Username={loginWindow.UsernameTextBox.Text};Password={loginWindow.PasswordBox.Text};Database=sae201_pilot;Options='-c search_path=lourdama'";
             // String utilisation locale pgAdmin
+            MessageBox.Show(this.ConnectionString);
             //this.ConnectionString = $"Host=localhost;Port=5050;Username={mainWindow.login};Password={mainWindow.mdp};Database=sae201_pilot;Options='-c search_path=public'";
 
             try
