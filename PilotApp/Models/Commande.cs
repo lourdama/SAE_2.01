@@ -17,7 +17,7 @@ namespace PilotApp.Models
         private Revendeur unRevendeur;
         private Dictionary<Produit, decimal[]> lesSousCommandes;
         private DateTime dateCommande;
-        private DateTime dateLivraison;
+        private DateTime? dateLivraison;
         private decimal prix;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -26,7 +26,7 @@ namespace PilotApp.Models
         {
         }
 
-        public Commande(int id, Employe unEmploye, ModeTransport unModeTransport, Revendeur unRevendeur, Dictionary<Produit, decimal[]> lesSousCommandes, DateTime dateCommande, DateTime dateLivraison, decimal prix)
+        public Commande(int id, Employe unEmploye, ModeTransport unModeTransport, Revendeur unRevendeur, Dictionary<Produit, decimal[]> lesSousCommandes, DateTime dateCommande, DateTime? dateLivraison, decimal prix)
         {
             this.Id = id;
             this.UnEmploye = unEmploye;
@@ -116,7 +116,7 @@ namespace PilotApp.Models
             }
         }
 
-        public DateTime DateLivraison
+        public DateTime? DateLivraison
         {
             get
             {
@@ -173,7 +173,7 @@ namespace PilotApp.Models
                             lesSousCommandes.Add(entreprise.LesProduits.SingleOrDefault(c => c.Id == (int)drPC["numproduit"]), coupleQuantitePrix);
                         }
                     }
-                    DateTime dateLivraison = DateTime.MinValue;
+                    DateTime? dateLivraison = null;
                     if (!(dr["datelivraison"] ==DBNull.Value))
                     {
                         dateLivraison = (DateTime)dr["datelivraison"];

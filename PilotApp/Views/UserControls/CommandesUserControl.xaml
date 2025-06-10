@@ -20,7 +20,7 @@
                 <DataGridTextColumn Binding="{Binding DateLivraison}" Header="Livraison" />
                 <DataGridTextColumn Binding="{Binding Prix}" Header="Prix" />
                 <DataGridTextColumn Binding="{Binding UnEmploye.Nom}" Header="Employé" />
-                <DataGridTextColumn Binding="{Binding UnRevendeur.Nom}" Header="Revendeur" />
+                <DataGridTextColumn Binding="{Binding UnRevendeur.RaisonSociale}" Header="Revendeur" />
                 <DataGridTextColumn Binding="{Binding UnModeTransport.Nom}" Header="Transport" />
             </DataGrid.Columns>
         </DataGrid>
