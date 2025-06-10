@@ -20,17 +20,21 @@ namespace PilotApp.Views
 {
     public partial class MainWindow : FluentWindow
     {
+        public bool EstCommercial { get; set; }
+        public bool EstResponsable { get; set; }
+        public bool EstAdmin { get; set; }
         public static MainWindow Instance { get; private set; }
         public Entreprise Pilot { get; set; }
 
         public string login { get; set; }
         public string mdp { get; set; }
-        public Employe employeconnecte { get; set; }
+        public Employe EmployeConnecte { get; set; }
        
         public MainWindow()
         {
             InitializeComponent();
             Instance = this;
+            DataContext = this;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)

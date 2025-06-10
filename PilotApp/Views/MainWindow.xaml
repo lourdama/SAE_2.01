@@ -58,13 +58,13 @@
                         Margin="0,0,10,0"
                         VerticalAlignment="Center"
                         Foreground="White"
-                        Text="{Binding CurrentUser.Name}" />
+                        Text="{Binding EmployeConnecte.Nom}" />
                     <TextBlock
                         Margin="0,0,15,0"
                         VerticalAlignment="Center"
                         Foreground="White"
                         Opacity="0.8"
-                        Text="{Binding CurrentUser.Role}" />
+                        Text="{Binding EmployeConnecte.Role}" />
                     <ui:Button x:Name="DeconnexionButton"
                         Appearance="Transparent"
                         Command="{Binding LogoutCommand}"
@@ -105,7 +105,7 @@
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsCommercial}" Value="True">
+                                        <DataTrigger Binding="{Binding EstCommercial}" Value="True">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -121,7 +121,7 @@
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsCommercial}" Value="True">
+                                        <DataTrigger Binding="{Binding EstCommercial}" Value="True">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -137,7 +137,7 @@
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsCommercial}" Value="True">
+                                        <DataTrigger Binding="{Binding EstCommercial}" Value="True">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -160,7 +160,7 @@
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsResponsableProduction}" Value="True">
+                                        <DataTrigger Binding="{Binding EstResponsable}" Value="True">
                                             <Setter Property="Visibility" Value="Visible" />
                                         </DataTrigger>
                                     </Style.Triggers>

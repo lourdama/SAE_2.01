@@ -40,37 +40,26 @@ namespace PilotApp.Services
 
         public void ChargeEmploye()
         {
-            mainWindow.employeconnecte = new Employe();
+            mainWindow.EmployeConnecte = new Employe();
             foreach (Employe employeTemp in mainWindow.Pilot.LesEmployes)
             {
                 if (employeTemp.Login == mainWindow.login)
                 {
-                    mainWindow.employeconnecte = employeTemp;
+                    mainWindow.EmployeConnecte = employeTemp;
                 }
             }
+             mainWindow.EstCommercial = ARole(roleUtilisateur.Commercial);
+             mainWindow.EstResponsable = ARole(roleUtilisateur.ResponsableProduction);
+             mainWindow.EstAdmin = ARole(roleUtilisateur.Administrateur);
+            
         }
 
         public bool ARole(roleUtilisateur role)
         {
-            return (roleUtilisateur)mainWindow.employeconnecte.UnRole.Id == roleUtilisateur.Administrateur ||(roleUtilisateur) mainWindow.employeconnecte.UnRole.Id == role;
+            return (roleUtilisateur)mainWindow.EmployeConnecte.UnRole.Id == roleUtilisateur.Administrateur ||(roleUtilisateur) mainWindow.EmployeConnecte.UnRole.Id == role;
         }
 
-        public bool EstCommercial
-        {
-            get
-            {
-                return ARole(roleUtilisateur.Commercial);
-            }
-
-           
-        }
-        public bool EstResponsable
-        {
-            get
-            {
-                return ARole(roleUtilisateur.ResponsableProduction);
-            }
-        }       
+       
     }
 }
 
