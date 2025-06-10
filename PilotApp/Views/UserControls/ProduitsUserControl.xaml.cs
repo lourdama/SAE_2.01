@@ -23,6 +23,7 @@ namespace PilotApp.Views.UserControls
         public ProduitsUserControl()
         {
             InitializeComponent();
+            this.DataContext = MainWindow.Instance.Pilot.LesProduits;
         }
     }
 }

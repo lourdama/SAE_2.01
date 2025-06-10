@@ -2,54 +2,44 @@
     x:Class="PilotApp.Views.UserControls.ProduitsUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml">
-    <Grid>
-        <ui:Card Margin="20">
-            <StackPanel>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="138*" />
-                        <ColumnDefinition Width="139*" />
-                    </Grid.ColumnDefinitions>
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Width="950"
+    Height="724">
 
-                    <TextBlock
-                        FontSize="24"
-                        FontWeight="Bold"
-                        Text="Gestion des Produits" />
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="381*" />
+            <ColumnDefinition Width="94*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="69*" />
+            <RowDefinition Height="293*" />
+        </Grid.RowDefinitions>
 
+        <ui:DataGrid
+        Grid.Row="1"
+        Grid.Column="0"
+        AutoGenerateColumns="False"
+        IsReadOnly="True"
+        ItemsSource="{Binding}">
 
-                    <ui:DataGrid
-                        Grid.Column="0"
-                        Margin="0,50,0,0"
-                        ItemsSource="{Binding LesProduits, Mode=TwoWay}">
-                        <DataGrid.Columns>
+            <ui:DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Code}" Header="Code" />
+                <DataGridTextColumn Binding="{Binding Nom}" Header="Nom" />
+                <DataGridTextColumn Binding="{Binding UnTypePointe.Nom}" Header="Type Pointe" />
+                <DataGridTextColumn Binding="{Binding UnType.Nom}" Header="Num Type" />
+                <DataGridTextColumn Binding="{Binding PrixVente, StringFormat={}{0} €}" Header="PrixVente" />
+                <DataGridTextColumn Binding="{Binding QuantiteStock}" Header="Quantité" />
+                <DataGridCheckBoxColumn Binding="{Binding Disponible}" Header="Disponible" />
+            </ui:DataGrid.Columns>
+        </ui:DataGrid>
 
-                            <DataGridTextColumn
-                                Width="*"
-                                Binding="{Binding Id, ValidatesOnExceptions=true}"
-                                Header="NumCommande" />
-                            <DataGridTextColumn
-                                Width="*"
-                                Binding="{Binding DateCommande, ValidatesOnExceptions=true}"
-                                Header="DateCommande" />
-                            <DataGridTextColumn
-                                Width="*"
-                                Binding="{Binding DateLivraison, ValidatesOnExceptions=true}"
-                                Header="DateLivraison" />
-                            <DataGridTextColumn
-                                Width="*"
-                                Binding="{Binding Prix, ValidatesOnExceptions=true}"
-                                Header="Prix" />
+        <ui:Button
+        Grid.Row="1"
+        Grid.Column="1"
+        Width="124"
+        Height="28"
+        Appearance="Primary" />
 
-                        </DataGrid.Columns>
-                    </ui:DataGrid>
-                    <ui:Button
-                        Grid.Column="1"
-                        Appearance="Primary"
-                        Icon="AddCircle24" />
-
-                </Grid>
-            </StackPanel>
-        </ui:Card>
     </Grid>
 </UserControl>
