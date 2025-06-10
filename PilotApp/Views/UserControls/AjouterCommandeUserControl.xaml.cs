@@ -27,7 +27,14 @@ namespace PilotApp.Views.UserControls
             InitializeComponent();
             this.action = action;
 
-            
+            if (action == Action.Creer)
+            {
+                butValiderCommande.Content = "Créer";
+            }
+            else
+            {
+                butValiderCommande.Content = "Modifier";
+            }
         }
 
     }

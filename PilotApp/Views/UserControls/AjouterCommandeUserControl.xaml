@@ -40,6 +40,7 @@
                     Margin="0,20,0,0"
                     HorizontalAlignment="Center"
                     Appearance="Success"
+                    Click="butValiderCommande_Click"
                     Content="ValiderCommande" />
             </StackPanel>
         </ui:Card>
