@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PilotApp.Models;
+using Wpf.Ui.Controls;
 
 namespace PilotApp.Views.UserControls
 {
@@ -20,11 +22,17 @@ namespace PilotApp.Views.UserControls
     /// </summary>
     public partial class AjouterProduitUserControl : UserControl
     {
+        public event Action<bool> ValidationFaite;
+        private UserControl pagePrecedente;
+        public Produit unProduit;
+        private Entreprise pilot = MainWindow.Instance.Pilot;
         private Action action;
-        public AjouterProduitUserControl()
+        public AjouterProduitUserControl(UserControl pagePrecedente, Produit unProduit, Action action)
         {
             InitializeComponent();
             this.action = action;
+            this.pagePrecedente = pagePrecedente;
+            this.DataContext = this;
 
             if (action == Action.Creer)
             {
@@ -34,7 +42,41 @@ namespace PilotApp.Views.UserControls
             {
                 butAjouter.Content = "Modifier";
             }
+
+
         }
 
+        private void butAjouter_Click(object sender, RoutedEventArgs e)
+        {
+            bool ok = true;
+            foreach (UIElement uie in panelFormProduit.Children)
+            {
+                if (uie is System.Windows.Controls.TextBox)
+                {
+                    System.Windows.Controls.TextBox txt = (System.Windows.Controls.TextBox)uie;
+                    txt.GetBindingExpression(System.Windows.Controls.TextBox.TextProperty).UpdateSource();
+                }
+                else if (uie is ComboBox)
+                {
+                    ComboBox cmb = (ComboBox)uie;
+                    cmb.GetBindingExpression(ComboBox.TextProperty).UpdateSource();
+                }
+                else if (uie is NumberBox)
+                {
+                    NumberBox nmb = (NumberBox)uie;
+                    nmb.GetBindingExpression(NumberBox.TextProperty).UpdateSource();
+                }
+                else if (uie is ToggleSwitch)
+                {
+                    ToggleSwitch tgs = (ToggleSwitch)uie;
+                    tgs.GetBindingExpression(ToggleSwitch.IsCheckedProperty).UpdateSource();
+                }
+
+                if (Validation.GetHasError(uie))
+                    ok = false;
+            }
+            ValidationFaite.Invoke(ok);
+            MainWindow.Instance.vueActuelle.Content = this.pagePrecedente;
+        }
     }
 }

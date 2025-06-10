@@ -16,33 +16,35 @@
                 <TextBox
                     x:Name="textNom"
                     Width="200"
-                    Text="{Binding Nom, ValidatesOnExceptions=True}"
+                    Text="{Binding unProduit.Nom, ValidatesOnExceptions=True}"
                     TextWrapping="Wrap" />
                 <Label Width="200" Content="Code produit" />
                 <TextBox
                     x:Name="textMaitre"
                     Width="200"
-                    Text="{Binding Code, ValidatesOnExceptions=True}"
+                    Text="{Binding unProduit.Code, ValidatesOnExceptions=True}"
                     TextWrapping="Wrap" />
                 <Label Width="200" Content="Type Pointe" />
-                <ComboBox Width="200" ItemsSource="{Binding MainWindow.Instance.Pilot.LesTypesPointes.Nom}" />
+                <ComboBox Width="200" ItemsSource="{Binding pilot.LesTypesPointes}"
+                 SelectedItem="{Binding unProduit.unTypePointe, Mode=TwoWay}" />
                 <Label Width="200" Content="Type" />
-                <ComboBox Width="200" ItemsSource="{Binding MainWindow.Instance.Piolot.LesTypes.Nom}" />
+                <ComboBox Width="200" ItemsSource="{Binding pilot.LesTypes}"
+                 SelectedItem="{Binding unProduit.unType, Mode=TwoWay}" />
                 <Label Width="200" Content="Quantité en Stock" />
                 <ui:NumberBox
                     Width="200"
                     Icon="Box24"
-                    Value="{Binding QuantiteStock}" />
+                    Value="{Binding unProduit.QuantiteStock}" />
                 <Label Width="200" Content="Prix du produit" />
                 <ui:NumberBox
                     Width="200"
                     Icon="CurrencyDollarEuro24"
-                    Value="{Binding PrixVente}" />
+                    Value="{Binding unProduit.PrixVente}" />
                 <Label Width="200" Content="Disponibilité" />
                 <ui:ToggleSwitch
                     Width="200"
                     HorizontalAlignment="Stretch"
-                    IsChecked="{Binding Disponible}"
+                    IsChecked="{Binding unProduit.Disponible}"
                     OffContent="Indisponible"
                     OnContent="Disponible" />
                 <ui:Button
@@ -51,7 +53,7 @@
                     Margin="0,20,0,0"
                     HorizontalAlignment="Center"
                     Appearance="Success"
-                    Content="Ajouter" />
+                    Content="Ajouter" Click="butAjouter_Click" />
             </StackPanel>
         </ui:Card>
     </Grid>
