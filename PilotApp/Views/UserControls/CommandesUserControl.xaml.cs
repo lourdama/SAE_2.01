@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PilotApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,22 @@ namespace PilotApp.Views.UserControls
     {
         public CommandesUserControl()
         {
+            ChargeData();
             InitializeComponent();
+        }
+        public void ChargeData()
+        {
+            try
+            {
+                Commande LaCommande = new Commande();
+                this.DataContext = LaCommande;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problème lors de récupération des données, veuillez consulter votre admin");
+
+                Application.Current.Shutdown();
+            }
         }
     }
 }
