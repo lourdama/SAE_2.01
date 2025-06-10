@@ -8,8 +8,8 @@
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="381*" />
-            <ColumnDefinition Width="94*" />
+            <ColumnDefinition Width="16*" />
+            <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="69*" />
@@ -17,11 +17,11 @@
         </Grid.RowDefinitions>
 
         <ui:DataGrid
-        Grid.Row="1"
-        Grid.Column="0"
-        AutoGenerateColumns="False"
-        IsReadOnly="True"
-        ItemsSource="{Binding}">
+            Grid.Row="1"
+            Grid.Column="0"
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            ItemsSource="{Binding}">
 
             <ui:DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Code}" Header="Code" />
@@ -35,11 +35,49 @@
         </ui:DataGrid>
 
         <ui:Button
-        Grid.Row="1"
-        Grid.Column="1"
-        Width="124"
-        Height="28"
-        Appearance="Primary" />
+            x:Name="butAjouter"
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="124"
+            Height="32"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Appearance="Primary"
+            Click="butAjouter_Click"
+            Content="Ajouter" />
 
+        <ui:Button
+            x:Name="butModifier"
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="124"
+            Height="32"
+            Margin="0,68,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Appearance="Primary"
+            Click="butModifier_Click"
+            Content="Modifier" />
+
+        <ui:Button
+            x:Name="butSupprimer"
+            Grid.Row="1"
+            Grid.Column="1"
+            Width="124"
+            Height="32"
+            Margin="0,128,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Appearance="Primary"
+            Click="butSupprimer_Click"
+            Content="Supprimer" />
+
+        <ui:TextBox
+    Width="555"
+    Margin="0,72,0,0"
+    HorizontalAlignment="Center"
+    VerticalAlignment="Top"
+    PlaceholderText="Effectuez une recherche..." />
     </Grid>
 </UserControl>

@@ -14,26 +14,29 @@ namespace PilotApp.Services
 
         public AuthenticationService(string login, string mdp)
         {
-            ChargeData(login.ToLower(), mdp);
-            ChargeEmploye();
+            MainWindow.Instance.connexion = ChargeData(login.ToLower(), mdp);
+            if (MainWindow.Instance.connexion)
+            {
+                ChargeEmploye();
+            }
 
         }
-        public void ChargeData(string login, string mdp)
+        public bool ChargeData(string login, string mdp)
         {
             try
             {
                 MainWindow.Instance.login = login;
                 MainWindow.Instance.mdp = mdp;
                 MainWindow.Instance.Pilot = new Entreprise("Pilot");
+                return true;
                 
 
 
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show("Problème lors de récupération des données, veuillez consulter votre admin");
-                LogError.Log(ex, "Erreur SQL");
-                Application.Current.Shutdown();
+                MessageBox.Show("Login ou mot de passe incorrect ");
+                return false;
             }
         }
 
