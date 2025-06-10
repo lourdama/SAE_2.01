@@ -20,12 +20,17 @@ namespace PilotApp.Views
 {
     public partial class MainWindow : FluentWindow
     {
+        public static MainWindow Instance { get; private set; }
         public Entreprise Pilot { get; set; }
-        public string login;
-        public string mdp;
+
+        public string login { get; set; }
+        public string mdp { get; set; }
+        public Employe employeconnecte { get; set; }
+       
         public MainWindow()
         {
             InitializeComponent();
+            Instance = this;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -35,6 +40,7 @@ namespace PilotApp.Views
             {
                 viewModel.InitializeNavigation(MainContentPresenter);
             }
+            
         }
 
         private void DeconnexionButton_Click(object sender, RoutedEventArgs e)

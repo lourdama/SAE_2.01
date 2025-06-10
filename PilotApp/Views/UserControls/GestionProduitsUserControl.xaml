@@ -5,12 +5,34 @@
     <Grid>
         <ui:Card Margin="20">
             <StackPanel>
-                <TextBlock Text="Gestion des Produits" 
-                          FontSize="24" 
-                          FontWeight="Bold" 
-                          Margin="0,0,0,20"/>
-                <TextBlock Text="Interface à développer..." 
-                          Foreground="Gray"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="138*"/>
+                        <ColumnDefinition Width="139*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Text="Gestion des Produits" 
+                      FontSize="24" 
+                      FontWeight="Bold" 
+                     />
+
+
+                    <ui:DataGrid ItemsSource="{Binding LesProduits, Mode=TwoWay}" Grid.Column="0" Margin="0,50,0,0">
+                        <DataGrid.Columns>
+
+                            <DataGridTextColumn Header="Code" Binding="{Binding Id, ValidatesOnExceptions=true}" Width="*" />
+                            <DataGridTextColumn Header="Nom" Binding="{Binding Id, ValidatesOnExceptions=true}" Width="*" />
+                            <DataGridTextColumn Header="Pointe" Binding="{Binding DateCommande, ValidatesOnExceptions=true}" Width="*" />
+                            <DataGridTextColumn Header="Type" Binding="{Binding DateLivraison, ValidatesOnExceptions=true}" Width="*" />
+                            <DataGridTextColumn Header="Couleur" Binding="{Binding Prix, ValidatesOnExceptions=true}" Width="*" />
+                            <DataGridTextColumn Header="Stock" Binding="{Binding Prix, ValidatesOnExceptions=true}" Width="*" />
+                            <DataGridTextColumn Header="Prix" Binding="{Binding Prix, ValidatesOnExceptions=true}" Width="*" />
+
+                        </DataGrid.Columns>
+                    </ui:DataGrid>
+                    <ui:Button Appearance="Primary" Icon="AddCircle24" Grid.Column="1"/>
+
+                </Grid>
             </StackPanel>
         </ui:Card>
     </Grid>
