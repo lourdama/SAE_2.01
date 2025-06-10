@@ -25,17 +25,24 @@
                     Text="{Binding Code, ValidatesOnExceptions=True}"
                     TextWrapping="Wrap" />
                 <Label Width="200" Content="Type Pointe" />
-                <ComboBox Width="200" ItemsSource="{Binding FontFamilies}" />
+                <ComboBox Width="200" ItemsSource="{Binding MainWindow.Instance.Pilot.LesTypesPointes.Nom}" />
                 <Label Width="200" Content="Type" />
-                <ComboBox Width="200" ItemsSource="{Binding FontFamilies}" />
+                <ComboBox Width="200" ItemsSource="{Binding MainWindow.Instance.Piolot.LesTypes.Nom}" />
                 <Label Width="200" Content="Quantité en Stock" />
-                <ui:NumberBox Width="200" Icon="Box24" />
+                <ui:NumberBox
+                    Width="200"
+                    Icon="Box24"
+                    Value="{Binding QuantiteStock}" />
                 <Label Width="200" Content="Prix du produit" />
-                <ui:NumberBox Width="200" Icon="CurrencyDollarEuro24" />
+                <ui:NumberBox
+                    Width="200"
+                    Icon="CurrencyDollarEuro24"
+                    Value="{Binding PrixVente}" />
                 <Label Width="200" Content="Disponibilité" />
                 <ui:ToggleSwitch
                     Width="200"
                     HorizontalAlignment="Stretch"
+                    IsChecked="{Binding Disponible}"
                     OffContent="Indisponible"
                     OnContent="Disponible" />
                 <ui:Button

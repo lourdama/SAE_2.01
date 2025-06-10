@@ -1,5 +1,7 @@
-﻿using System;
+﻿using PilotApp.Models;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +24,7 @@ namespace PilotApp.Views.UserControls
     public partial class AjouterCommandeUserControl : UserControl
     {
         private Action action;
-        public AjouterCommandeUserControl()
+        public AjouterCommandeUserControl(Commande uneCommande,Action action)
         {
             InitializeComponent();
             this.action = action;
@@ -37,5 +39,23 @@ namespace PilotApp.Views.UserControls
             }
         }
 
+        private void butValiderCommande_Click(object sender, RoutedEventArgs e)
+        {
+
+            // validation des champs
+            bool ok = true;
+            foreach (UIElement uie in panelFormCommande.Children)
+            {
+                if (uie is TextBox txt)
+                    txt.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+                if (Validation.GetHasError(uie))
+                    ok = false;
+            }
+
+            if (ok)   = true;
+            else MessageBox.Show("Veuillez corriger les erreurs.");
+        }
+
+    }
     }
 }
