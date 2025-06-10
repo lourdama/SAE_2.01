@@ -100,10 +100,10 @@
                     <ui:NavigationView.MenuItems>
 
                         <!--  Menu Commercial  -->
-                        <ui:NavigationViewItem
+                        <ui:NavigationViewItem x:Name="butCommande"
                             Content="Commandes"
                             Icon="{ui:SymbolIcon Cart24}"
-                            Tag="commandes">
+                            Tag="commandes" Click="butCommande_Click">
                             <ui:NavigationViewItem.Style>
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />
@@ -116,10 +116,10 @@
                             </ui:NavigationViewItem.Style>
                         </ui:NavigationViewItem>
 
-                        <ui:NavigationViewItem
+                        <ui:NavigationViewItem x:Name="butMesCommandes"
                             Content="Mes Commandes"
                             Icon="{ui:SymbolIcon ClipboardTask24}"
-                            Tag="mescommandes">
+                            Tag="mescommandes" Click="butMesCommandes_Click">
                             <ui:NavigationViewItem.Style>
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />
@@ -132,10 +132,10 @@
                             </ui:NavigationViewItem.Style>
                         </ui:NavigationViewItem>
 
-                        <ui:NavigationViewItem
+                        <ui:NavigationViewItem x:Name="butRevendeurs"
                             Content="Revendeurs"
                             Icon="{ui:SymbolIcon StoreMicrosoft24}"
-                            Tag="revendeurs">
+                            Tag="revendeurs" Click="butRevendeurs_Click">
                             <ui:NavigationViewItem.Style>
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />
@@ -149,16 +149,16 @@
                         </ui:NavigationViewItem>
 
                         <!--  Menu commun  -->
-                        <ui:NavigationViewItem
+                        <ui:NavigationViewItem x:Name="butProduits"
                             Content="Produits"
                             Icon="{ui:SymbolIcon Box24}"
-                            Tag="produits" />
+                            Tag="produits" Click="butProduits_Click" />
 
                         <!--  Menu Responsable Production  -->
-                        <ui:NavigationViewItem
+                        <ui:NavigationViewItem x:Name="butGestionProduits"
                             Content="Gestion Produits"
                             Icon="{ui:SymbolIcon Settings24}"
-                            Tag="gestionproduits">
+                            Tag="gestionproduits" Click="butGestionProduits_Click">
                             <ui:NavigationViewItem.Style>
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />

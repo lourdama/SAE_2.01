@@ -109,6 +109,7 @@
                         <!-- Champ nom d'utilisateur -->
                         <ui:TextBox x:Name="UsernameTextBox"
                                    PlaceholderText="Nom d'utilisateur"
+                                   Text="lourdama"
                                    Icon="{ui:SymbolIcon Person24}"
                                    Height="39"
                                    FontSize="14"
@@ -134,6 +135,7 @@
                         <!-- Champ mot de passe -->
                         <ui:PasswordBox x:Name="PasswordBoxMDP"
                                        PlaceholderText="Mot de passe"
+                                       Text="g4MEfv"
                                        Icon="{ui:SymbolIcon LockClosed24}"
                                        Height="44"
                                        FontSize="14"

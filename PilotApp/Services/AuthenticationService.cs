@@ -52,8 +52,7 @@ namespace PilotApp.Services
             mainWindow.EstCommercial = ARole(roleUtilisateur.Commercial);
             mainWindow.EstResponsable = ARole(roleUtilisateur.ResponsableProduction);
             mainWindow.EstAdmin = ARole(roleUtilisateur.Administrateur);
-            MainWindow.Instance.DataContext = null;
-            MainWindow.Instance.DataContext = MainWindow.Instance;
+            
 
         }
 

@@ -42,5 +42,6 @@ namespace PilotApp.Views
         {
             this.Close();
         }
+
     }
 }

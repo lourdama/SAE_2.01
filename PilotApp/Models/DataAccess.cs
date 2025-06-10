@@ -17,6 +17,7 @@ namespace PilotApp.Models
         private LoginWindow loginWindow = (LoginWindow)Application.Current.MainWindow;
         private string connectionString;
         private NpgsqlConnection connection;
+        private MainWindow mainWindow = MainWindow.Instance;
 
         public static DataAccess Instance
         {
@@ -42,12 +43,7 @@ namespace PilotApp.Models
         //  Constructeur privé pour empêcher l'instanciation multiple
         private DataAccess()
         {
-            //String pour l'IUT
-            
-            this.ConnectionString = $"Host=srv-peda-new;Port=5433;Username={loginWindow.UsernameTextBox.Text};Password={loginWindow.PasswordBoxMDP.Password};Database=sae201_pilot;Options='-c search_path=lourdama'";
-            // String utilisation locale pgAdmin
-            //this.ConnectionString = $"Host=localhost;Port=5050;Username={mainWindow.login};Password={mainWindow.mdp};Database=sae201_pilot;Options='-c search_path=public'";
-
+            this.ConnectionString = $"Host=srv-peda-new;Port=5433;Username={mainWindow.login};Password={mainWindow.mdp};Database=sae201_pilot;Options='-c search_path=lourdama'";
             try
             {
                 connection = new NpgsqlConnection(ConnectionString);
@@ -67,7 +63,9 @@ namespace PilotApp.Models
             {
                 try
                 {
-                    connection.Open();
+                    mainWindow = MainWindow.Instance;
+                    this.ConnectionString = $"Host=srv-peda-new;Port=5433;Username={mainWindow.login};Password={mainWindow.mdp};Database=sae201_pilot;Options='-c search_path=lourdama'";
+                    connection = new NpgsqlConnection(ConnectionString);
                 }
                 catch (Exception ex)
                 {
