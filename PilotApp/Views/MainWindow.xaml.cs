@@ -15,6 +15,7 @@ using Wpf.Ui.Controls;
 using System.Windows;
 using System.ComponentModel;
 using PilotApp.Services;
+using PilotApp.Views.UserControls;
 
 namespace PilotApp.Views
 {
@@ -61,27 +62,27 @@ namespace PilotApp.Views
 
         private void butCommande_Click(object sender, RoutedEventArgs e)
         {
-
+            this.vueActuelle.Content= new CommandesUserControl();
         }
 
         private void butRevendeurs_Click(object sender, RoutedEventArgs e)
         {
-
+            this.vueActuelle.Content = new RevendeursUserControl();
         }
 
         private void butMesCommandes_Click(object sender, RoutedEventArgs e)
         {
-
+            this.vueActuelle.Content = new CommandesUserControl();
         }
 
         private void butProduits_Click(object sender, RoutedEventArgs e)
         {
-
+            this.vueActuelle.Content = new ProduitsUserControl();
         }
 
         private void butGestionProduits_Click(object sender, RoutedEventArgs e)
         {
-
+            this.vueActuelle.Content = new GestionProduitsUserControl();
         }
     }
 }

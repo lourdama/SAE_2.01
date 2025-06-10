@@ -4,23 +4,24 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:System="clr-namespace:System;assembly=System.Runtime"
     xmlns:model="clr-namespace:PilotApp.Models"
-    Width="215"
-    Height="100">
+    Width="950"
+    Height="724">
 
     <StackPanel Background="White">
 
-         <DataGrid x:Name="dgCommandes"
-                  AutoGenerateColumns="False"
-                  IsReadOnly="True"
-                  ItemsSource="{Binding}">
+        <DataGrid
+            x:Name="dgCommandes"
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            ItemsSource="{Binding}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
-                <DataGridTextColumn Header="Date commande" Binding="{Binding DateCommande}" />
-                <DataGridTextColumn Header="Livraison" Binding="{Binding DateLivraison}" />
-                <DataGridTextColumn Header="Prix" Binding="{Binding Prix}" />
-                <DataGridTextColumn Header="Employé" Binding="{Binding UnEmploye.Nom}" />
-                <DataGridTextColumn Header="Revendeur" Binding="{Binding UnRevendeur.Nom}" />
-                <DataGridTextColumn Header="Transport" Binding="{Binding UnModeTransport.Nom}" />
+                <DataGridTextColumn Binding="{Binding Id}" Header="Id" />
+                <DataGridTextColumn Binding="{Binding DateCommande}" Header="Date commande" />
+                <DataGridTextColumn Binding="{Binding DateLivraison}" Header="Livraison" />
+                <DataGridTextColumn Binding="{Binding Prix}" Header="Prix" />
+                <DataGridTextColumn Binding="{Binding UnEmploye.Nom}" Header="Employé" />
+                <DataGridTextColumn Binding="{Binding UnRevendeur.Nom}" Header="Revendeur" />
+                <DataGridTextColumn Binding="{Binding UnModeTransport.Nom}" Header="Transport" />
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock

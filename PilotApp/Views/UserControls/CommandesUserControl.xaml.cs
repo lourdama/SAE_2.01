@@ -22,11 +22,10 @@ namespace PilotApp.Views.UserControls
     /// </summary>
     public partial class CommandesUserControl : UserControl
     {
-        private MainWindow mainWindow = MainWindow.Instance;
-        public CommandesUserControl(ObservableCollection<Commande> commandes)
+        public CommandesUserControl()
         {
             InitializeComponent();
-            this.DataContext = commandes;
+            this.DataContext = MainWindow.Instance.Pilot.LesCommandes;
 
         }
 

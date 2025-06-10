@@ -10,8 +10,6 @@ namespace PilotApp.Services
 {
     public class AuthenticationService
     {
-        private MainWindow mainWindow = MainWindow.Instance ;
-        private readonly DataAccess _dataAccess;
 
 
         public AuthenticationService(string login, string mdp)
@@ -24,9 +22,9 @@ namespace PilotApp.Services
         {
             try
             {
-                mainWindow.login = login;
-                mainWindow.mdp = mdp;
-                mainWindow.Pilot = new Entreprise("Pilot");
+                MainWindow.Instance.login = login;
+                MainWindow.Instance.mdp = mdp;
+                MainWindow.Instance.Pilot = new Entreprise("Pilot");
                 
 
 
@@ -41,24 +39,24 @@ namespace PilotApp.Services
 
         public void ChargeEmploye()
         {
-            mainWindow.EmployeConnecte = new Employe();
-            foreach (Employe employeTemp in mainWindow.Pilot.LesEmployes)
+            MainWindow.Instance.EmployeConnecte = new Employe();
+            foreach (Employe employeTemp in MainWindow.Instance.Pilot.LesEmployes)
             {
-                if (employeTemp.Login == mainWindow.login)
+                if (employeTemp.Login == MainWindow.Instance.login)
                 {
-                    mainWindow.EmployeConnecte = employeTemp;
+                    MainWindow.Instance.EmployeConnecte = employeTemp;
                 }
             }
-            mainWindow.EstCommercial = ARole(roleUtilisateur.Commercial);
-            mainWindow.EstResponsable = ARole(roleUtilisateur.ResponsableProduction);
-            mainWindow.EstAdmin = ARole(roleUtilisateur.Administrateur);
+            MainWindow.Instance.EstCommercial = ARole(roleUtilisateur.Commercial);
+            MainWindow.Instance.EstResponsable = ARole(roleUtilisateur.ResponsableProduction);
+            MainWindow.Instance.EstAdmin = ARole(roleUtilisateur.Administrateur);
             
 
         }
 
         public bool ARole(roleUtilisateur role)
         {
-            return (roleUtilisateur)mainWindow.EmployeConnecte.UnRole.Id == roleUtilisateur.Administrateur ||(roleUtilisateur) mainWindow.EmployeConnecte.UnRole.Id == role;
+            return (roleUtilisateur)MainWindow.Instance.EmployeConnecte.UnRole.Id == roleUtilisateur.Administrateur ||(roleUtilisateur) MainWindow.Instance.EmployeConnecte.UnRole.Id == role;
         }
 
        
