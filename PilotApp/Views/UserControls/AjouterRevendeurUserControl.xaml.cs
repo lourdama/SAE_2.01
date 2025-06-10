@@ -27,7 +27,7 @@ namespace PilotApp.Views.UserControls
             InitializeComponent();
             this.action = action;
 
-            if (action == Action.Créer)
+            if (action == Action.Creer)
             {
                 butAjouter.Content = "Creer";
             }
