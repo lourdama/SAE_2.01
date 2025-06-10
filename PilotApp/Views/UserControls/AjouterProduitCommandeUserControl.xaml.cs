@@ -25,11 +25,12 @@ namespace PilotApp.Views.UserControls
         public AjouterProduitCommandeUserControl()
         {
             InitializeComponent();
+            this.DataContext = MainWindow.Instance.Pilot.LesProduits;
             this.action = action;
 
             if (action == Action.Creer)
             {
-                butAjouter.Content = "Creer";
+                butAjouter.Content = "Créer";
             }
             else
             {
