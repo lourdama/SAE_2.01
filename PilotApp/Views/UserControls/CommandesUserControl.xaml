@@ -17,9 +17,16 @@
             IsReadOnly="True"
             ItemsSource="{Binding LesCommandes}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding Id, ValidatesOnExceptions=true}"
+                    Header="Id" />
             </DataGrid.Columns>
         </DataGrid>
+        <TextBlock
+            Height="11"
+            Background="AliceBlue"
+            Text="{Binding LesCommandes.Count}" />
 
     </StackPanel>
 </UserControl>
