@@ -177,7 +177,7 @@
 
             <!--  Zone de contenu principal  -->
             <Border Grid.Column="1" Background="White">
-                <ContentPresenter x:Name="MainContentPresenter" Content="{Binding CurrentView}" />
+                <ContentControl x:Name="vueActuelle"/>
             </Border>
 
         </Grid>
