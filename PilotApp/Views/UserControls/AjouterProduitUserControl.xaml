@@ -25,9 +25,9 @@
                     Text="{Binding Code, ValidatesOnExceptions=True}"
                     TextWrapping="Wrap" />
                 <Label Width="200" Content="Type Pointe" />
-                <ComboBox Width="200" ItemsSource="{Binding MainWindow.Instance.LesTypesPointes.Nom}" />
+                <ComboBox Width="200" ItemsSource="{Binding MainWindow.Instance.Pilot.LesTypesPointes.Nom}" />
                 <Label Width="200" Content="Type" />
-                <ComboBox Width="200" ItemsSource="{Binding MainWindow.Instance.LesTypes.Nom}" />
+                <ComboBox Width="200" ItemsSource="{Binding MainWindow.Instance.Piolot.LesTypes.Nom}" />
                 <Label Width="200" Content="Quantité en Stock" />
                 <ui:NumberBox
                     Width="200"
