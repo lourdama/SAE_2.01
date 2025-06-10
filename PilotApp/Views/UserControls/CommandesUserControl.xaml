@@ -21,13 +21,13 @@ xmlns:System="clr-namespace:System;assembly=System.Runtime" x:Class="PilotApp.Vi
                      />
 
 
-                    <ui:DataGrid ItemsSource="{Binding ViewModel.ProductsCollection, Mode=TwoWay}" Grid.Column="0" Margin="0,50,0,0">
+                    <ui:DataGrid ItemsSource="{Binding LesCommandes, Mode=TwoWay}" Grid.Column="0" Margin="0,50,0,0">
                         <DataGrid.Columns>
 
-                            <DataGridTextColumn Header="NumCommande" Binding="{Binding '', ValidatesOnExceptions=true}" Width="*" />
-                            <DataGridTextColumn Header="DateCommande" Binding="{Binding '', ValidatesOnExceptions=true}" Width="*" />
-                            <DataGridTextColumn Header="DateLivraison" Binding="{Binding '', ValidatesOnExceptions=true}" Width="*" />
-                            <DataGridTextColumn Header="PrixTotal" Binding="{Binding '', ValidatesOnExceptions=true}" Width="*" />
+                            <DataGridTextColumn Header="NumCommande" Binding="{Binding Id, ValidatesOnExceptions=true}" Width="*" />
+                            <DataGridTextColumn Header="DateCommande" Binding="{Binding DateCommande, ValidatesOnExceptions=true}" Width="*" />
+                            <DataGridTextColumn Header="DateLivraison" Binding="{Binding DateLivraison, ValidatesOnExceptions=true}" Width="*" />
+                            <DataGridTextColumn Header="Prix" Binding="{Binding Prix, ValidatesOnExceptions=true}" Width="*" />
 
                         </DataGrid.Columns>
                     </ui:DataGrid>
