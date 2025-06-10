@@ -17,6 +17,7 @@ using System.ComponentModel;
 
 namespace PilotApp.Views
 {
+    public enum Action { Modifier, Creer }
     public partial class MainWindow : FluentWindow
     {
         public bool EstCommercial { get; set; }

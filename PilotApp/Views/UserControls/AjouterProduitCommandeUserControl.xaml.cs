@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Collections.Specialized.BitVector32;
 
 namespace PilotApp.Views.UserControls
 {
@@ -20,9 +21,20 @@ namespace PilotApp.Views.UserControls
     /// </summary>
     public partial class AjouterProduitCommandeUserControl : UserControl
     {
+        private Action action;
         public AjouterProduitCommandeUserControl()
         {
             InitializeComponent();
+            this.action = action;
+
+            if (action == Action.Créer)
+            {
+                butAjouter.Content = "Creer";
+            }
+            else
+            {
+                butAjouter.Content = "Modifier";
+            }
         }
     }
 }

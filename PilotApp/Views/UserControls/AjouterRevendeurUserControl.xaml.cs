@@ -18,11 +18,28 @@ namespace PilotApp.Views.UserControls
     /// <summary>
     /// Logique d'interaction pour AjouterRevendeurUserControl.xaml
     /// </summary>
+
     public partial class AjouterRevendeurUserControl : UserControl
     {
+        private Action action;
         public AjouterRevendeurUserControl()
         {
             InitializeComponent();
+            this.action = action;
+
+            if (action == Action.Créer)
+            {
+                butAjouter.Content = "Creer";
+            }
+            else
+            {
+                butAjouter.Content = "Modifier";
+            }
+        }
+
+        private void butAjouter_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

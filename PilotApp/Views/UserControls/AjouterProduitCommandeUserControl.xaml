@@ -22,7 +22,7 @@
                 <Label Width="200" Content="Prix total" />
                 <ui:TextBox Width="200" IsReadOnly="True" />
                 <ui:Button
-                    x:Name="butAjouterProduit"
+                    x:Name="butAjouter"
                     Width="200"
                     Margin="0,20,0,0"
                     HorizontalAlignment="Center"

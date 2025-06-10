@@ -9,18 +9,18 @@
 
     <StackPanel Background="White">
 
-        <DataGrid
-            x:Name="dgCommandes"
-            Width="161"
-            Height="86"
-            AutoGenerateColumns="False"
-            IsReadOnly="True"
-            ItemsSource="{Binding LesCommandes}">
+         <DataGrid x:Name="dgCommandes"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding}">
             <DataGrid.Columns>
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding Id, ValidatesOnExceptions=true}"
-                    Header="Id" />
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Date commande" Binding="{Binding DateCommande}" />
+                <DataGridTextColumn Header="Livraison" Binding="{Binding DateLivraison}" />
+                <DataGridTextColumn Header="Prix" Binding="{Binding Prix}" />
+                <DataGridTextColumn Header="Employé" Binding="{Binding UnEmploye.Nom}" />
+                <DataGridTextColumn Header="Revendeur" Binding="{Binding UnRevendeur.Nom}" />
+                <DataGridTextColumn Header="Transport" Binding="{Binding UnModeTransport.Nom}" />
             </DataGrid.Columns>
         </DataGrid>
         <TextBlock
