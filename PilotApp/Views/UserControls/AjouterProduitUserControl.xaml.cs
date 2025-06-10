@@ -20,9 +20,20 @@ namespace PilotApp.Views.UserControls
     /// </summary>
     public partial class AjouterProduitUserControl : UserControl
     {
+        private Action action;
         public AjouterProduitUserControl()
         {
             InitializeComponent();
+            this.action = action;
+
+            if (action == Action.Creer)
+            {
+                butAjouter.Content = "Creer";
+            }
+            else
+            {
+                butAjouter.Content = "Modifier";
+            }
         }
 
     }

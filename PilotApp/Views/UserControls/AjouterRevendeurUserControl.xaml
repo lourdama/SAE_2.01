@@ -44,7 +44,7 @@
                     Margin="0,20,0,0"
                     HorizontalAlignment="Center"
                     Appearance="Success"
-                    Content="Ajouter" />
+                    Content="Ajouter" Click="butAjouter_Click" />
             </StackPanel>
         </ui:Card>
     </Grid>
