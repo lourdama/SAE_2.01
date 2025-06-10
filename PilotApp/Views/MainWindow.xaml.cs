@@ -61,6 +61,7 @@ namespace PilotApp.Views
             var loginWindow = new LoginWindow();
             loginWindow.Show();
             this.Close();
+            this.vueActuelle.Content = null;
         }
 
         private void butCommande_Click(object sender, RoutedEventArgs e)

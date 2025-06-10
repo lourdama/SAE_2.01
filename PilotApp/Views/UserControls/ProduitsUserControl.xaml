@@ -74,10 +74,62 @@
             Content="Supprimer" />
 
         <ui:TextBox
-    Width="555"
-    Margin="0,72,0,0"
-    HorizontalAlignment="Center"
-    VerticalAlignment="Top"
-    PlaceholderText="Effectuez une recherche..." />
+            Width="88"
+            Margin="10,69,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            PlaceholderText="Filtre code"
+            TextChanged="TextBox_TextChanged" />
+        <ui:TextBox
+            Width="88"
+            Margin="103,69,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            PlaceholderText="Filtre nom"
+            TextChanged="TextBox_TextChanged" />
+        <ComboBox
+            Height="36"
+            Margin="196,69,516,0"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding UnEmploye.Nom}"
+            Text="Filtre Type Pointe" />
+        <ComboBox
+            Height="36"
+            Margin="289,69,423,0"
+            VerticalAlignment="Top"
+            ItemsSource="{Binding UnEmploye.Nom}"
+            Text="Filtre Type" />
+        <ui:NumberBox
+            Margin="382,69,279,0"
+            VerticalAlignment="Top"
+            Icon="NumberSymbolSquare24"
+            PlaceholderText="Filtre Prix" />
+
+        <ui:NumberBox
+            Margin="526,69,98,0"
+            VerticalAlignment="Top"
+            Icon="NumberSymbolSquare24"
+            PlaceholderText="Filtre Quantité" />
+        <StackPanel Margin="702,39,93,4" Grid.ColumnSpan="2">
+            <CheckBox
+                    Command="{Binding ViewModel.SelectAllCheckedCommand, Mode=OneWay}"
+                    CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Mode=Self}}"
+                    Content="Tous"
+                    IsChecked="{Binding ViewModel.SelectAllCheckBoxChecked, Mode=TwoWay}"
+                    IsThreeState="True" />
+            <CheckBox
+                    Margin="24,0,0,0"
+                    Command="{Binding ViewModel.SingleCheckedCommand, Mode=OneWay}"
+                    CommandParameter="1"
+                    Content="Disponible"
+                    IsChecked="{Binding ViewModel.OptionOneCheckBoxChecked, Mode=TwoWay}" Checked="CheckBox_Checked" />
+            <CheckBox
+                    Margin="24,0,0,0"
+                    Command="{Binding ViewModel.SingleCheckedCommand, Mode=OneWay}"
+                    CommandParameter="2"
+                    Content="Indisponible"
+                    IsChecked="{Binding ViewModel.OptionTwoCheckBoxChecked, Mode=TwoWay}" />
+
+        </StackPanel>
     </Grid>
 </UserControl>
