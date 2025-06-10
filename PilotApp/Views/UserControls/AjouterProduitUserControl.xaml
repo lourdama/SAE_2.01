@@ -29,17 +29,21 @@
                 <Label Width="200" Content="Type" />
                 <ComboBox Width="200" ItemsSource="{Binding FontFamilies}" />
                 <Label Width="200" Content="Quantité en Stock" />
-                <ui:NumberBox Icon="Box24" Width="200"/>
+                <ui:NumberBox Width="200" Icon="Box24" />
                 <Label Width="200" Content="Prix du produit" />
-                <ui:NumberBox Icon="CurrencyDollarEuro24" Width="200"/>
+                <ui:NumberBox Width="200" Icon="CurrencyDollarEuro24" />
                 <Label Width="200" Content="Disponibilité" />
-                <ui:ToggleSwitch OffContent="Indisponible" OnContent="Disponible" HorizontalAlignment="Stretch" Width="200"/>
+                <ui:ToggleSwitch
+                    Width="200"
+                    HorizontalAlignment="Stretch"
+                    OffContent="Indisponible"
+                    OnContent="Disponible" />
                 <ui:Button
-                    Appearance="Success"
                     x:Name="butAjouter"
                     Width="200"
                     Margin="0,20,0,0"
                     HorizontalAlignment="Center"
+                    Appearance="Success"
                     Content="Ajouter" />
             </StackPanel>
         </ui:Card>

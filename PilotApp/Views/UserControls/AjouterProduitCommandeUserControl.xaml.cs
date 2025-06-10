@@ -30,11 +30,11 @@ namespace PilotApp.Views.UserControls
 
             if (action == Action.Creer)
             {
-                butAjouterProduit.Content = "Creer";
+                butAjouter.Content = "Créer";
             }
             else
             {
-                butAjouterProduit.Content = "Modifier";
+                butAjouter.Content = "Modifier";
             }
         }
     }
