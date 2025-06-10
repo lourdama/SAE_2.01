@@ -16,6 +16,7 @@ namespace PilotApp.Views
     /// </summary>
     public partial class LoginWindow : FluentWindow
     {
+        
         public LoginWindow()
         {
             InitializeComponent();
@@ -95,6 +96,7 @@ namespace PilotApp.Views
             new AuthenticationService(UsernameTextBox.Text, PasswordBox.Text);
             mainWindow.Show();
             this.Close();     
+            
         }
     }
 }

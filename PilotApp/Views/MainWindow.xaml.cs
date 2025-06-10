@@ -25,6 +25,7 @@ namespace PilotApp.Views
 
         public string login { get; set; }
         public string mdp { get; set; }
+        public Employe employeconnecte { get; set; }
        
         public MainWindow()
         {
@@ -39,6 +40,7 @@ namespace PilotApp.Views
             {
                 viewModel.InitializeNavigation(MainContentPresenter);
             }
+            
         }
 
         private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
