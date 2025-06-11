@@ -211,14 +211,20 @@ namespace PilotApp.Models
         public int Create()
         {
             int nb = 0;
-            using (var cmdInsert = new NpgsqlCommand("insert into commande (numemployenumtransport,numrevendeur,datecommande,datelivraison,prixtotal) " +
+            using (var cmdInsert = new NpgsqlCommand("insert into commande (numemploye,numtransport,numrevendeur,datecommande,datelivraison,prixtotal) " +
                 "values (@numemploye,@numtransport,@numrevendeur,@datecommande,@datelivraison,@prixtotal) RETURNING numcommande"))
             {
                 cmdInsert.Parameters.AddWithValue("numemploye", this.UnEmploye.Id);
                 cmdInsert.Parameters.AddWithValue("numtransport", this.UnModeTransport.Id);
                 cmdInsert.Parameters.AddWithValue("numrevendeur", this.UnRevendeur.Id);
-                cmdInsert.Parameters.AddWithValue("datecommande", this.DateCommande);
-                cmdInsert.Parameters.AddWithValue("datelivraison", this.DateLivraison);
+                if (this.DateLivraison.HasValue)
+                {
+                    cmdInsert.Parameters.AddWithValue("datelivraison", this.DateLivraison.Value);
+                }
+                else
+                {
+                    cmdInsert.Parameters.Add("datelivraison", NpgsqlTypes.NpgsqlDbType.Timestamp).Value = DBNull.Value;
+                }
                 cmdInsert.Parameters.AddWithValue("prixtotal", this.Prix);
                 nb = DataAccess.Instance.ExecuteInsert(cmdInsert);
             }

@@ -13,7 +13,7 @@
     WindowStartupLocation="CenterOwner"
     mc:Ignorable="d">
 
-    <StackPanel x:Name="panelFormChien">
+    <StackPanel x:Name="panelFormChien" Cursor="">
         <Label
             Width="200"
             VerticalAlignment="Stretch"
@@ -50,12 +50,15 @@
             Width="200"
             VerticalAlignment="Stretch"
             Content="Date de livraison" />
-        <DatePicker Width="200" SelectedDate="{Binding DateLivraison, Mode=TwoWay}" />
+        <DatePicker Width="200" SelectedDate="{Binding DateLivraison, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <Label
             Width="200"
             VerticalAlignment="Stretch"
             Content="Prix total" />
-        <TextBox Width="205" />
+        <TextBox x:Name="txtPrixTotal"
+         Width="200"
+         IsReadOnly="True"
+         Text="{Binding Commande.Prix, Mode=OneWay}" />
 
         <TextBlock
             x:Name="txtNbProduits"

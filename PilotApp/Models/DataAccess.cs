@@ -99,6 +99,12 @@ namespace PilotApp.Models
             try
             {
                 cmd.Connection = GetConnection();
+
+                if (cmd.Connection.State != ConnectionState.Open)
+                {
+                    cmd.Connection.Open(); 
+                }
+
                 nb = (int)cmd.ExecuteScalar();
 
             }
