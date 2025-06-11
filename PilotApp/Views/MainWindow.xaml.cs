@@ -88,5 +88,11 @@ namespace PilotApp.Views
         {
             this.vueActuelle.Content = new GestionProduitsUserControl();
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
+            
+        }
     }
 }
