@@ -65,7 +65,11 @@ namespace PilotApp.Models
                     this.ConnectionString = $"Host=srv-peda-new;Port=5433;Username={MainWindow.Instance.login} ;Password= {MainWindow.Instance.mdp};Database=sae201_pilot;Options='-c search_path=lourdama'";
                     connection = new NpgsqlConnection(ConnectionString);
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    LogError.Log(ex, "Pb de connexion GetConnection \n" + connectionString);
+                    throw;
+                }
             }
 
         

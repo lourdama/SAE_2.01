@@ -102,7 +102,7 @@ namespace PilotApp.Models
 
             set
             {
-                Regex regexCodePostal = new Regex(@"^\d{5}$");
+                Regex regexCodePostal = new Regex(@"^(?:0[1-9]|[1-8]\d|9[0-5]|97|98)\d{3}$");
                 if (MiseEnForme.NEstPasNullOuWhitespace(value) && regexCodePostal.IsMatch(value))
                     this.codePostal = value;
                 else throw new ArgumentException("Le code postal ne peut être null ou respecter le format ");
@@ -125,7 +125,7 @@ namespace PilotApp.Models
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelect);
                 foreach (DataRow dr in dt.Rows)
-                    lesRevendeurs.Add(new Revendeur((int)dr["numrevendeur"], (string)dr["raisonsociale"], (string)dr["adresserue"], (string)dr["adressecp"], (string)dr["adresseville"]));
+                    lesRevendeurs.Add(new Revendeur((int)dr["numrevendeur"], (string)dr["raisonsociale"], (string)dr["adresserue"], (string)dr["adresseville"], (string)dr["adressecp"]));
             }
             return lesRevendeurs;
         }
