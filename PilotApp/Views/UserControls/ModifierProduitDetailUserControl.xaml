@@ -40,7 +40,7 @@
             Grid.Column="1"
             Width="100"
             Height="32"
-            Margin="0,42,0,0"
+            Margin="0,109,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
 
@@ -49,20 +49,19 @@
             Grid.Column="1"
             Width="100"
             Height="32"
-            Margin="0,92,0,0"
+            Margin="0,58,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
 
-            Content="Retour" />
+            Content="Retour" Click="butRetour_Click" />
 
         <Button x:Name="butAjouter"
             Grid.Column="1"
             Width="100"
             Height="32"
-            Margin="0,92,0,0"
+            Margin="0,162,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-
-            Content="Retour" />
+            Content="Ajouter" Click="butAjouter_Click" />
     </Grid>
 </UserControl>
