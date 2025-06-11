@@ -158,7 +158,7 @@ namespace PilotApp.Models
                     prix += uneSousCommande.Value[1];
 
                 }
-                return this.prix;
+                return prix;
             }
 
         }
