@@ -72,32 +72,13 @@ namespace PilotApp.Views.UserControls
 
         private void butDetailProduit_Click(object sender, RoutedEventArgs e)
         {
-            ModifierProduitDetailUserControl ajouterProduitCommande = new ModifierProduitDetailUserControl(this,this.UneCommande);
+            ModifierProduitDetailUserControl ajouterProduitCommande = new ModifierProduitDetailUserControl(this, this.UneCommande);
             this.mpdu = ajouterProduitCommande;
             MainWindow.Instance.vueActuelle.Content = this.mpdu;
 
-                // Ajouter le produit s'il n'existe pas encore
-                if (!commande.LesSousCommandes.ContainsKey(p))
-                {
-                    commande.LesSousCommandes[p] = data;
-                }
-                else
-                {
-                    MessageBox.Show("Ce produit est déjà dans la commande.");
-                }
 
-                if (!commande.LesSousCommandes.ContainsKey(p))
-                {
-                    commande.LesSousCommandes[p] = data;
-                    commande.LesSousCommandes[p] = data;
-                    commande.LesSousCommandes[p] = data;
-                    commande.LesSousCommandes[p] = data;
-                    commande.LesSousCommandes[p] = data;
-                    commande.LesSousCommandes[p] = data;
-                    commande.LesSousCommandes[p] = data;
 
-        
-
+        }
         
     }
 }

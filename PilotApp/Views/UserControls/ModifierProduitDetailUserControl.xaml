@@ -43,7 +43,7 @@
             Margin="0,42,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Click="butModifier_Click"
+
             Content="Modifier" />
         <Button x:Name="butRetour"
             Grid.Column="1"
@@ -52,7 +52,7 @@
             Margin="0,92,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Click="butRetour_Click"
+
             Content="Retour" />
 
         <Button x:Name="butAjouter"
@@ -62,7 +62,7 @@
             Margin="0,92,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Click="butAjouter_Click"
+
             Content="Retour" />
     </Grid>
 </UserControl>
