@@ -95,9 +95,9 @@ namespace PilotApp.Models
 
             set
             {
-                //if (MiseEnForme.NEstPasNull(value) && value.Count != 0)
+                if (MiseEnForme.NEstPasNull(value) && value.Count != 0)
                     lesCouleurs = value;
-               // else throw new ArgumentException("Un produit ne peut pas n'avoir aucune couleur");
+                else throw new ArgumentException("Un produit ne peut pas n'avoir aucune couleur");
             }
         }
 
@@ -186,17 +186,20 @@ namespace PilotApp.Models
 
             List<Produit> lesProduits = new List<Produit>();
             using (NpgsqlCommand cmdSelectProduit = new NpgsqlCommand("select * from produit;"))
-            using (NpgsqlCommand cmdSelectCouleurProduit = new NpgsqlCommand("select * from couleurproduit;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelectProduit);
-                DataTable dtCouleur = DataAccess.Instance.ExecuteSelect(cmdSelectCouleurProduit);
+                
                 foreach (DataRow dr in dt.Rows)
                 {
                     List<Couleur> lesCouleurs = new List<Couleur>();
-                    foreach (DataRow drCouleur in dtCouleur.Rows)
+                    using (NpgsqlCommand cmdSelectCouleurProduit = new NpgsqlCommand("select * from couleurproduit where numproduit =@id;"))
                     {
-                        if (drCouleur["numproduit"] == dr["numproduit"])
-                            lesCouleurs.Add(entreprise.LesCouleurs.SingleOrDefault(c => c.Id == (int)drCouleur["numcouleur"]));
+                        cmdSelectCouleurProduit.Parameters.AddWithValue("id", dr["numproduit"]);
+                        DataTable dtCouleur = DataAccess.Instance.ExecuteSelect(cmdSelectCouleurProduit);
+                        foreach (DataRow drCouleur in dtCouleur.Rows)
+                        {
+                                lesCouleurs.Add(entreprise.LesCouleurs.SingleOrDefault(c => c.Id == (int)drCouleur["numcouleur"]));
+                        }
                     }
                         lesProduits.Add(new Produit((int)dr["numproduit"], entreprise.LesTypesPointes.SingleOrDefault(c => c.Id == (int)dr["numtypepointe"]), entreprise.LesTypes.SingleOrDefault(c => c.Id == (int)dr["numtype"]), 
                         lesCouleurs, (string)dr["codeproduit"], (string)dr["nomproduit"], (decimal)dr["prixvente"], (int)dr["quantitestock"], (bool)dr["disponible"]));
