@@ -19,7 +19,7 @@
             Grid.Row="0"
             Height="60"
             Background="#FF1976D2">
-            <Grid>
+            <Grid Margin="0,0,40,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
@@ -42,11 +42,12 @@
                         Foreground="White"
                         Opacity="0.8"
                         Text=" - Gestion des ventes" />
+                    
                 </StackPanel>
 
                 <StackPanel
                     Grid.Column="1"
-                    Margin="20,0"
+                    Margin="20,0,0,0"
                     VerticalAlignment="Center"
                     Orientation="Horizontal">
                     <ui:SymbolIcon
@@ -73,6 +74,17 @@
                         Command="{Binding LogoutCommand}"
                         Content="Déconnexion"
                         Foreground="White" />
+                    <ui:Button x:Name="CloseButton"
+                          Content="✕"
+                          Width="32"
+                          Height="32"
+                          HorizontalAlignment="Right"
+                          VerticalAlignment="Top"
+                          Background="Transparent"
+                          Foreground="White"
+                          BorderThickness="0"
+                          FontSize="14"
+                          Click="CloseButton_Click" Margin="20,0,0,0"/>
                 </StackPanel>
             </Grid>
         </Border>
@@ -98,6 +110,15 @@
                     PaneDisplayMode="Left">
 
                     <ui:NavigationView.MenuItems>
+                        <!--  Menu commun  -->
+                        <ui:NavigationViewItem x:Name="butAccueil"
+                             Content="Accueil"
+                             Icon="{ui:SymbolIcon Home24}"
+                             Tag="produits" Click="butAccueil_Click"  />
+                                                <ui:NavigationViewItem x:Name="butProduits"
+                             Content="Produits"
+                             Icon="{ui:SymbolIcon Box24}"
+                             Tag="produits" Click="butProduits_Click" />
 
                         <!--  Menu Commercial  -->
                         <ui:NavigationViewItem x:Name="butCommande"
@@ -148,11 +169,7 @@
                             </ui:NavigationViewItem.Style>
                         </ui:NavigationViewItem>
 
-                        <!--  Menu commun  -->
-                        <ui:NavigationViewItem x:Name="butProduits"
-                            Content="Produits"
-                            Icon="{ui:SymbolIcon Box24}"
-                            Tag="produits" Click="butProduits_Click" />
+                       
 
                         <!--  Menu Responsable Production  -->
                         <ui:NavigationViewItem x:Name="butGestionProduits"

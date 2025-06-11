@@ -9,6 +9,7 @@ using System.Windows.Input;
 using Wpf.Ui.Controls;
 using PilotApp.Views.UserControls;
 
+
 namespace PilotApp.Views
 {
     /// <summary>
@@ -50,7 +51,7 @@ namespace PilotApp.Views
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            System.Windows.Application.Current.Shutdown();  
         }
 
     }
