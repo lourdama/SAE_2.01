@@ -23,6 +23,8 @@ namespace PilotApp.Views.UserControls
     public partial class RevendeursUserControl : UserControl
     {
         public AjouterRevendeurUserControl aruc;
+        public Revendeur RevendeurSelectionne;
+        public Revendeur Copie;
         public RevendeursUserControl()
         {
             InitializeComponent();
@@ -58,6 +60,44 @@ namespace PilotApp.Views.UserControls
             }
         }
 
+        private void butModifier_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgRevendeur.SelectedItem == null)
+                MessageBox.Show("Veuillez sélectionner un revendeur", "Attention",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+            {
+                this.RevendeurSelectionne = (Revendeur)dgRevendeur.SelectedItem;
+                this.Copie = new Revendeur(RevendeurSelectionne.Id,RevendeurSelectionne.RaisonSociale, RevendeurSelectionne.Rue,
+                   RevendeurSelectionne.Ville, RevendeurSelectionne.CodePostal);
+                AjouterRevendeurUserControl modifierRevendeur = new AjouterRevendeurUserControl(this, Copie, Action.Modifier);
+                modifierRevendeur.ValidationFaite += OnValidationFaiteModifier;
+                this.aruc = modifierRevendeur;
+                MainWindow.Instance.vueActuelle.Content = this.aruc;
+
+            }
+        }
+
+        private void OnValidationFaiteModifier(bool estValide)
+        {
+            if (estValide == true)
+            {
+                try
+                {
+                    RevendeurSelectionne.Update();
+                    RevendeurSelectionne.RaisonSociale = Copie.RaisonSociale;
+                    RevendeurSelectionne.Rue = Copie.Rue;
+                    RevendeurSelectionne.Ville = Copie.Ville;
+                    RevendeurSelectionne.CodePostal = Copie.CodePostal;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Le revendeur n'a pas pu être modifié.", "Attention",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
         private void butSupprimer_Click(object sender, RoutedEventArgs e)
         {
             if (dgRevendeur.SelectedItem == null)
@@ -68,7 +108,7 @@ namespace PilotApp.Views.UserControls
                 Revendeur revendeurASupprimer = ((Revendeur)dgRevendeur.SelectedItem);
 
                 MessageBoxResult result;
-                result = MessageBox.Show($"Désirez-vous supprimer ce ? Cette action est définitive", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+                result = MessageBox.Show($"Désirez-vous supprimer ce revendeur ? Cette action est définitive", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -96,5 +136,7 @@ namespace PilotApp.Views.UserControls
 
             }
         }
+
+
     }
 }
