@@ -137,6 +137,19 @@ namespace PilotApp.Views.UserControls
             }
         }
 
+        private void rechercheRaison_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
+        }
+
+        private void rechercheVille_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void rechercheCP_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

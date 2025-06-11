@@ -27,7 +27,7 @@ namespace PilotApp.Views.UserControls
         public ProduitsUserControl()
         {
             InitializeComponent();
-            if (MainWindow.Instance.EstCommercial)
+            if (MainWindow.Instance.EstCommercial && !MainWindow.Instance.EstAdmin)
             {
                 butAjouter.Visibility = Visibility.Collapsed;
                 butModifier.Visibility = Visibility.Collapsed;
