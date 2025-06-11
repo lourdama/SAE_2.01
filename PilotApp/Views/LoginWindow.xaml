@@ -203,7 +203,7 @@
                                   FontWeight="Medium"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Top"
-                                  Appearance="Primary" Click="LoginButton_Click">
+                                  Appearance="Primary" Click="LoginButton_Click" IsDefault="True">
                             <ui:Button.Style>
                                 <Style TargetType="{x:Type ui:Button}" BasedOn="{StaticResource {x:Type ui:Button}}">
                                     <Setter Property="Background" Value="#495057"/>
