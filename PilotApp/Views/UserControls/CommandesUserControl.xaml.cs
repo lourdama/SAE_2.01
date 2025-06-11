@@ -31,12 +31,17 @@ namespace PilotApp.Views.UserControls
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)
         {
-
+            test();
             Commande uneCommande = new Commande();
             MainWindow.Instance.vueActuelle.Content = new AjouterCommandeUserControl(uneCommande, Action.Creer);
 
-
-
+        }
+        private void test()
+        {
+            foreach (Commande commande in MainWindow.Instance.Pilot.LesCommandes)
+            {
+                MessageBox.Show(commande.Id + commande.Prix.ToString());
+            }
         }
 
         private void butModifier_Click(object sender, RoutedEventArgs e)

@@ -58,11 +58,12 @@ namespace PilotApp.Views.UserControls
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)
         {
-            Produit unProduit = new Produit();
+            test();
+            /*Produit unProduit = new Produit();
             AjouterProduitUserControl ajouterProduit = new AjouterProduitUserControl(this, unProduit,Action.Creer);
             ajouterProduit.ValidationFaite += OnValidationFaiteAjouter;
             this.apuc = ajouterProduit;
-            MainWindow.Instance.vueActuelle.Content = this.apuc;
+            MainWindow.Instance.vueActuelle.Content = this.apuc;*/
 
         }
 
@@ -147,6 +148,14 @@ namespace PilotApp.Views.UserControls
         private void RefreshDg()
         {
             CollectionViewSource.GetDefaultView(dgProduits.ItemsSource).Refresh();
+        }
+
+        private void test()
+        {
+            foreach (Produit produit in MainWindow.Instance.Pilot.LesProduits)
+            {
+                MessageBox.Show(produit.Id + produit.Nom);
+            }
         }
     }
 }
