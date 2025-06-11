@@ -106,17 +106,17 @@ namespace PilotApp.Models
 
             set
             {
-              /*  if (MiseEnForme.NEstPasNull(value))
+                if (MiseEnForme.NEstPasNull(value))
                     if (value.Count != 0)
                     {
-                        foreach (KeyValuePair<Produit, decimal[]> uneSousCommande in this.LesSousCommandes)
+                        foreach (KeyValuePair<Produit, decimal[]> uneSousCommande in value)
                         {
                             if (!MiseEnForme.EstEntre(uneSousCommande.Value[0], 0) || !MiseEnForme.EstEntre(uneSousCommande.Value[1], 0) || uneSousCommande.Key == null)
                                 throw new ArgumentException("Une sous commande ne doit pas contenir de produit null ni de quantié ou prix négatif");
-                        }*/
+                        }
                         lesSousCommandes = value;
-                   /* }
-                    else throw new ArgumentException("Les sous commandes ne peut être null ou ne rien contenir");*/
+                   }
+                    else throw new ArgumentException("Les sous commandes ne peut être null ou ne rien contenir");
             }
         }
 
@@ -210,7 +210,7 @@ namespace PilotApp.Models
         public int Create()
         {
             int nb = 0;
-            using (var cmdInsert = new NpgsqlCommand("insert into commande (numemploye,numtransport,numrevendeur,datecommande,datelivraison,prixtotal) " +
+            using (var cmdInsert = new NpgsqlCommand("insert into commande (numemployenumtransport,numrevendeur,datecommande,datelivraison,prixtotal) " +
                 "values (@numemploye,@numtransport,@numrevendeur,@datecommande,@datelivraison,@prixtotal) RETURNING numcommande"))
             {
                 cmdInsert.Parameters.AddWithValue("numemploye", this.UnEmploye.Id);
