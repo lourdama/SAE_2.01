@@ -27,16 +27,15 @@ namespace PilotApp.Views.UserControls
         {
             InitializeComponent();
             this.DataContext = MainWindow.Instance.Pilot.LesProduits;
-            //dgProduits.Items.Filter = RechercheMotClefProduit;
+            dgProduits.Items.Filter = RechercheMotClefProduit;
         }
 
         private bool RechercheMotClefProduit(object obj)
         {
             bool ok = true;
-             if (String.IsNullOrWhiteSpace(textBoxFiltreCode.Text) && String.IsNullOrWhiteSpace(textBoxFiltreNom.Text) && comboBoxFiltreTypePointe.SelectedItem == null &&
-                 comboBoxFiltreType.SelectedItem == null && numberBoxFiltrePrixVente == null && numberBoxFiltreQuantite == null && checkBoxDisponibiliteFalse.IsChecked == true
-                 && checkBoxDisponibiliteTrue.IsChecked == true)
-                 return true;
+            if (String.IsNullOrWhiteSpace(textBoxFiltreCode.Text) && String.IsNullOrWhiteSpace(textBoxFiltreNom.Text) && comboBoxFiltreTypePointe.SelectedItem == null &&
+                comboBoxFiltreType.SelectedItem == null && numberBoxFiltrePrixVente == null && numberBoxFiltreQuantite == null )
+                return true;
              Produit unProduit = obj as Produit;
              if(checkBoxDisponibiliteTrue.IsChecked == true)
              {
@@ -59,12 +58,11 @@ namespace PilotApp.Views.UserControls
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)
         {
-            test();
-            /*Produit unProduit = new Produit();
+            Produit unProduit = new Produit();
             AjouterProduitUserControl ajouterProduit = new AjouterProduitUserControl(this, unProduit,Action.Creer);
             ajouterProduit.ValidationFaite += OnValidationFaiteAjouter;
             this.apuc = ajouterProduit;
-            MainWindow.Instance.vueActuelle.Content = this.apuc;*/
+            MainWindow.Instance.vueActuelle.Content = this.apuc;
 
         }
 
