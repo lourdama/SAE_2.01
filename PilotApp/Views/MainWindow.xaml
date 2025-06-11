@@ -137,22 +137,6 @@
                             </ui:NavigationViewItem.Style>
                         </ui:NavigationViewItem>
 
-                        <ui:NavigationViewItem x:Name="butMesCommandes"
-                            Content="Mes Commandes"
-                            Icon="{ui:SymbolIcon ClipboardTask24}"
-                            Tag="mescommandes" Click="butMesCommandes_Click">
-                            <ui:NavigationViewItem.Style>
-                                <Style TargetType="ui:NavigationViewItem">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding EstCommercial}" Value="True">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </ui:NavigationViewItem.Style>
-                        </ui:NavigationViewItem>
-
                         <ui:NavigationViewItem x:Name="butRevendeurs"
                             Content="Revendeurs"
                             Icon="{ui:SymbolIcon StoreMicrosoft24}"
@@ -172,21 +156,7 @@
                        
 
                         <!--  Menu Responsable Production  -->
-                        <ui:NavigationViewItem x:Name="butGestionProduits"
-                            Content="Gestion Produits"
-                            Icon="{ui:SymbolIcon Settings24}"
-                            Tag="gestionproduits" Click="butGestionProduits_Click">
-                            <ui:NavigationViewItem.Style>
-                                <Style TargetType="ui:NavigationViewItem">
-                                    <Setter Property="Visibility" Value="Collapsed" />
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding EstResponsable}" Value="True">
-                                            <Setter Property="Visibility" Value="Visible" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </ui:NavigationViewItem.Style>
-                        </ui:NavigationViewItem>
+                        
 
                     </ui:NavigationView.MenuItems>
                 </ui:NavigationView>
