@@ -15,7 +15,7 @@
             <RowDefinition Height="293*" />
         </Grid.RowDefinitions>
 
-        <ui:DataGrid
+        <ui:DataGrid x:Name="dgRevendeur"
             Grid.Row="1"
             Grid.Column="0"
             AutoGenerateColumns="False"
@@ -66,7 +66,7 @@
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Appearance="Primary"
-            Content="Supprimer" />
+            Content="Supprimer" Click="butSupprimer_Click" />
 
         <ui:TextBox
             Width="555"

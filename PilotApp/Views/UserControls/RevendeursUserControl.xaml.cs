@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,45 @@ namespace PilotApp.Views.UserControls
             else
             {
                 MessageBox.Show("Validation annulée.");
+            }
+        }
+
+        private void butSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgRevendeur.SelectedItem == null)
+                MessageBox.Show("Veuillez sélectionner un revendeur", "Attention",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+            {
+                Revendeur revendeurASupprimer = ((Revendeur)dgRevendeur.SelectedItem);
+
+                MessageBoxResult result;
+                result = MessageBox.Show($"Désirez-vous supprimer ce ? Cette action est définitive", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        revendeurASupprimer.Delete();
+                        MainWindow.Instance.Pilot.LesRevendeurs.Remove(revendeurASupprimer);
+                        for (int i = MainWindow.Instance.Pilot.LesCommandes.Count - 1; i >= 0; i--)
+                        {
+                            Commande commande = MainWindow.Instance.Pilot.LesCommandes[i];
+                
+                            if (commande.UnRevendeur == revendeurASupprimer)
+                            {
+                                MainWindow.Instance.Pilot.LesCommandes.RemoveAt(i);
+                            }
+                        }
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Le revendeur n'a pas pu être supprimé.", "Attention",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+
             }
         }
     }
