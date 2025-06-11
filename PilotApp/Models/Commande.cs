@@ -17,7 +17,7 @@ namespace PilotApp.Models
         private ModeTransport unModeTransport;
         private Revendeur unRevendeur;
         private Dictionary<Produit, decimal[]> lesSousCommandes;
-        private DateTime dateCommande;
+        private DateTime dateCommande = DateTime.Now;
         private DateTime? dateLivraison;
         private decimal prix;
 

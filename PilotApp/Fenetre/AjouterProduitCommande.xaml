@@ -30,7 +30,6 @@
             x:Name="txtPrix"
             Width="240"
             Margin="0,0,0,20" />
-
         <Button
             x:Name="butValider"
             Width="240"

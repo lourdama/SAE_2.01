@@ -22,22 +22,47 @@ namespace PilotApp.Views.UserControls
     /// </summary>
     public partial class AjouterProduitCommandeUserControl : UserControl
     {
-        private Commande commande;
-        private Action action;
+        public Produit ProduitSelectionne { get; private set; }
+        private UserControl pagePrecedente;
+        public event Action<bool> ValidationFaite;
+        public decimal Quantite { get; private set; }
+        public decimal Prix { get; private set; }
 
-        public AjouterProduitCommandeUserControl()
+        public AjouterProduitCommandeUserControl(UserControl pagePrecedente)
         {
             InitializeComponent();
+            this.pagePrecedente = pagePrecedente;
+            cmbProduits.ItemsSource = MainWindow.Instance.Pilot.LesProduits;
+            cmbProduits.DisplayMemberPath = "Nom";
+        }
 
-            this.DataContext = this;
-
-            if (action == Action.Creer)
+        private void butValider_Click(object sender, RoutedEventArgs e)
+        {
+            if (cmbProduits.SelectedItem == null ||
+                !decimal.TryParse(txtQuantite.Text, out decimal quantite) ||
+                !decimal.TryParse(txtPrix.Text, out decimal prix))
             {
-                butAjouter.Content = "Créer";
+                MessageBox.Show("Veuillez remplir tous les champs correctement.");
+                return;
+            }
+
+            ProduitSelectionne = (Produit)cmbProduits.SelectedItem;
+            Quantite = quantite;
+            Prix = prix;
+
+            ValidationFaite.Invoke(true);
+            MainWindow.Instance.vueActuelle.Content = this.pagePrecedente;
+        }
+
+        private void cmbProduits_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbProduits.SelectedItem is Produit p)
+            {
+                txtPrix.Text = p.PrixVente.ToString("F2"); // format avec 2 décimales
             }
             else
             {
-                butAjouter.Content = "Modifier";
+                txtPrix.Text = string.Empty;
             }
         }
     }

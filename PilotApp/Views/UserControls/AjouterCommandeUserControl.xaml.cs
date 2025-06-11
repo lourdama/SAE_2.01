@@ -1,4 +1,5 @@
-﻿using PilotApp.Models;
+﻿using PilotApp.Fenetre;
+using PilotApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,37 +25,104 @@ namespace PilotApp.Views.UserControls
     /// </summary>
     public partial class AjouterCommandeUserControl : UserControl
     {
-        private Action action;
-        private Commande commande;
+        public event Action<bool> ValidationFaite;
+        private UserControl pagePrecedente;
+        public AjouterProduitCommandeUserControl apcuc;
+        public Commande UneCommande;
 
-        public AjouterCommandeUserControl(Commande commande, Action actions)
+
+        public AjouterCommandeUserControl(UserControl pagePrecedente, Commande commande, Action action)
         {
             InitializeComponent();
-            this.commande = commande;
-            this.action = actions;
-            this.DataContext = MainWindow.Instance.Pilot;
-
-            if (action == Action.Creer)
-                butValiderCommande.Content = "Créer";
-            else
-                butValiderCommande.Content = "Modifier";
+            this.pagePrecedente = pagePrecedente;
+            AjouterCommandeViewModel vm = new AjouterCommandeViewModel(commande);
+            this.DataContext = vm;
+            this.UneCommande = commande;
+            butValiderCommande.Content = action;
         }
 
         private void butValiderCommande_Click(object sender, RoutedEventArgs e)
         {
-            try
+            bool ok = true;
+            foreach (UIElement uie in panelFormChien.Children)
             {
-                commande.Create();
-                MainWindow.Instance.Pilot.LesCommandes.Add(commande);
-                MainWindow.Instance.vueActuelle.Content = new CommandesUserControl();
+                if (uie is TextBox txt)
+                    txt.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
+                else if (uie is ComboBox cmb)
+                    cmb.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
+                else if (uie is DatePicker dp)
+                    dp.GetBindingExpression(DatePicker.SelectedDateProperty)?.UpdateSource();
+
+                if (Validation.GetHasError(uie))
+                    ok = false;
             }
-            catch (Exception ex)
+
+            if (ok)
             {
-                MessageBox.Show("Erreur lors de la création de la commande.");
+                ValidationFaite.Invoke(ok);
+                MainWindow.Instance.vueActuelle.Content = this.pagePrecedente;
             }
+            else
+            {
+                MessageBox.Show("Veuillez corriger les erreurs.");
+            }
+        }
+
+        private void butAjouterProduit_Click(object sender, RoutedEventArgs e)
+        {
+            //AjouterProduitCommande fenetre = new AjouterProduitCommande();
+            //fenetre.Owner = this;
+
+            //bool? result = fenetre.ShowDialog();
+            AjouterProduitCommandeUserControl ajouterProduitCommande = new AjouterProduitCommandeUserControl(this);
+            ajouterProduitCommande.ValidationFaite += OnValidationFaiteAjouter;
+            this.apcuc = ajouterProduitCommande;
+            MainWindow.Instance.vueActuelle.Content = this.apcuc;
+
+
+
+
+
 
         }
 
+        private void OnValidationFaiteAjouter(bool estValide)
+        {
+            if (estValide)
+            {
+                Produit p = this.apcuc.ProduitSelectionne;
+                decimal[] data = new decimal[] { this.apcuc.Quantite, this.apcuc.Prix * this.apcuc.Quantite };
 
+                // Récupérer la commande via le ViewModel
+                var vm = (AjouterCommandeViewModel)this.DataContext;
+                var commande = vm.Commande;
+
+                // Ajouter le produit s'il n'existe pas encore
+                if (!commande.LesSousCommandes.ContainsKey(p))
+                {
+                    commande.LesSousCommandes[p] = data;
+                    MessageBox.Show("Produit ajouté !");
+                }
+                else
+                {
+                    MessageBox.Show("Ce produit est déjà dans la commande.");
+                }
+
+                if (!commande.LesSousCommandes.ContainsKey(p))
+                {
+                    commande.LesSousCommandes[p] = data;
+
+                    MessageBox.Show("Produit ajouté !");
+                }
+
+                // Actualiser le compteur
+                this.txtNbProduits.Text = $"{commande.LesSousCommandes.Count} produit(s) ajouté(s)";
+
+            }
+
+        }
     }
 }
+
+    
+

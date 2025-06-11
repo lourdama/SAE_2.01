@@ -11,23 +11,39 @@
     mc:Ignorable="d">
     <Grid>
         <ui:Card
-            Margin="20,0,20,57"
-            VerticalAlignment="Bottom"
+            Height="340"
+            Margin="20,0,20,0"
+            VerticalAlignment="Top"
             Background="#E4FFFFFF">
-            <StackPanel x:Name="panelFormProduit">
-                <Label Width="200" Content="Produit" />
-                <ui:AutoSuggestBox Width="200" ItemsSource="{Binding FontFamilies}" />
-                <Label Width="200" Content="Quantité" />
-                <ui:NumberBox Width="200" Icon="CurrencyDollarEuro24" />
-                <Label Width="200" Content="Prix total" />
-                <ui:TextBox Width="200" IsReadOnly="True" />
+            <StackPanel Margin="20">
+
+                <Label HorizontalAlignment="Center" Content="Produit" />
+                <ComboBox
+                    x:Name="cmbProduits"
+                    Width="240"
+                    Margin="0,0,0,10"
+                    DisplayMemberPath="Nom"
+                    SelectionChanged="cmbProduits_SelectionChanged" />
+
+                <Label HorizontalAlignment="Center" Content="Quantité" />
+                <TextBox
+                    x:Name="txtQuantite"
+                    Width="240"
+                    Margin="0,0,0,10" />
+
+                <Label HorizontalAlignment="Center" Content="Prix unitaire (€)" />
+                <TextBox
+                    x:Name="txtPrix"
+                    Width="240"
+                    Margin="0,0,0,20" />
                 <ui:Button
-                    x:Name="butAjouter"
+                    x:Name="butAjouterProduit"
                     Width="200"
-                    Margin="0,20,0,0"
                     HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
                     Appearance="Success"
-                    Content="Ajouter un produit" />
+                    Click="butValider_Click"
+                    Content="Valider" />
             </StackPanel>
         </ui:Card>
     </Grid>

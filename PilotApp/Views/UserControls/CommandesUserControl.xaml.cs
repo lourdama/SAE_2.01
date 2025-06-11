@@ -24,6 +24,7 @@ namespace PilotApp.Views.UserControls
     /// </summary>
     public partial class CommandesUserControl : UserControl
     {
+        public AjouterCommandeUserControl acuc;
         public CommandesUserControl()
         {
             InitializeComponent();
@@ -35,21 +36,35 @@ namespace PilotApp.Views.UserControls
         {
 
             Commande nouvelleCommande = new Commande();
-            var fenetre = new AjouterCommande(nouvelleCommande, AjouterCommande.Action.Créer);
-            bool? result = fenetre.ShowDialog();
+            AjouterCommandeUserControl ajouterCommande = new AjouterCommandeUserControl(this, nouvelleCommande, Action.Creer);
+            ajouterCommande.ValidationFaite += OnValidationFaiteAjouter;
+            this.acuc = ajouterCommande;
+            MainWindow.Instance.vueActuelle.Content = this.acuc;
 
-            if (result == true)
+            
+            //var fenetre = new AjouterCommande(nouvelleCommande, AjouterCommande.Action.Créer);
+            //bool? result = fenetre.ShowDialog();
+        }
+
+        private void OnValidationFaiteAjouter(bool estValide)
+        {
+            if (estValide)
             {
                 try
                 {
-                    nouvelleCommande.Id = nouvelleCommande.Create();
-                    MainWindow.Instance.Pilot.LesCommandes.Add(nouvelleCommande);
+                    this.acuc.UneCommande.Id = this.acuc.UneCommande.Create();
+                    MainWindow.Instance.Pilot.LesCommandes.Add(this.acuc.UneCommande);
                 }
                 catch
                 {
                     MessageBox.Show("Erreur lors de l'ajout de la commande.");
                 }
             }
+            else
+            {
+                MessageBox.Show("Validation annulée.");
+            }
+
         }
 
         private void butModifier_Click(object sender, RoutedEventArgs e)
