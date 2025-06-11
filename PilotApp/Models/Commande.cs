@@ -277,7 +277,7 @@ namespace PilotApp.Models
                 this.DeletePC();
                 foreach (KeyValuePair<Produit, decimal[]> uneSousCommande in this.LesSousCommandes)
                 {
-                    this.InsertPC(uneSousCommande.Key, (int)uneSousCommande.Value[0], uneSousCommande.Value[1]);
+                    this.InsertPC(uneSousCommande.Key, Convert.ToInt32(uneSousCommande.Value[0]), uneSousCommande.Value[1]);
                 }
 
                 return DataAccess.Instance.ExecuteSet(cmdUpdate);
