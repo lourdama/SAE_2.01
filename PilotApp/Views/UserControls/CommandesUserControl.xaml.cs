@@ -25,6 +25,8 @@ namespace PilotApp.Views.UserControls
     public partial class CommandesUserControl : UserControl
     {
         public AjouterCommandeUserControl acuc;
+        public Commande commandeSelectionne;
+        public Commande copie;
         public CommandesUserControl()
         {
             InitializeComponent();
@@ -70,7 +72,47 @@ namespace PilotApp.Views.UserControls
         private void butModifier_Click(object sender, RoutedEventArgs e)
         {
 
+            if (dgCommande.SelectedItem == null)
+                MessageBox.Show("Veuillez sélectionner une commande", "Attention",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+            {
+                this.commandeSelectionne = (Commande)dgCommande.SelectedItem;
+                 this.copie = new Commande(commandeSelectionne.Id, commandeSelectionne.UnEmploye,
+                    commandeSelectionne.UnModeTransport, commandeSelectionne.UnRevendeur, commandeSelectionne.LesSousCommandes,
+                    commandeSelectionne.DateCommande, commandeSelectionne.DateLivraison);
+                AjouterCommandeUserControl ajouterCommande = new AjouterCommandeUserControl(this, copie, Action.Modifier);
+                ajouterCommande.ValidationFaite += OnValidationFaiteAjouter;
+                this.acuc = ajouterCommande;
+                MainWindow.Instance.vueActuelle.Content = this.acuc;
+                
+            }
+
         }
+
+
+        private void OnValidationFaiteModifier(bool estValide)
+        {
+            if (estValide == true)
+            {
+                try
+                {
+                    commandeSelectionne.Update();
+                    commandeSelectionne.UnEmploye = copie.UnEmploye;
+                    commandeSelectionne.UnModeTransport = copie.UnModeTransport;
+                    commandeSelectionne.UnRevendeur = copie.UnRevendeur;
+                    commandeSelectionne.LesSousCommandes = copie.LesSousCommandes;
+                    commandeSelectionne.DateCommande = copie.DateCommande;
+                    commandeSelectionne.DateLivraison = copie.DateLivraison;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Le chien n'a pas pu être modifié.", "Attention",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
 
         private void butSupprimer_Click(object sender, RoutedEventArgs e)
         {

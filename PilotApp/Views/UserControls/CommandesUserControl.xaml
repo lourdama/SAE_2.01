@@ -18,7 +18,8 @@
             <RowDefinition Height="293*" />
         </Grid.RowDefinitions>
 
-        <ui:DataGrid x:Name="dgCommande"
+        <ui:DataGrid
+            x:Name="dgCommande"
             Grid.Row="1"
             Grid.Column="0"
             AutoGenerateColumns="False"

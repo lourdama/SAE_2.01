@@ -6,86 +6,98 @@
     xmlns:local="clr-namespace:PilotApp.Views.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Height="525"
     d:DesignWidth="724"
-    mc:Ignorable="d" Height="525">
+    mc:Ignorable="d">
     <Grid>
         <ui:Card
-    Margin="20,0,20,0"
-    VerticalAlignment="Top"
-    Background="#E4FFFFFF" Height="503">
-            <StackPanel x:Name="panelFormChien" Cursor="" Height="474">
+            Height="525"
+            Margin="20,0,20,0"
+            Background="#E4FFFFFF">
+            <StackPanel
+                x:Name="panelFormChien"
+                Height="534"
+                Cursor="">
                 <Label
-           Width="200"
-           VerticalAlignment="Stretch"
-           Content="Employé" />
+                    Width="200"
+                    VerticalAlignment="Stretch"
+                    Content="Employé" />
                 <ComboBox
-           Width="200"
-           DisplayMemberPath="Nom"
-           ItemsSource="{Binding LesEmployes}"
-           SelectedItem="{Binding Commande.UnEmploye, Mode=TwoWay}" />
+                    Width="200"
+                    DisplayMemberPath="Nom"
+                    ItemsSource="{Binding LesEmployes}"
+                    SelectedItem="{Binding Commande.UnEmploye, Mode=TwoWay}" />
                 <Label
-           Width="200"
-           VerticalAlignment="Stretch"
-           Content="Mode de transport" />
+                    Width="200"
+                    VerticalAlignment="Stretch"
+                    Content="Mode de transport" />
                 <ComboBox
-           Width="200"
-           DisplayMemberPath="Nom"
-           ItemsSource="{Binding LesModesTransports}"
-           SelectedItem="{Binding Commande.UnModeTransport, Mode=TwoWay}" />
+                    Width="200"
+                    DisplayMemberPath="Nom"
+                    ItemsSource="{Binding LesModesTransports}"
+                    SelectedItem="{Binding Commande.UnModeTransport, Mode=TwoWay}" />
                 <Label
-           Width="200"
-           VerticalAlignment="Stretch"
-           Content="Revendeur" />
+                    Width="200"
+                    VerticalAlignment="Stretch"
+                    Content="Revendeur" />
                 <ComboBox
-           Width="200"
-           DisplayMemberPath="RaisonSociale"
-           ItemsSource="{Binding LesRevendeurs}"
-           SelectedItem="{Binding Commande.UnRevendeur, Mode=TwoWay}" />
+                    Width="200"
+                    DisplayMemberPath="RaisonSociale"
+                    ItemsSource="{Binding LesRevendeurs}"
+                    SelectedItem="{Binding Commande.UnRevendeur, Mode=TwoWay}" />
+
                 <Label
-           Width="200"
-           VerticalAlignment="Stretch"
-           Content="Date commande" />
+                    Width="200"
+                    VerticalAlignment="Stretch"
+                    Content="Date commande" />
                 <DatePicker Width="200" SelectedDate="{Binding DateCommande, Mode=TwoWay}" />
                 <Label
-           Width="200"
-           VerticalAlignment="Stretch"
-           Content="Date de livraison" />
+                    Width="200"
+                    VerticalAlignment="Stretch"
+                    Content="Date de livraison" />
                 <DatePicker Width="200" SelectedDate="{Binding DateLivraison, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                 <Label
-           Width="200"
-           VerticalAlignment="Stretch"
-           Content="Prix total" />
-                <TextBox x:Name="txtPrixTotal"
-        Width="200"
-        IsReadOnly="True"
-        Text="{Binding Commande.Prix, Mode=OneWay}" />
+                    Width="200"
+                    VerticalAlignment="Stretch"
+                    Content="Prix total" />
+                <TextBox
+                    x:Name="txtPrixTotal"
+                    Width="200"
+                    IsReadOnly="True"
+                    Text="{Binding Commande.Prix, Mode=OneWay}" />
 
                 <TextBlock
-           x:Name="txtNbProduits"
-           Width="200"
-           Margin="0,10"
-           FontWeight="Bold"
-           Text="0 produit(s) ajouté(s)"
-           TextAlignment="Center" />
+                    x:Name="txtNbProduits"
+                    Width="200"
+                    Margin="0,10"
+                    FontWeight="Bold"
+                    Text="0 produit(s) ajouté(s)"
+                    TextAlignment="Center" />
 
 
                 <ui:Button
-           x:Name="butAjouterProduit"
-           Width="200"
-           HorizontalAlignment="Center"
-           VerticalAlignment="Stretch"
-           Appearance="Success"
-           Click="butAjouterProduit_Click"
-           Content="Ajouter un produit" />
+                    x:Name="butDetailProduit"
+                    Width="200"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                    Appearance="Success"
+                    Click="butDetailProduit_Click"
+                    Content="Voir detail produit" />
+
+
+
                 <ui:Button
-           x:Name="butValiderCommande"
-           Width="200"
-           HorizontalAlignment="Center"
-           VerticalAlignment="Stretch"
-           Appearance="Success"
-           Click="butValiderCommande_Click"
-           Content="ValiderCommande" />
+                    x:Name="butValiderCommande"
+                    Width="200"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                    Appearance="Success"
+                    Click="butValiderCommande_Click"
+                    Content="ValiderCommande" />
+
+
             </StackPanel>
+            
         </ui:Card>
     </Grid>
 </UserControl>
