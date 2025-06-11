@@ -29,8 +29,8 @@ namespace PilotApp.Views.UserControls
         public ModifierProduitDetailUserControl(UserControl pagePrec,Commande commande)
         {
             InitializeComponent();
-            Commande = commande;
-            DataContext = this;
+            this.Commande = commande;
+            DataContext = this;          // ce UserControl expose une propriété ‘Commande’
             this.pagePrec = pagePrec;
 
         }
@@ -61,35 +61,23 @@ namespace PilotApp.Views.UserControls
 
         private void OnValidationFaiteAjouter(bool estValide)
         {
-            if (estValide)
+            if (!estValide) return;
+
+            Produit p = apcuc.ProduitSelectionne;
+            decimal[] data = new decimal[] { apcuc.Quantite, apcuc.Prix * apcuc.Quantite };
+
+            if (!Commande.LesSousCommandes.ContainsKey(p))
             {
-                Produit p = this.apcuc.ProduitSelectionne;
-                decimal[] data = new decimal[] { this.apcuc.Quantite, this.apcuc.Prix * this.apcuc.Quantite };
-
-                // Récupérer la commande via le ViewModel
-                var vm = (ModifierProduitDetailUserControl)this.DataContext;
-                var commande = vm.Commande;
-
-                // Ajouter le produit s'il n'existe pas encore
-                if (!commande.LesSousCommandes.ContainsKey(p))
-                {
-                    commande.LesSousCommandes[p] = data;
-                    MessageBox.Show("Produit ajouté !");
-                }
-                else
-                {
-                    MessageBox.Show("Ce produit est déjà dans la commande.");
-                }
-
-                if (!commande.LesSousCommandes.ContainsKey(p))
-                {
-                    commande.LesSousCommandes[p] = data;
-
-                    MessageBox.Show("Produit ajouté !");
-                }
-
-
+                Commande.LesSousCommandes[p] = data;
+                MessageBox.Show("Produit ajouté !");
             }
+            else
+            {
+                MessageBox.Show("Ce produit est déjà dans la commande.");
+            }
+
+            // 3) Mettre à jour l’affichage
+            dgLignes.Items.Refresh();
 
         }
 

@@ -20,7 +20,8 @@
             Grid.ColumnSpan="2"
             AutoGenerateColumns="False"
             CanUserAddRows="False"
-            ItemsSource="{Binding Commande.LesSousCommandes}">
+            ItemsSource="{Binding Commande.LesSousCommandes}"
+             >
             <ui:DataGrid.Columns>
                 <DataGridTextColumn
                     Binding="{Binding Key.Nom}"
