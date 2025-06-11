@@ -36,7 +36,6 @@ namespace PilotApp.Services
             }
             catch
             {
-                MessageBox.Show("Login ou mot de passe incorrect ");
                 return false;
             }
         }

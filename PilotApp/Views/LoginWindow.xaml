@@ -101,16 +101,15 @@
                                   HorizontalAlignment="Center" 
                                   Foreground="#6C757D" 
                                   FontWeight="Normal"/>
+                        <TextBlock x:Name="messageErreur" Height="20" TextWrapping="Wrap" Text="Identifiant ou mot de passe erroné" Width="216" Foreground="Red" Visibility="Collapsed" Margin="76,34,76,-36" Grid.Row="2"/>
+
                     </Grid>
 
                     <!-- Formulaire de connexion -->
+
                     <StackPanel Margin="0,0,0,20">
 
-                        <!-- Champ nom d'utilisateur -->
 
-                        <!-- Champ nom d'utilisateur -->
-
-                        <TextBlock x:Name="messageErreur" Height="20" TextWrapping="Wrap" Text="Identifiant ou mot de passe erroné" Width="216" Foreground="Red" Visibility="Collapsed"/>
 
                         <!-- Champ nom d'utilisateur -->
                         <ui:TextBox x:Name="UsernameTextBox"
