@@ -177,21 +177,25 @@ namespace PilotApp.Models
 
             List<Commande> lesCommandes = new List<Commande>();
             using (NpgsqlCommand cmdSelectCommande = new NpgsqlCommand("select * from commande;"))
-            using (NpgsqlCommand cmdSelectProduitCommande = new NpgsqlCommand("select * from produitcommande;"))
+            using (NpgsqlCommand cmdSelectProduitCommande = new NpgsqlCommand("select * from produitcommande where numcommande = @id ;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelectCommande);
-                DataTable dtPC = DataAccess.Instance.ExecuteSelect(cmdSelectProduitCommande);
                 foreach (DataRow dr in dt.Rows)
                 {
                     Dictionary<Produit, decimal[]> lesSousCommandes = new Dictionary<Produit, decimal[]>();
-                    foreach (DataRow drPC in dtPC.Rows)
+                    DataTable dtPC = DataAccess.Instance.ExecuteSelect(cmdSelectProduitCommande);
                     {
-                        if (drPC["numcommande"] == dr["numcommande"])
+                        cmdSelectProduitCommande.Parameters.AddWithValue("id", this.Id);
+                        foreach (DataRow drPC in dtPC.Rows)
                         {
-                            decimal[] coupleQuantitePrix = new decimal[2];
-                            coupleQuantitePrix[0] = (decimal)drPC["quantitecommande"];
-                            coupleQuantitePrix[1] = (decimal)drPC["prix"];
-                            lesSousCommandes.Add(entreprise.LesProduits.SingleOrDefault(c => c.Id == (int)drPC["numproduit"]), coupleQuantitePrix);
+                            
+                            if (drPC["numcommande"] == dr["numcommande"])
+                            {
+                                decimal[] coupleQuantitePrix = new decimal[2];
+                                coupleQuantitePrix[0] = (decimal)drPC["quantitecommande"];
+                                coupleQuantitePrix[1] = (decimal)drPC["prix"];
+                                lesSousCommandes.Add(entreprise.LesProduits.SingleOrDefault(c => c.Id == (int)drPC["numproduit"]), coupleQuantitePrix);
+                            }
                         }
                     }
                     DateTime? dateLivraison = null;
