@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PilotApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,25 +22,39 @@ namespace PilotApp.Views.UserControls
 
     public partial class AjouterRevendeurUserControl : UserControl
     {
-        private Action action;
-        public AjouterRevendeurUserControl()
+        public event Action<bool> ValidationFaite;
+        private UserControl pagePrecedente;
+        public Revendeur UnRevendeur;
+        public AjouterRevendeurUserControl(UserControl pagePrecedente, Revendeur revendeur, Action action)
         {
             InitializeComponent();
-            this.action = action;
-
-            if (action == Action.Creer)
-            {
-                butAjouter.Content = "Creer";
-            }
-            else
-            {
-                butAjouter.Content = "Modifier";
-            }
+            this.DataContext = revendeur;
+            this.butAjouter.Content = action;
+            this.pagePrecedente = pagePrecedente;
+            this.UnRevendeur = revendeur;
         }
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)
         {
+            bool ok = true;
+            foreach (UIElement uie in panelFormProduit.Children)
+            {
+                if (uie is TextBox txt)
+                    txt.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
 
+                if (Validation.GetHasError(uie))
+                    ok = false;
+            }
+
+            if (ok)
+            {
+                ValidationFaite.Invoke(ok);
+                MainWindow.Instance.vueActuelle.Content = this.pagePrecedente;
+            }
+            else
+            {
+                MessageBox.Show("Veuillez corriger les erreurs.");
+            }
         }
     }
 }

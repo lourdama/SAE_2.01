@@ -22,21 +22,21 @@
                 <TextBox
                     x:Name="textAdresseRue"
                     Width="200"
-                    Text="{Binding AdresseRue, ValidatesOnExceptions=True}"
+                    Text="{Binding Rue, ValidatesOnExceptions=True}"
                     TextWrapping="Wrap" />
 
                 <Label Width="200" Content="Adresse Ville" />
                 <TextBox
                     x:Name="textAdresseVille"
                     Width="200"
-                    Text="{Binding AdresseVille, ValidatesOnExceptions=True}"
+                    Text="{Binding Ville, ValidatesOnExceptions=True}"
                     TextWrapping="Wrap" />
 
                 <Label Width="200" Content="Adresse CP" />
                 <TextBox
                     x:Name="textAdresseCP"
                     Width="200"
-                    Text="{Binding AdresseCp, ValidatesOnExceptions=True}"
+                    Text="{Binding CodePostal, ValidatesOnExceptions=True}"
                     TextWrapping="Wrap" />
                 <ui:Button
                     x:Name="butAjouter"

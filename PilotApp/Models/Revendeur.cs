@@ -58,7 +58,7 @@ namespace PilotApp.Models
             set
             {
                 if (MiseEnForme.NEstPasNullOuWhitespace(value))
-                    this.raisonSociale = value;
+                    this.raisonSociale = MiseEnForme.FormaterString(value);
                 else throw new ArgumentException("La raisonsociale ne peut être null.");
             }
         }
