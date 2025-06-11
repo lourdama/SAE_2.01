@@ -42,7 +42,7 @@ namespace PilotApp.Views.UserControls
             butValiderCommande.Content = action;
             this.txtNbProduits.Text = $"{commande.LesSousCommandes.Count} produit(s) ajouté(s)";
         }
-
+       
         private void butValiderCommande_Click(object sender, RoutedEventArgs e)
         {
             bool ok = true;
