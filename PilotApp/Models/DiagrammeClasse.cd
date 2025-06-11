@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PilotApp.Models.Categorie">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAgAAQIAAAACAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\Categorie.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PilotApp.Models.Commande" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="4.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>JQQCABAAAEAQAgBKgAQYAAEgiAEAQERAAQQAACEAAgA=</HashCode>
+      <FileName>Models\Commande.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PilotApp.Models.Couleur">
+    <Position X="8.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAgAAQIAAAACAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\Couleur.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PilotApp.Models.Entreprise">
+    <Position X="10.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AKBABkIAAAAAhABAAAAAIEIAACAApEAGAAAAAACAAEA=</HashCode>
+      <FileName>Models\Entreprise.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PilotApp.Models.LogError">
+    <Position X="12.25" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\LogError.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PilotApp.Models.MiseEnForme">
+    <Position X="8.5" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAEAAAAAAAAAAABIAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Models\MiseEnForme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PilotApp.Models.ModeTransport">
+    <Position X="0.75" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAgAAQIAAAACAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\ModeTransport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PilotApp.Models.Produit" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ApSCAAAAgAAAAAAAhAIxKEQioSEAgFAAAAAAQCASAgA=</HashCode>
+      <FileName>Models\Produit.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PilotApp.Models.Revendeur" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAQCAgQAEAAEAAAAgAAQCEAgkAEAAEAAAAAAAAAAAgI=</HashCode>
+      <FileName>Models\Revendeur.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="PilotApp.Models.Role">
+    <Position X="6.5" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAQIAAAACAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\Role.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PilotApp.Models.Type">
+    <Position X="10.25" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAQAAAAEAAAAAgAAQIAAAACAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\Type.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PilotApp.Models.TypePointe">
+    <Position X="12" Y="2.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAgAAQIAAAACAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Models\TypePointe.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PilotApp.Models.AjouterCommandeViewModel">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAEAAAAAAAAAAAAAAAACAIAA=</HashCode>
+      <FileName>Models\AjouterCommandeViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PilotApp.Services.AuthenticationService">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\AuthenticationService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="PilotApp.Models.ICrud&lt;T&gt;" Collapsed="true">
+    <Position X="13.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAQCAAgAAEAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ICrud.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="PilotApp.Models.roleUtilisateur" Collapsed="true">
+    <Position X="13.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAABAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\AuthenticationService.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
