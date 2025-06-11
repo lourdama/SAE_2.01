@@ -5,6 +5,13 @@
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     Width="950"
     Height="724">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="TypePointesSource"
+                        Source="{Binding Path=Pilot.LesTypePointes}" />
+
+        <CollectionViewSource x:Key="TypesSource"
+                        Source="{Binding Path=Pilot.LesTypes}" />
+    </UserControl.Resources>
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
@@ -106,17 +113,23 @@
             PlaceholderText="Filtre nom"
             TextChanged="TextBox_TextChanged" />
         <ComboBox x:Name="comboBoxFiltreTypePointe"
-            Height="36"
+          Height="36"
             Margin="196,69,516,0"
             VerticalAlignment="Top"
-            ItemsSource="{Binding UnEmploye.Nom}"
-            Text="Filtre Type Pointe" SelectionChanged="comboBoxFiltreTypePointe_SelectionChanged" />
+            Text="Filtre Type Pointe"
+            DisplayMemberPath="Nom"
+            SelectedItem="{Binding SelectedTypePointe, Mode=TwoWay}">
+        </ComboBox>
         <ComboBox x:Name="comboBoxFiltreType"
             Height="36"
             Margin="289,69,423,0"
             VerticalAlignment="Top"
-            ItemsSource="{Binding UnEmploye.Nom}"
-            Text="Filtre Type" SelectionChanged="comboBoxFiltreType_SelectionChanged" />
+            Text="Filtre Type"
+          DisplayMemberPath="Nom"
+          SelectedItem="{Binding SelectedType, Mode=TwoWay}">
+            
+        </ComboBox>
+
         <ui:NumberBox x:Name="numberBoxFiltrePrixVente"
             Margin="382,69,279,0"
             VerticalAlignment="Top"
@@ -129,24 +142,16 @@
             Icon="NumberSymbolSquare24"
             PlaceholderText="Filtre Quantité" TextChanged="numberBoxFiltreQuantite_TextChanged" />
         <StackPanel Margin="702,39,93,4" Grid.ColumnSpan="2">
-            <CheckBox x:Name="checkBoxDisponibilite"
-                    Command="{Binding ViewModel.SelectAllCheckedCommand, Mode=OneWay}"
-                    CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Mode=Self}}"
-                    Content="Tous"
-                    IsChecked="{Binding ViewModel.SelectAllCheckBoxChecked, Mode=TwoWay}"
-                    IsThreeState="True" Checked="checkBoxDisponibilite_Checked" />
+
+
+
             <CheckBox x:Name="checkBoxDisponibiliteTrue"
-                    Margin="24,0,0,0"
-                    Command="{Binding ViewModel.SingleCheckedCommand, Mode=OneWay}"
-                    CommandParameter="1"
-                    Content="Disponible"
-                    IsChecked="{Binding ViewModel.OptionOneCheckBoxChecked, Mode=TwoWay}" Checked="checkBoxDisponibiliteTrue_Checked" />
+            Content="Disponibles"
+            Checked="checkBoxDisponibiliteTrue_Checked" Margin="20,0,0,0" Unchecked="checkBoxDisponibiliteTrue_Unchecked"/>
+
             <CheckBox x:Name="checkBoxDisponibiliteFalse"
-                    Margin="24,0,0,0"
-                    Command="{Binding ViewModel.SingleCheckedCommand, Mode=OneWay}"
-                    CommandParameter="2"
-                    Content="Indisponible"
-                    IsChecked="{Binding ViewModel.OptionTwoCheckBoxChecked, Mode=TwoWay}" Checked="checkBoxDisponibiliteFalse_Checked" />
+            Content="Indisponibles"
+            Checked="checkBoxDisponibiliteFalse_Checked" Margin="20,0,0,0" Unchecked="checkBoxDisponibiliteFalse_Unchecked"/>
 
         </StackPanel>
     </Grid>

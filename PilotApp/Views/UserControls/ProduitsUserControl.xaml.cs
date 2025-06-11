@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -26,34 +27,76 @@ namespace PilotApp.Views.UserControls
         public ProduitsUserControl()
         {
             InitializeComponent();
-            this.DataContext = MainWindow.Instance.Pilot.LesProduits;
-            dgProduits.Items.Filter = RechercheMotClefProduit;
+            dgProduits.ItemsSource = MainWindow.Instance.Pilot.LesProduits;
+            var vue = CollectionViewSource.GetDefaultView(dgProduits.ItemsSource);
+            vue.Filter = RechercheMotClefProduit;
+
+            comboBoxFiltreTypePointe.Items.Clear();
+            comboBoxFiltreTypePointe.Items.Add("Aucun");
+            foreach (var tp in MainWindow.Instance.Pilot.LesTypesPointes)
+                comboBoxFiltreTypePointe.Items.Add(tp);
+            comboBoxFiltreTypePointe.SelectedIndex = 0;
+            comboBoxFiltreTypePointe.SelectionChanged += (_, __) => RefreshDg();
+
+            comboBoxFiltreType.Items.Clear();
+            comboBoxFiltreType.Items.Add("Aucun");
+            foreach (var t in MainWindow.Instance.Pilot.LesTypes)
+                comboBoxFiltreType.Items.Add(t);
+            comboBoxFiltreType.SelectedIndex = 0;
+            comboBoxFiltreType.SelectionChanged += (_, __) => RefreshDg();
         }
 
         private bool RechercheMotClefProduit(object obj)
         {
-            bool ok = true;
-            if (String.IsNullOrWhiteSpace(textBoxFiltreCode.Text) && String.IsNullOrWhiteSpace(textBoxFiltreNom.Text) && comboBoxFiltreTypePointe.SelectedItem == null &&
-                comboBoxFiltreType.SelectedItem == null && numberBoxFiltrePrixVente == null && numberBoxFiltreQuantite == null )
-                return true;
-             Produit unProduit = obj as Produit;
-             if(checkBoxDisponibiliteTrue.IsChecked == true)
-             {
-                 ok = ok && unProduit.Disponible;
-             }
-             if (checkBoxDisponibiliteFalse.IsChecked == true)
-             {
-                 ok = ok && !unProduit.Disponible;
-             }
+            if (!(obj is Produit p))
+                return false;
 
-             return (unProduit.Code.StartsWith(textBoxFiltreCode.Text, StringComparison.OrdinalIgnoreCase))
-                 && (unProduit.Nom.StartsWith(textBoxFiltreNom.Text, StringComparison.OrdinalIgnoreCase))
-                 && ((TypePointe)comboBoxFiltreTypePointe.SelectedItem == unProduit.UnTypePointe)
-                 && ((PilotApp.Models.Type)comboBoxFiltreType.SelectedItem == unProduit.UnType)
-                 && ((decimal)numberBoxFiltrePrixVente.Value >= unProduit.PrixVente)
-                 && ((int)numberBoxFiltreQuantite.Value >= unProduit.QuantiteStock)
-                 && ok;
-            
+
+            if (!string.IsNullOrWhiteSpace(textBoxFiltreCode.Text) &&
+                !p.Code.StartsWith(textBoxFiltreCode.Text, StringComparison.OrdinalIgnoreCase))
+                return false;
+
+
+            if (!string.IsNullOrWhiteSpace(textBoxFiltreNom.Text) &&
+                !p.Nom.StartsWith(textBoxFiltreNom.Text, StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            if (comboBoxFiltreTypePointe.SelectedItem is TypePointe tpFilter &&
+                p.UnTypePointe != tpFilter)
+                return false;
+
+
+            if (comboBoxFiltreType.SelectedItem is PilotApp.Models.Type tFilter &&
+                p.UnType != tFilter)
+                return false;
+
+
+            if (decimal.TryParse(numberBoxFiltrePrixVente.Text, out var prixMax) &&
+                p.PrixVente > prixMax)
+                return false;
+
+
+            if (int.TryParse(numberBoxFiltreQuantite.Text, out var qteMax) &&
+                p.QuantiteStock > qteMax)
+                return false;
+
+
+            bool showAvailable = checkBoxDisponibiliteTrue.IsChecked == true;
+            bool showUnavailable = checkBoxDisponibiliteFalse.IsChecked == true;
+
+
+            if (!(showAvailable && showUnavailable))
+            {
+
+                if (showAvailable && !p.Disponible)
+                    return false;
+
+                if (showUnavailable && p.Disponible)
+                    return false;
+            }
+
+            return true;
+
         }
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)
@@ -88,7 +131,6 @@ namespace PilotApp.Views.UserControls
 
         }
 
-
         private void butModifier_Click(object sender, RoutedEventArgs e)
         {
 
@@ -97,6 +139,10 @@ namespace PilotApp.Views.UserControls
         private void butSupprimer_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void RefreshDg()
+        {
+            CollectionViewSource.GetDefaultView(dgProduits.ItemsSource).Refresh();
         }
 
         private void textBoxFiltreCode_TextChanged(object sender, TextChangedEventArgs e)
@@ -109,15 +155,6 @@ namespace PilotApp.Views.UserControls
             this.RefreshDg();
         }
 
-        private void comboBoxFiltreTypePointe_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            this.RefreshDg();
-        }
-
-        private void comboBoxFiltreType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            this.RefreshDg();
-        }
 
         private void numberBoxFiltrePrixVente_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -144,17 +181,17 @@ namespace PilotApp.Views.UserControls
             this.RefreshDg();
         }
 
-        private void RefreshDg()
+
+        private void checkBoxDisponibiliteTrue_Unchecked(object sender, RoutedEventArgs e)
         {
-            CollectionViewSource.GetDefaultView(dgProduits.ItemsSource).Refresh();
+            RefreshDg();
         }
 
-        private void test()
+        private void checkBoxDisponibiliteFalse_Unchecked(object sender, RoutedEventArgs e)
         {
-            foreach (Produit produit in MainWindow.Instance.Pilot.LesProduits)
-            {
-                MessageBox.Show(produit.Id + produit.Nom);
-            }
+            RefreshDg();
         }
+
+
     }
 }
