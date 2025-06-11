@@ -155,11 +155,16 @@
 
                        
 
-                        <!--  Menu Responsable Production  -->
-                        
+                        <Button x:Name="BoutonChangerTheme" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BoutonChangerTheme_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="&#xE708;" FontFamily="Segoe MDL2 Assets" Margin="0,0,5,0" Height="14"/>
+                                <TextBlock Text="Changer de Thème"/>
+                            </StackPanel>
+                        </Button>
 
                     </ui:NavigationView.MenuItems>
                 </ui:NavigationView>
+                
             </Border>
 
             <Border Grid.Column="1" Background="White" Height="728">

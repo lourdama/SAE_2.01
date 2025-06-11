@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Wpf.Ui.Controls;
+using Wpf.Ui.Appearance;
 using System.Windows;
 using System.ComponentModel;
 using PilotApp.Services;
@@ -66,7 +67,7 @@ namespace PilotApp.Views
 
         private void butCommande_Click(object sender, RoutedEventArgs e)
         {
-            this.vueActuelle.Content= new CommandesUserControl();
+            this.vueActuelle.Content = new CommandesUserControl();
         }
 
         private void butRevendeurs_Click(object sender, RoutedEventArgs e)
@@ -82,12 +83,25 @@ namespace PilotApp.Views
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
-            
+
         }
 
         private void butAccueil_Click(object sender, RoutedEventArgs e)
         {
             this.vueActuelle.Content = new Accueil();
+        }
+        private void BoutonChangerTheme_Click(object sender, RoutedEventArgs e)
+        {
+            // Basculer entre les thèmes clair et sombre
+            var currentTheme = ApplicationThemeManager.GetAppTheme();
+            if (currentTheme == ApplicationTheme.Light)
+            {
+                ApplicationThemeManager.Apply(ApplicationTheme.Dark);
+            }
+            else
+            {
+                ApplicationThemeManager.Apply(ApplicationTheme.Light);
+            }
         }
     }
 }
