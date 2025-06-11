@@ -29,7 +29,7 @@ namespace PilotApp.Models
             this.LesSousCommandes = new Dictionary<Produit, decimal[]>();
         }
 
-        public Commande(int id, Employe unEmploye, ModeTransport unModeTransport, Revendeur unRevendeur, Dictionary<Produit, decimal[]> lesSousCommandes, DateTime dateCommande, DateTime? dateLivraison)
+        public Commande(int id, Employe unEmploye, ModeTransport unModeTransport, Revendeur unRevendeur, Dictionary<Produit, decimal[]> lesSousCommandes, DateTime dateCommande, DateTime? dateLivraison):this() 
         {
             this.Id = id;
             this.UnEmploye = unEmploye;
