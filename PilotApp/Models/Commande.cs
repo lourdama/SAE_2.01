@@ -217,6 +217,7 @@ namespace PilotApp.Models
                 cmdInsert.Parameters.AddWithValue("numemploye", this.UnEmploye.Id);
                 cmdInsert.Parameters.AddWithValue("numtransport", this.UnModeTransport.Id);
                 cmdInsert.Parameters.AddWithValue("numrevendeur", this.UnRevendeur.Id);
+                cmdInsert.Parameters.AddWithValue("datecommande", this.DateCommande);
                 if (this.DateLivraison.HasValue)
                 {
                     cmdInsert.Parameters.AddWithValue("datelivraison", this.DateLivraison.Value);
