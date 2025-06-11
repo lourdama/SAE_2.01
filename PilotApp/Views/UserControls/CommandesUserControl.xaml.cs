@@ -25,11 +25,25 @@ namespace PilotApp.Views.UserControls
     public partial class CommandesUserControl : UserControl
     {
         public AjouterCommandeUserControl acuc;
+        public ObservableCollection<Commande> listeCommandeDeEmploye = new ObservableCollection<Commande>();
         public CommandesUserControl()
         {
             InitializeComponent();
-            this.DataContext = MainWindow.Instance.Pilot.LesCommandes;
+            ChercherLesCommandes();
+            this.DataContext = listeCommandeDeEmploye;
 
+        }
+
+        private void ChercherLesCommandes()
+        {
+            listeCommandeDeEmploye.Clear();
+            foreach(Commande commande in MainWindow.Instance.Pilot.LesCommandes)
+            {
+                if(commande.UnEmploye == MainWindow.Instance.EmployeConnecte || MainWindow.Instance.EstAdmin)
+                {
+                    listeCommandeDeEmploye.Add(commande);
+                }
+            }
         }
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)
@@ -40,8 +54,9 @@ namespace PilotApp.Views.UserControls
             ajouterCommande.ValidationFaite += OnValidationFaiteAjouter;
             this.acuc = ajouterCommande;
             MainWindow.Instance.vueActuelle.Content = this.acuc;
-
             
+
+
             //var fenetre = new AjouterCommande(nouvelleCommande, AjouterCommande.Action.Créer);
             //bool? result = fenetre.ShowDialog();
         }
@@ -54,6 +69,8 @@ namespace PilotApp.Views.UserControls
                 {
                     this.acuc.UneCommande.Id = this.acuc.UneCommande.Create();
                     MainWindow.Instance.Pilot.LesCommandes.Add(this.acuc.UneCommande);
+                    ChercherLesCommandes();
+                    dgReset();
                 }
                 catch
                 {
@@ -70,6 +87,11 @@ namespace PilotApp.Views.UserControls
         private void butModifier_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+        private void dgReset()
+        {
+            ChercherLesCommandes();
+            CollectionViewSource.GetDefaultView(dgCommande.ItemsSource).Refresh();
         }
 
         private void butSupprimer_Click(object sender, RoutedEventArgs e)
@@ -90,6 +112,7 @@ namespace PilotApp.Views.UserControls
                     {
                         commandeASuprimer.Delete();
                         MainWindow.Instance.Pilot.LesCommandes.Remove(commandeASuprimer);
+                        dgReset();
                     }
                     catch (Exception ex)
                     {

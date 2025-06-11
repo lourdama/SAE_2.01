@@ -101,7 +101,6 @@ namespace PilotApp.Views.UserControls
                 if (!commande.LesSousCommandes.ContainsKey(p))
                 {
                     commande.LesSousCommandes[p] = data;
-                    MessageBox.Show("Produit ajouté !");
                 }
                 else
                 {

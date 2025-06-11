@@ -27,6 +27,13 @@ namespace PilotApp.Views.UserControls
         public ProduitsUserControl()
         {
             InitializeComponent();
+            if (MainWindow.Instance.EstCommercial)
+            {
+                butAjouter.Visibility = Visibility.Collapsed;
+                butModifier.Visibility = Visibility.Collapsed;
+                butSupprimer.Visibility = Visibility.Collapsed;
+            }
+
             dgProduits.ItemsSource = MainWindow.Instance.Pilot.LesProduits;
             var vue = CollectionViewSource.GetDefaultView(dgProduits.ItemsSource);
             vue.Filter = RechercheMotClefProduit;
