@@ -110,6 +110,15 @@
                     PaneDisplayMode="Left">
 
                     <ui:NavigationView.MenuItems>
+                        <!--  Menu commun  -->
+                        <ui:NavigationViewItem x:Name="butAccueil"
+                             Content="Accueil"
+                             Icon="{ui:SymbolIcon Home24}"
+                             Tag="produits" Click="butAccueil_Click"  />
+                                                <ui:NavigationViewItem x:Name="butProduits"
+                             Content="Produits"
+                             Icon="{ui:SymbolIcon Box24}"
+                             Tag="produits" Click="butProduits_Click" />
 
                         <!--  Menu Commercial  -->
                         <ui:NavigationViewItem x:Name="butCommande"
@@ -160,11 +169,7 @@
                             </ui:NavigationViewItem.Style>
                         </ui:NavigationViewItem>
 
-                        <!--  Menu commun  -->
-                        <ui:NavigationViewItem x:Name="butProduits"
-                            Content="Produits"
-                            Icon="{ui:SymbolIcon Box24}"
-                            Tag="produits" Click="butProduits_Click" />
+                       
 
                         <!--  Menu Responsable Production  -->
                         <ui:NavigationViewItem x:Name="butGestionProduits"

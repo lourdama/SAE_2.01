@@ -94,5 +94,10 @@ namespace PilotApp.Views
             System.Windows.Application.Current.Shutdown();
             
         }
+
+        private void butAccueil_Click(object sender, RoutedEventArgs e)
+        {
+            this.vueActuelle.Content = new Accueil();
+        }
     }
 }
