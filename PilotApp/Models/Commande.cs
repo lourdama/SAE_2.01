@@ -24,6 +24,7 @@ namespace PilotApp.Models
 
         public Commande()
         {
+            this.LesSousCommandes = new Dictionary<Produit, decimal[]>();
         }
 
         public Commande(int id, Employe unEmploye, ModeTransport unModeTransport, Revendeur unRevendeur, Dictionary<Produit, decimal[]> lesSousCommandes, DateTime dateCommande, DateTime? dateLivraison)
