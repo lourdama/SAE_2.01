@@ -49,7 +49,7 @@ namespace PilotApp.Views.UserControls
             ProduitSelectionne = (Produit)cmbProduits.SelectedItem;
             Quantite = quantite;
             Prix = prix;
-
+            CollectionViewSource.GetDefaultView(((AjouterCommandeUserControl)pagePrecedente).txtNbProduits).Refresh();
             ValidationFaite.Invoke(true);
             MainWindow.Instance.vueActuelle.Content = this.pagePrecedente;
         }
