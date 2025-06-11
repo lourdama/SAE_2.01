@@ -74,19 +74,20 @@ namespace PilotApp.Views
             this.vueActuelle.Content = new RevendeursUserControl();
         }
 
-        private void butMesCommandes_Click(object sender, RoutedEventArgs e)
-        {
-            this.vueActuelle.Content = new CommandesUserControl();
-        }
-
         private void butProduits_Click(object sender, RoutedEventArgs e)
         {
             this.vueActuelle.Content = new ProduitsUserControl();
         }
 
-        private void butGestionProduits_Click(object sender, RoutedEventArgs e)
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.vueActuelle.Content = new GestionProduitsUserControl();
+            System.Windows.Application.Current.Shutdown();
+            
+        }
+
+        private void butAccueil_Click(object sender, RoutedEventArgs e)
+        {
+            this.vueActuelle.Content = new Accueil();
         }
     }
 }

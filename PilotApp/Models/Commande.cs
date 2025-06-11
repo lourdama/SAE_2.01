@@ -107,17 +107,17 @@ namespace PilotApp.Models
 
             set
             {
-              /*  if (MiseEnForme.NEstPasNull(value))
+                if (MiseEnForme.NEstPasNull(value))
                     if (value.Count != 0)
                     {
-                        foreach (KeyValuePair<Produit, decimal[]> uneSousCommande in this.LesSousCommandes)
+                        foreach (KeyValuePair<Produit, decimal[]> uneSousCommande in value)
                         {
                             if (!MiseEnForme.EstEntre(uneSousCommande.Value[0], 0) || !MiseEnForme.EstEntre(uneSousCommande.Value[1], 0) || uneSousCommande.Key == null)
                                 throw new ArgumentException("Une sous commande ne doit pas contenir de produit null ni de quantié ou prix négatif");
-                        }*/
+                        }
                         lesSousCommandes = value;
-                   /* }
-                    else throw new ArgumentException("Les sous commandes ne peut être null ou ne rien contenir");*/
+                   }
+                    else throw new ArgumentException("Les sous commandes ne peut être null ou ne rien contenir");
             }
         }
 
@@ -159,7 +159,7 @@ namespace PilotApp.Models
                     prix += uneSousCommande.Value[1];
 
                 }
-                return this.prix;
+                return prix;
             }
 
         }
@@ -178,21 +178,21 @@ namespace PilotApp.Models
 
             List<Commande> lesCommandes = new List<Commande>();
             using (NpgsqlCommand cmdSelectCommande = new NpgsqlCommand("select * from commande;"))
-            using (NpgsqlCommand cmdSelectProduitCommande = new NpgsqlCommand("select * from produitcommande;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelectCommande);
-                DataTable dtPC = DataAccess.Instance.ExecuteSelect(cmdSelectProduitCommande);
                 foreach (DataRow dr in dt.Rows)
                 {
                     Dictionary<Produit, decimal[]> lesSousCommandes = new Dictionary<Produit, decimal[]>();
-                    foreach (DataRow drPC in dtPC.Rows)
+                    using (NpgsqlCommand cmdSelectProduitCommande = new NpgsqlCommand("select * from produitcommande where numcommande =@id ;"))    
                     {
-                        if (drPC["numcommande"] == dr["numcommande"])
+                        cmdSelectProduitCommande.Parameters.AddWithValue("id", dr["numcommande"]);
+                        DataTable dtPC = DataAccess.Instance.ExecuteSelect(cmdSelectProduitCommande);
+                        foreach (DataRow drPC in dtPC.Rows)
                         {
-                            decimal[] coupleQuantitePrix = new decimal[2];
-                            coupleQuantitePrix[0] = (decimal)drPC["quantitecommande"];
-                            coupleQuantitePrix[1] = (decimal)drPC["prix"];
-                            lesSousCommandes.Add(entreprise.LesProduits.SingleOrDefault(c => c.Id == (int)drPC["numproduit"]), coupleQuantitePrix);
+                                decimal[] coupleQuantitePrix = new decimal[2];
+                                coupleQuantitePrix[0] = Convert.ToDecimal(drPC["quantitecommande"]);
+                                coupleQuantitePrix[1] = (decimal)drPC["prix"];
+                                lesSousCommandes.Add(entreprise.LesProduits.SingleOrDefault(c => c.Id == (int)drPC["numproduit"]), coupleQuantitePrix);
                         }
                     }
                     DateTime? dateLivraison = null;
@@ -211,7 +211,7 @@ namespace PilotApp.Models
         public int Create()
         {
             int nb = 0;
-            using (var cmdInsert = new NpgsqlCommand("insert into commande (numemploye,numtransport,numrevendeur,datecommande,datelivraison,prixtotal) " +
+            using (var cmdInsert = new NpgsqlCommand("insert into commande (numemployenumtransport,numrevendeur,datecommande,datelivraison,prixtotal) " +
                 "values (@numemploye,@numtransport,@numrevendeur,@datecommande,@datelivraison,@prixtotal) RETURNING numcommande"))
             {
                 cmdInsert.Parameters.AddWithValue("numemploye", this.UnEmploye.Id);
@@ -278,7 +278,7 @@ namespace PilotApp.Models
                 this.DeletePC();
                 foreach (KeyValuePair<Produit, decimal[]> uneSousCommande in this.LesSousCommandes)
                 {
-                    this.InsertPC(uneSousCommande.Key, (int)uneSousCommande.Value[0], uneSousCommande.Value[1]);
+                    this.InsertPC(uneSousCommande.Key, Convert.ToInt32(uneSousCommande.Value[0]), uneSousCommande.Value[1]);
                 }
 
                 return DataAccess.Instance.ExecuteSet(cmdUpdate);

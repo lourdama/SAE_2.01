@@ -27,10 +27,29 @@
                 <DataGridTextColumn Binding="{Binding Code}" Header="Code" />
                 <DataGridTextColumn Binding="{Binding Nom}" Header="Nom" />
                 <DataGridTextColumn Binding="{Binding UnTypePointe.Nom}" Header="Type Pointe" />
+                <DataGridTemplateColumn Header="Couleurs">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding LesCouleurs}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Nom}" Margin="2,0"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding UnType.Nom}" Header="Num Type" />
                 <DataGridTextColumn Binding="{Binding PrixVente, StringFormat={}{0} €}" Header="PrixVente" />
                 <DataGridTextColumn Binding="{Binding QuantiteStock}" Header="Quantité" />
                 <DataGridCheckBoxColumn Binding="{Binding Disponible}" Header="Disponible" />
+                
             </ui:DataGrid.Columns>
         </ui:DataGrid>
 

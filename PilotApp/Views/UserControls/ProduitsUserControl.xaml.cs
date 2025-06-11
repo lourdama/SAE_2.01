@@ -27,42 +27,44 @@ namespace PilotApp.Views.UserControls
         {
             InitializeComponent();
             this.DataContext = MainWindow.Instance.Pilot.LesProduits;
-            dgProduits.Items.Filter = RechercheMotClefProduit;
+            //dgProduits.Items.Filter = RechercheMotClefProduit;
         }
 
         private bool RechercheMotClefProduit(object obj)
         {
             bool ok = true;
-            if (String.IsNullOrWhiteSpace(textBoxFiltreCode.Text) && String.IsNullOrWhiteSpace(textBoxFiltreNom.Text) && comboBoxFiltreTypePointe.SelectedItem == null &&
-                comboBoxFiltreType.SelectedItem == null && numberBoxFiltrePrixVente == null && numberBoxFiltreQuantite == null && checkBoxDisponibiliteFalse.IsChecked == true
-                && checkBoxDisponibiliteTrue.IsChecked == true)
-                return true;
-            Produit unProduit = obj as Produit;
-            if(checkBoxDisponibiliteTrue.IsChecked == true)
-            {
-                ok = ok && unProduit.Disponible;
-            }
-            if (checkBoxDisponibiliteFalse.IsChecked == true)
-            {
-                ok = ok && !unProduit.Disponible;
-            }
+             if (String.IsNullOrWhiteSpace(textBoxFiltreCode.Text) && String.IsNullOrWhiteSpace(textBoxFiltreNom.Text) && comboBoxFiltreTypePointe.SelectedItem == null &&
+                 comboBoxFiltreType.SelectedItem == null && numberBoxFiltrePrixVente == null && numberBoxFiltreQuantite == null && checkBoxDisponibiliteFalse.IsChecked == true
+                 && checkBoxDisponibiliteTrue.IsChecked == true)
+                 return true;
+             Produit unProduit = obj as Produit;
+             if(checkBoxDisponibiliteTrue.IsChecked == true)
+             {
+                 ok = ok && unProduit.Disponible;
+             }
+             if (checkBoxDisponibiliteFalse.IsChecked == true)
+             {
+                 ok = ok && !unProduit.Disponible;
+             }
 
-            return (unProduit.Code.StartsWith(textBoxFiltreCode.Text, StringComparison.OrdinalIgnoreCase))
-                && (unProduit.Nom.StartsWith(textBoxFiltreNom.Text, StringComparison.OrdinalIgnoreCase))
-                && ((TypePointe)comboBoxFiltreTypePointe.SelectedItem == unProduit.UnTypePointe)
-                && ((PilotApp.Models.Type)comboBoxFiltreType.SelectedItem == unProduit.UnType)
-                && ((decimal)numberBoxFiltrePrixVente.Value >= unProduit.PrixVente)
-                && ((int)numberBoxFiltreQuantite.Value >= unProduit.QuantiteStock)
-                && ok;
+             return (unProduit.Code.StartsWith(textBoxFiltreCode.Text, StringComparison.OrdinalIgnoreCase))
+                 && (unProduit.Nom.StartsWith(textBoxFiltreNom.Text, StringComparison.OrdinalIgnoreCase))
+                 && ((TypePointe)comboBoxFiltreTypePointe.SelectedItem == unProduit.UnTypePointe)
+                 && ((PilotApp.Models.Type)comboBoxFiltreType.SelectedItem == unProduit.UnType)
+                 && ((decimal)numberBoxFiltrePrixVente.Value >= unProduit.PrixVente)
+                 && ((int)numberBoxFiltreQuantite.Value >= unProduit.QuantiteStock)
+                 && ok;
+            
         }
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)
         {
-            Produit unProduit = new Produit();
+            test();
+            /*Produit unProduit = new Produit();
             AjouterProduitUserControl ajouterProduit = new AjouterProduitUserControl(this, unProduit,Action.Creer);
             ajouterProduit.ValidationFaite += OnValidationFaiteAjouter;
             this.apuc = ajouterProduit;
-            MainWindow.Instance.vueActuelle.Content = this.apuc;
+            MainWindow.Instance.vueActuelle.Content = this.apuc;*/
 
         }
 
@@ -147,6 +149,14 @@ namespace PilotApp.Views.UserControls
         private void RefreshDg()
         {
             CollectionViewSource.GetDefaultView(dgProduits.ItemsSource).Refresh();
+        }
+
+        private void test()
+        {
+            foreach (Produit produit in MainWindow.Instance.Pilot.LesProduits)
+            {
+                MessageBox.Show(produit.Id + produit.Nom);
+            }
         }
     }
 }
