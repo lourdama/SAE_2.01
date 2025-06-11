@@ -6,11 +6,9 @@
     Width="950"
     Height="724">
     <UserControl.Resources>
-        <CollectionViewSource x:Key="TypePointesSource"
-                        Source="{Binding Path=Pilot.LesTypePointes}" />
+        <CollectionViewSource x:Key="TypePointesSource" Source="{Binding Path=Pilot.LesTypePointes}" />
 
-        <CollectionViewSource x:Key="TypesSource"
-                        Source="{Binding Path=Pilot.LesTypes}" />
+        <CollectionViewSource x:Key="TypesSource" Source="{Binding Path=Pilot.LesTypes}" />
     </UserControl.Resources>
 
     <Grid Background="White">
@@ -23,7 +21,8 @@
             <RowDefinition Height="293*" />
         </Grid.RowDefinitions>
 
-        <ui:DataGrid x:Name="dgProduits"
+        <ui:DataGrid
+            x:Name="dgProduits"
             Grid.Row="1"
             Grid.Column="0"
             AutoGenerateColumns="False"
@@ -31,6 +30,16 @@
             ItemsSource="{Binding}">
 
             <ui:DataGrid.Columns>
+                <DataGridTemplateColumn Header="Image">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image
+                                Width="50"
+                                Height="50"
+                                Source="{Binding Image}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding Code}" Header="Code" />
                 <DataGridTextColumn Binding="{Binding Nom}" Header="Nom" />
                 <DataGridTextColumn Binding="{Binding UnTypePointe.Nom}" Header="Type Pointe" />
@@ -40,12 +49,12 @@
                             <ItemsControl ItemsSource="{Binding LesCouleurs}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Nom}" Margin="2,0"/>
+                                        <TextBlock Margin="2,0" Text="{Binding Nom}" />
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <WrapPanel Orientation="Horizontal"/>
+                                        <WrapPanel Orientation="Horizontal" />
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
                             </ItemsControl>
@@ -56,7 +65,7 @@
                 <DataGridTextColumn Binding="{Binding PrixVente, StringFormat={}{0} €}" Header="PrixVente" />
                 <DataGridTextColumn Binding="{Binding QuantiteStock}" Header="Quantité" />
                 <DataGridCheckBoxColumn Binding="{Binding Disponible}" Header="Disponible" />
-                
+
             </ui:DataGrid.Columns>
         </ui:DataGrid>
 
@@ -99,59 +108,71 @@
             Click="butSupprimer_Click"
             Content="Supprimer" />
 
-        <ui:TextBox x:Name="textBoxFiltreCode"
+        <ui:TextBox
+            x:Name="textBoxFiltreCode"
             Width="88"
             Margin="10,69,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            PlaceholderText="Filtre code" TextChanged="textBoxFiltreCode_TextChanged" />
-        <ui:TextBox x:Name="textBoxFiltreNom"
+            PlaceholderText="Filtre code"
+            TextChanged="textBoxFiltreCode_TextChanged" />
+        <ui:TextBox
+            x:Name="textBoxFiltreNom"
             Width="88"
             Margin="103,69,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             PlaceholderText="Filtre nom"
             TextChanged="TextBox_TextChanged" />
-        <ComboBox x:Name="comboBoxFiltreTypePointe"
-          Height="36"
+        <ComboBox
+            x:Name="comboBoxFiltreTypePointe"
+            Height="36"
             Margin="196,69,516,0"
             VerticalAlignment="Top"
-            Text="Filtre Type Pointe"
             DisplayMemberPath="Nom"
-            SelectedItem="{Binding SelectedTypePointe, Mode=TwoWay}">
-        </ComboBox>
-        <ComboBox x:Name="comboBoxFiltreType"
+            SelectedItem="{Binding SelectedTypePointe, Mode=TwoWay}"
+            Text="Filtre Type Pointe" />
+        <ComboBox
+            x:Name="comboBoxFiltreType"
             Height="36"
             Margin="289,69,423,0"
             VerticalAlignment="Top"
-            Text="Filtre Type"
-          DisplayMemberPath="Nom"
-          SelectedItem="{Binding SelectedType, Mode=TwoWay}">
-            
-        </ComboBox>
+            DisplayMemberPath="Nom"
+            SelectedItem="{Binding SelectedType, Mode=TwoWay}"
+            Text="Filtre Type" />
 
-        <ui:NumberBox x:Name="numberBoxFiltrePrixVente"
+        <ui:NumberBox
+            x:Name="numberBoxFiltrePrixVente"
             Margin="382,69,279,0"
             VerticalAlignment="Top"
             Icon="NumberSymbolSquare24"
-            PlaceholderText="Filtre Prix" TextChanged="numberBoxFiltrePrixVente_TextChanged" />
+            PlaceholderText="Filtre Prix"
+            TextChanged="numberBoxFiltrePrixVente_TextChanged" />
 
-        <ui:NumberBox x:Name="numberBoxFiltreQuantite"
+        <ui:NumberBox
+            x:Name="numberBoxFiltreQuantite"
             Margin="526,69,98,0"
             VerticalAlignment="Top"
             Icon="NumberSymbolSquare24"
-            PlaceholderText="Filtre Quantité" TextChanged="numberBoxFiltreQuantite_TextChanged" />
-        <StackPanel Margin="702,39,93,4" Grid.ColumnSpan="2">
+            PlaceholderText="Filtre Quantité"
+            TextChanged="numberBoxFiltreQuantite_TextChanged" />
+        <StackPanel Grid.ColumnSpan="2" Margin="702,39,93,4">
 
 
 
-            <CheckBox x:Name="checkBoxDisponibiliteTrue"
-            Content="Disponibles"
-            Checked="checkBoxDisponibiliteTrue_Checked" Margin="20,0,0,0" Unchecked="checkBoxDisponibiliteTrue_Unchecked"/>
+            <CheckBox
+                x:Name="checkBoxDisponibiliteTrue"
+                Margin="20,0,0,0"
+                Checked="checkBoxDisponibiliteTrue_Checked"
+                Content="Disponibles"
+                Unchecked="checkBoxDisponibiliteTrue_Unchecked" />
 
-            <CheckBox x:Name="checkBoxDisponibiliteFalse"
-            Content="Indisponibles"
-            Checked="checkBoxDisponibiliteFalse_Checked" Margin="20,0,0,0" Unchecked="checkBoxDisponibiliteFalse_Unchecked"/>
+            <CheckBox
+                x:Name="checkBoxDisponibiliteFalse"
+                Margin="20,0,0,0"
+                Checked="checkBoxDisponibiliteFalse_Checked"
+                Content="Indisponibles"
+                Unchecked="checkBoxDisponibiliteFalse_Unchecked" />
 
         </StackPanel>
     </Grid>

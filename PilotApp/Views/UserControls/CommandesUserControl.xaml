@@ -27,16 +27,6 @@
             ItemsSource="{Binding}">
 
             <ui:DataGrid.Columns>
-                <DataGridTemplateColumn Header="Image">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Image
-                                Width="50"
-                                Height="50"
-                                Source="{Binding Image}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
                 <DataGridTextColumn Binding="{Binding Id}" Header="Id" />
                 <DataGridTextColumn Binding="{Binding DateCommande, StringFormat={}{0:dd/MM/yyyy}}" Header="Date commande" />
                 <DataGridTextColumn Binding="{Binding DateLivraison, StringFormat={}{0:dd/MM/yyyy}}" Header="Livraison" />
