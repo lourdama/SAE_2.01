@@ -194,7 +194,7 @@
                                           VerticalAlignment="Center"/>
                             </StackPanel>
                         </Border>
-
+                    
                         <!-- Bouton de connexion -->
                         <ui:Button x:Name="LoginButton"
                                   Content="Se connecter"
@@ -225,6 +225,7 @@
                                 </Style>
                             </ui:Button.Style>
                         </ui:Button>
+                        
 
                     </StackPanel>
 

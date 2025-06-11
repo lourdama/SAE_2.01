@@ -3,6 +3,7 @@ using PilotApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,7 +59,31 @@ namespace PilotApp.Views.UserControls
 
         private void butSupprimer_Click(object sender, RoutedEventArgs e)
         {
+            if (dgCommande.SelectedItem == null)
+                MessageBox.Show("Veuillez sélectionner une commande", "Attention",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+            {
+                Commande commandeASuprimer = ((Commande)dgCommande.SelectedItem);
 
+                MessageBoxResult result;
+                result = MessageBox.Show($"Désirez-vous supprimer cette commande ? Cette action est définitive", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        commandeASuprimer.Delete();
+                        MainWindow.Instance.Pilot.LesCommandes.Remove(commandeASuprimer);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("La commande n'a pas pu être supprimé.", "Attention",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            
+            }
         }
     }
 }
