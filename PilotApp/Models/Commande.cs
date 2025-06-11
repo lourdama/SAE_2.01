@@ -177,25 +177,21 @@ namespace PilotApp.Models
 
             List<Commande> lesCommandes = new List<Commande>();
             using (NpgsqlCommand cmdSelectCommande = new NpgsqlCommand("select * from commande;"))
-            using (NpgsqlCommand cmdSelectProduitCommande = new NpgsqlCommand("select * from produitcommande where numcommande = @id ;"))
             {
                 DataTable dt = DataAccess.Instance.ExecuteSelect(cmdSelectCommande);
                 foreach (DataRow dr in dt.Rows)
                 {
                     Dictionary<Produit, decimal[]> lesSousCommandes = new Dictionary<Produit, decimal[]>();
-                    DataTable dtPC = DataAccess.Instance.ExecuteSelect(cmdSelectProduitCommande);
+                    using (NpgsqlCommand cmdSelectProduitCommande = new NpgsqlCommand("select * from produitcommande where numcommande =@id ;"))    
                     {
-                        cmdSelectProduitCommande.Parameters.AddWithValue("id", this.Id);
+                        cmdSelectProduitCommande.Parameters.AddWithValue("id", dr["numcommande"]);
+                        DataTable dtPC = DataAccess.Instance.ExecuteSelect(cmdSelectProduitCommande);
                         foreach (DataRow drPC in dtPC.Rows)
                         {
-                            
-                            if (drPC["numcommande"] == dr["numcommande"])
-                            {
                                 decimal[] coupleQuantitePrix = new decimal[2];
-                                coupleQuantitePrix[0] = (decimal)drPC["quantitecommande"];
+                                coupleQuantitePrix[0] = Convert.ToDecimal(drPC["quantitecommande"]);
                                 coupleQuantitePrix[1] = (decimal)drPC["prix"];
                                 lesSousCommandes.Add(entreprise.LesProduits.SingleOrDefault(c => c.Id == (int)drPC["numproduit"]), coupleQuantitePrix);
-                            }
                         }
                     }
                     DateTime? dateLivraison = null;
