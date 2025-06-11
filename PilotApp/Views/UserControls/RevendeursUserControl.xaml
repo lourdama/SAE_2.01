@@ -68,14 +68,17 @@
             Appearance="Primary"
             Content="Supprimer" Click="butSupprimer_Click" />
 
-        <ui:TextBox
-            Width="555"
-            Margin="0,72,0,0"
-            HorizontalAlignment="Center"
+        <ui:TextBox x:Name="rechercheRaison"
+            Width="140"
+            Margin="10,90,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            PlaceholderText="Effectuez une recherche..." />
-
-        <ContentControl x:Name="vueCommande" />
+            PlaceholderText="Raison Sociale" />
+        <ui:TextBox x:Name="rechercheVille"
+        Width="140"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        PlaceholderText="Ville" Margin="178,90,0,0" />
 
     </Grid>
 </UserControl>
