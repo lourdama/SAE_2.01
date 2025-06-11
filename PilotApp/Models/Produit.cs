@@ -141,9 +141,9 @@ namespace PilotApp.Models
 
             set
             {
-                //if (MiseEnForme.NEstPasNull(value) && MiseEnForme.EstEntre(value,0))
+                if (MiseEnForme.NEstPasNull(value) && MiseEnForme.EstEntre(value,0))
                     prixVente = value;
-               // else throw new ArgumentException("Le prix ne peut être null ou négatif");
+               else throw new ArgumentException("Le prix ne peut être null ou négatif");
             }
         }
 
@@ -158,7 +158,7 @@ namespace PilotApp.Models
             {
                 if (MiseEnForme.NEstPasNull(value) && MiseEnForme.EstEntre(value, 0))
                     quantiteStock = value;
-                else throw new ArgumentException("Le prix ne peut être null ou négatif");
+                else throw new ArgumentException("La quantité ne peut être négative");
             }
         }
 
