@@ -24,6 +24,7 @@ namespace PilotApp.Models
 
         public Commande()
         {
+            this.LesSousCommandes = new Dictionary<Produit, decimal[]>();
         }
 
         public Commande(int id, Employe unEmploye, ModeTransport unModeTransport, Revendeur unRevendeur, Dictionary<Produit, decimal[]> lesSousCommandes, DateTime dateCommande, DateTime? dateLivraison)
@@ -106,17 +107,17 @@ namespace PilotApp.Models
 
             set
             {
-                if (MiseEnForme.NEstPasNull(value))
+               /* if (MiseEnForme.NEstPasNull(value))
                     if (value.Count != 0)
                     {
                         foreach (KeyValuePair<Produit, decimal[]> uneSousCommande in value)
                         {
                             if (!MiseEnForme.EstEntre(uneSousCommande.Value[0], 0) || !MiseEnForme.EstEntre(uneSousCommande.Value[1], 0) || uneSousCommande.Key == null)
                                 throw new ArgumentException("Une sous commande ne doit pas contenir de produit null ni de quantié ou prix négatif");
-                        }
+                        }*/
                         lesSousCommandes = value;
-                   }
-                    else throw new ArgumentException("Les sous commandes ne peut être null ou ne rien contenir");
+                  /* }
+                    else throw new ArgumentException("Les sous commandes ne peut être null ou ne rien contenir");*/
             }
         }
 

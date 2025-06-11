@@ -1,4 +1,5 @@
-﻿using PilotApp.Models;
+﻿using PilotApp.Fenetre;
+using PilotApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,16 +32,22 @@ namespace PilotApp.Views.UserControls
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)
         {
-            test();
-            Commande uneCommande = new Commande();
-            MainWindow.Instance.vueActuelle.Content = new AjouterCommandeUserControl(uneCommande, Action.Creer);
 
-        }
-        private void test()
-        {
-            foreach (Commande commande in MainWindow.Instance.Pilot.LesCommandes)
+            Commande nouvelleCommande = new Commande();
+            var fenetre = new AjouterCommande(nouvelleCommande, AjouterCommande.Action.Créer);
+            bool? result = fenetre.ShowDialog();
+
+            if (result == true)
             {
-                MessageBox.Show(commande.Id + commande.Prix.ToString());
+                try
+                {
+                    nouvelleCommande.Id = nouvelleCommande.Create();
+                    MainWindow.Instance.Pilot.LesCommandes.Add(nouvelleCommande);
+                }
+                catch
+                {
+                    MessageBox.Show("Erreur lors de l'ajout de la commande.");
+                }
             }
         }
 
