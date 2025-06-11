@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace PilotApp.Models
 {
@@ -163,6 +164,19 @@ namespace PilotApp.Models
                 return prix;
             }
 
+        }
+
+        public BitmapImage Image
+        {
+            get
+            {
+                // return  new BitmapImage (new Uri($"pack://application:,,,/Images/{this.Code}.jpeg"));
+                BitmapImage image = new BitmapImage();
+                Random random = new Random();
+                int randomNbImage = random.Next(1, 7);
+                image = new BitmapImage(new Uri($"pack://application:,,,/Images/image{randomNbImage}.jpg"));
+                return image;
+            }
         }
 
         public override bool Equals(object? obj)
