@@ -58,7 +58,7 @@ namespace PilotApp.Models
             set
             {
                 if (MiseEnForme.NEstPasNullOuWhitespace(value))
-                    this.raisonSociale = value;
+                    this.raisonSociale = MiseEnForme.FormaterString(value);
                 else throw new ArgumentException("La raisonsociale ne peut être null.");
             }
         }
@@ -183,7 +183,7 @@ namespace PilotApp.Models
 
         public int Delete()
         {
-            using (var cmdUpdate = new NpgsqlCommand("delete from chiens  where numrevendeur =@id;"))
+            using (var cmdUpdate = new NpgsqlCommand("delete from revendeur  where numrevendeur =@id;"))
             {
                 cmdUpdate.Parameters.AddWithValue("id", this.Id);
                 return DataAccess.Instance.ExecuteSet(cmdUpdate);

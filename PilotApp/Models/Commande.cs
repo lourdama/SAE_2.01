@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace PilotApp.Models
 {
@@ -165,6 +166,7 @@ namespace PilotApp.Models
 
         }
 
+
         public override bool Equals(object? obj)
         {
             return obj is Commande commande &&
@@ -235,7 +237,6 @@ namespace PilotApp.Models
 
             foreach (KeyValuePair<Produit, decimal[]> uneSousCommande in this.LesSousCommandes)
             {
-                MessageBox.Show(uneSousCommande.Key.Id +" "+ (int)uneSousCommande.Value[0] +" "+ uneSousCommande.Value[1].ToString());
                 this.InsertPC(uneSousCommande.Key, (int)uneSousCommande.Value[0], uneSousCommande.Value[1]);
             }
 
