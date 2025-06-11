@@ -104,7 +104,6 @@ namespace PilotApp.Models
                 {
                     cmd.Connection.Open(); 
                 }
-
                 nb = (int)cmd.ExecuteScalar();
 
             }
@@ -124,6 +123,8 @@ namespace PilotApp.Models
             try
             {
                 cmd.Connection = GetConnection();
+                if (cmd.Connection.State != ConnectionState.Open)
+                    cmd.Connection.Open();
                 nb = cmd.ExecuteNonQuery();
             }
             catch (Exception ex) {

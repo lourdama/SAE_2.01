@@ -28,8 +28,6 @@ namespace PilotApp.Views.UserControls
         public AjouterProduitCommandeUserControl()
         {
             InitializeComponent();
-            this.commande = commande;
-            this.action = action;
 
             this.DataContext = this;
 

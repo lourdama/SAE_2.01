@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace PilotApp.Models
 {
@@ -234,11 +235,25 @@ namespace PilotApp.Models
 
             foreach (KeyValuePair<Produit, decimal[]> uneSousCommande in this.LesSousCommandes)
             {
+                MessageBox.Show(uneSousCommande.Key.Id +" "+ (int)uneSousCommande.Value[0] +" "+ uneSousCommande.Value[1].ToString());
                 this.InsertPC(uneSousCommande.Key, (int)uneSousCommande.Value[0], uneSousCommande.Value[1]);
             }
 
 
             return nb;
+        }
+        public int InsertPC(Produit produit, int quantite, decimal prix)
+        {
+            using (var cmdInsertPC = new NpgsqlCommand("insert into produitcommande (numcommande,numproduit,quantitecommande,prix) " +
+                "values (@numcommande,@numproduit,@quantitecommande,@prix)"))
+            {
+                cmdInsertPC.Parameters.AddWithValue("numcommande", this.Id);
+                cmdInsertPC.Parameters.AddWithValue("numproduit", produit.Id);
+                cmdInsertPC.Parameters.AddWithValue("quantitecommande", quantite);
+                cmdInsertPC.Parameters.AddWithValue("prix", prix);
+
+                return DataAccess.Instance.ExecuteSet(cmdInsertPC);
+            }
         }
 
         public void Read(Entreprise entreprise)
@@ -292,6 +307,7 @@ namespace PilotApp.Models
             }
         }
 
+
         public int Delete()
         {
             using (var cmdUpdate = new NpgsqlCommand("delete from commande where numcommande =@id;"))
@@ -310,19 +326,7 @@ namespace PilotApp.Models
             }
         }
 
-        public int InsertPC(Produit produit, int quantite, decimal prix)
-        {
-            using (var cmdInsertPC = new NpgsqlCommand("insert into produitcommande (numcommande,numproduit,quantitecommande,prix) " +
-                "values (@numcommande,@numproduit,@quantitecommande,@prix)"))
-            {
-                cmdInsertPC.Parameters.AddWithValue("numcommande", this.Id);
-                cmdInsertPC.Parameters.AddWithValue("numproduit", produit.Id);
-                cmdInsertPC.Parameters.AddWithValue("quantitecommande", quantite);
-                cmdInsertPC.Parameters.AddWithValue("prix", prix);
-
-                return DataAccess.Instance.ExecuteInsert(cmdInsertPC);
-            }
-        }
+        
 
         public int UpdateDateLivraison(DateTime dateLivraison)
         {

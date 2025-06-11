@@ -31,7 +31,7 @@ namespace PilotApp.Views.UserControls
         {
             InitializeComponent();
             this.commande = commande;
-            this.action = action;
+            this.action = actions;
             this.DataContext = MainWindow.Instance.Pilot;
 
             if (action == Action.Creer)
