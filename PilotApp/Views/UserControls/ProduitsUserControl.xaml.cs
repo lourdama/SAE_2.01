@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.Common;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -147,7 +148,31 @@ namespace PilotApp.Views.UserControls
 
         private void butSupprimer_Click(object sender, RoutedEventArgs e)
         {
+            if (dgProduits.SelectedItem == null)
+                MessageBox.Show("Veuillez sélectionner une commande", "Attention",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+            {
+                Produit produitASupprimer = ((Produit)dgProduits.SelectedItem);
 
+                MessageBoxResult result;
+                result = MessageBox.Show($"Désirez-vous supprimer cette commande ? Cette action est définitive", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    try
+                    {
+                        produitASupprimer.Delete();
+                        MainWindow.Instance.Pilot.LesProduits.Remove(produitASupprimer);
+                        this.RefreshDg();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Le produit n'a pas pu être supprimé.", "Attention",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+            }
         }
         private void RefreshDg()
         {
