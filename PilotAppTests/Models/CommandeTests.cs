@@ -185,7 +185,7 @@ namespace PilotApp.Models.Tests
         }
 
         [TestMethod()]
-        [Ignore("Nécessite une base de données de test ou des mocks")]
+        [Ignore("Nécessite une base de données de test ")]
         public void FindAllTest_AvecEntreprise_DevraitRetournerListeCommandes()
         {
             var entreprise = new Entreprise("Entreprise");
@@ -198,7 +198,7 @@ namespace PilotApp.Models.Tests
         }
 
         [TestMethod()]
-        [Ignore("Nécessite une base de données de test ou des mocks")]
+        [Ignore("Nécessite une base de données de test ")]
         public void CreateTest_CommandeValide_DevraitRetournerIdNonZero()
         {
             var commande = new Commande(0, employeTest, modeTransportTest, revendeurTest,
@@ -211,7 +211,7 @@ namespace PilotApp.Models.Tests
         }
 
         [TestMethod()]
-        [Ignore("Nécessite une base de données de test ou des mocks")]
+        [Ignore("Nécessite une base de données de test ")]
         public void InsertPCTest_ProduitEtQuantiteValides_DevraitRetournerNonZero()
         {
             var commande = new Commande();
@@ -226,7 +226,7 @@ namespace PilotApp.Models.Tests
         }
 
         [TestMethod()]
-        [Ignore("Nécessite une base de données de test ou des mocks")]
+        [Ignore("Nécessite une base de données de test ")]
         public void ReadTest_IdExistant_DevraitChargerProprietes()
         {
             var entreprise = new Entreprise("Entreprise");
@@ -242,7 +242,7 @@ namespace PilotApp.Models.Tests
         }
 
         [TestMethod()]
-        [Ignore("Nécessite une base de données de test ou des mocks")]
+        [Ignore("Nécessite une base de données de test ")]
         public void UpdateTest_CommandeModifiee_DevraitRetournerNonZero()
         {
             var commande = new Commande(1, employeTest, modeTransportTest, revendeurTest,
@@ -254,7 +254,7 @@ namespace PilotApp.Models.Tests
         }
 
         [TestMethod()]
-        [Ignore("Nécessite une base de données de test ou des mocks")]
+        [Ignore("Nécessite une base de données de test ")]
         public void DeleteTest_CommandeExistante_DevraitRetournerNonZero()
         {
             var commande = new Commande();
@@ -266,7 +266,7 @@ namespace PilotApp.Models.Tests
         }
 
         [TestMethod()]
-        [Ignore("Nécessite une base de données de test ou des mocks")]
+        [Ignore("Nécessite une base de données de test ")]
         public void DeletePCTest_CommandeExistante_DevraitRetournerNonZero()
         {
             var commande = new Commande();
@@ -290,7 +290,7 @@ namespace PilotApp.Models.Tests
         }
 
         [TestMethod()]
-        [Ignore("Nécessite une base de données de test ou des mocks")]
+        [Ignore("Nécessite une base de données de test ")]
         public void UpdateDateLivraisonTest_AvecBaseDeDonnees_DevraitRetournerNonZero()
         {
             var commande = new Commande();
@@ -304,7 +304,7 @@ namespace PilotApp.Models.Tests
         }
 
         [TestMethod()]
-        [Ignore("Nécessite une base de données de test ou des mocks")]
+        [Ignore("Nécessite une base de données de test ")]
         public void FindNbProduitTest_CommandeAvecProduits_DevraitRetournerNombre()
         {
             var commande = new Commande();
