@@ -16,11 +16,13 @@ namespace PilotApp.Services
     }
     public static class GestionnaireParametres
     {
-        private static readonly string CheminFichier = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "\\data\\connexion.json");
+        private static readonly string CheminFichier = AppDomain.CurrentDomain.BaseDirectory+ "\\data\\connexion.json";
         public static FichierParametres Charger()
         {
             try
             {
+                if (!Directory.Exists(AppDomain.CurrentDomain.BaseDirectory + "\\data\\"))
+                    Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory + "\\data\\");
 
                 if (!File.Exists(CheminFichier))
                     return new FichierParametres();
