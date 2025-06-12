@@ -28,12 +28,33 @@ namespace PilotApp.Views.UserControls
         public decimal Quantite { get; private set; }
         public decimal Prix { get; private set; }
 
+        // Constructeur pour l'ajout
         public AjouterProduitCommandeUserControl(UserControl pagePrecedente)
         {
             InitializeComponent();
             this.pagePrecedente = pagePrecedente;
             cmbProduits.ItemsSource = MainWindow.Instance.Pilot.LesProduits;
             cmbProduits.DisplayMemberPath = "Nom";
+        }
+
+
+        public AjouterProduitCommandeUserControl(UserControl pagePrecedente, Produit produitAModifier, decimal quantite, decimal prix)
+        {
+            InitializeComponent();
+            this.pagePrecedente = pagePrecedente;
+            cmbProduits.ItemsSource = MainWindow.Instance.Pilot.LesProduits;
+            cmbProduits.DisplayMemberPath = "Nom";
+
+            cmbProduits.SelectedItem = produitAModifier;
+            txtQuantite.Text = quantite.ToString();
+            txtPrix.Text = produitAModifier.PrixVente.ToString("F2");
+            
+            ProduitSelectionne = produitAModifier;
+            Quantite = quantite;
+            Prix = produitAModifier.PrixVente;
+
+            // Désactiver le changement de produit pour éviter de changer la clé du dictionnaire
+            cmbProduits.IsEnabled = false;
         }
 
         private void butValider_Click(object sender, RoutedEventArgs e)
@@ -48,7 +69,7 @@ namespace PilotApp.Views.UserControls
 
             ProduitSelectionne = (Produit)cmbProduits.SelectedItem;
             Quantite = quantite;
-            Prix = prix;
+            Prix = prix * quantite;
             ValidationFaite.Invoke(true);
             MainWindow.Instance.vueActuelle.Content = this.pagePrecedente;
         }

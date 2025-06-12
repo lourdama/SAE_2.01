@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,10 @@ namespace PilotApp.Views.UserControls
     public partial class ModifierProduitDetailUserControl : UserControl
     {
         public AjouterProduitCommandeUserControl apcuc ;
+        public KeyValuePair<Produit, decimal[]> ligneSelectionnee;
+        public KeyValuePair<Produit, decimal[]> copieLigne;
+
+
         public Commande Commande { get; }
         public UserControl pagePrec;
         public ModifierProduitDetailUserControl(UserControl pagePrec,Commande commande)
@@ -85,6 +90,53 @@ namespace PilotApp.Views.UserControls
         {
             MainWindow.Instance.vueActuelle.Content = this.pagePrec;
 
+        }
+
+        private void butModifier_Click(object sender, RoutedEventArgs e)
+        {
+            if (dgLignes.SelectedItem == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un produit", "Attention",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            // Récupérer l'entrée sélectionnée dans le DataGrid
+            var ligne = (KeyValuePair<Produit, decimal[]>)dgLignes.SelectedItem;
+            Produit produit = ligne.Key;
+            decimal quantite = ligne.Value[0];
+            decimal prix = ligne.Value[1];
+
+            // Créer le UserControl de modification
+            var modifierProduitUC = new AjouterProduitCommandeUserControl(this, produit, quantite, prix);
+            modifierProduitUC.ValidationFaite += OnValidationFaiteModifier;
+            this.apcuc = modifierProduitUC;
+
+            // Afficher l'interface de modification
+            MainWindow.Instance.vueActuelle.Content = modifierProduitUC;
+        }
+
+
+        private void OnValidationFaiteModifier(bool estValide)
+        {
+            if (!estValide || apcuc == null) return;
+
+            Produit p = apcuc.ProduitSelectionne;
+            decimal[] nouvelleValeur = new decimal[] { apcuc.Quantite, apcuc.Prix };
+
+            if (Commande.LesSousCommandes.ContainsKey(p))
+            {
+                Commande.LesSousCommandes[p] = nouvelleValeur;
+                MessageBox.Show("Produit modifié avec succès.");
+            }
+            
+            dgLignes.Items.Refresh();
+        }
+
+        private void butSupprimer_Click(object sender, RoutedEventArgs e)
+        {
+           
+            
         }
     }
 }

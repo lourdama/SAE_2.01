@@ -17,52 +17,62 @@
         <!--  DataGrid qui monte directement le dictionnaire LesSousCommandes  -->
         <ui:DataGrid
             x:Name="dgLignes"
-            Grid.ColumnSpan="2"
+            Grid.Column="0"
             AutoGenerateColumns="False"
             CanUserAddRows="False"
-            ItemsSource="{Binding Commande.LesSousCommandes}"
-             >
+            ItemsSource="{Binding Commande.LesSousCommandes}">
             <ui:DataGrid.Columns>
                 <DataGridTextColumn
                     Binding="{Binding Key.Nom}"
                     Header="Produit"
                     IsReadOnly="True" />
                 <DataGridTextColumn Binding="{Binding Value[0], Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Quantité" />
-                <DataGridTextColumn Binding="{Binding Value[1], Mode=TwoWay, StringFormat=N2}" Header="Prix unitaire" />
-                <DataGridTextColumn
-                    Binding="{Binding Value[0], StringFormat=N2}"
-                    Header="Total"
-                    IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding Value[1], Mode=TwoWay, StringFormat=N2}" Header="Prix" />
+
             </ui:DataGrid.Columns>
         </ui:DataGrid>
 
 
-        <Button x:Name="butModifier"
+        <Button
+            x:Name="butModifier"
             Grid.Column="1"
             Width="100"
             Height="32"
             Margin="0,109,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-
+            Click="butModifier_Click"
             Content="Modifier" />
-        <Button x:Name="butRetour"
+        <Button
+            x:Name="butRetour"
             Grid.Column="1"
             Width="100"
             Height="32"
             Margin="0,58,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
+            Click="butRetour_Click"
+            Content="Retour" />
 
-            Content="Retour" Click="butRetour_Click" />
-
-        <Button x:Name="butAjouter"
+        <Button
+            x:Name="butAjouter"
             Grid.Column="1"
             Width="100"
             Height="32"
             Margin="0,162,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
-            Content="Ajouter" Click="butAjouter_Click" />
+            Click="butAjouter_Click"
+            Content="Ajouter" />
+        <Button
+            x:Name="butSupprimer"
+            Grid.Column="1"
+            Width="100"
+            Height="32"
+            Margin="0,215,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Click="butSupprimer_Click"
+            Content="Supprimer" />
     </Grid>
 </UserControl>
