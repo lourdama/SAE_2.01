@@ -125,20 +125,40 @@ namespace PilotApp.Views.UserControls
             {
                 try
                 {
-                    this.apuc.unProduit.Id = this.apuc.unProduit.Create();
-                    MainWindow.Instance.Pilot.LesProduits.Add(this.apuc.unProduit);
+                    if (this.apuc.unProduit.LesCouleurs == null || this.apuc.unProduit.LesCouleurs.Count == 0)
+                    {
+                        MessageBox.Show("Le produit doit avoir au moins une couleur.",
+                            "Erreur de validation", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    int nouveauId = this.apuc.unProduit.Create();
+
+                    if (nouveauId > 0)
+                    {
+                        this.apuc.unProduit.Id = nouveauId;
+                        MainWindow.Instance.Pilot.LesProduits.Add(this.apuc.unProduit);
+                        MessageBox.Show("Produit créé avec succès !",
+                            "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erreur lors de la création du produit : ID non valide.",
+                            "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Le produit n'a pas pu être créé.",
-                        "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Le produit n'a pas pu être créé.\nErreur : {ex.Message}",
+                        "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    System.Diagnostics.Debug.WriteLine($"Erreur création produit : {ex}");
                 }
             }
             else
             {
                 MessageBox.Show("Validation annulée.");
             }
-
         }
 
         private void butModifier_Click(object sender, RoutedEventArgs e)

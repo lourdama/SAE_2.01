@@ -84,11 +84,11 @@
                     HorizontalAlignment="Center">
                     <Label Width="200" Content="Couleurs" />
                     <ListView
+                        x:Name="listViewCouleurs"
                         Width="180"
                         Height="200"
                         ItemsSource="{Binding LesCouleurs}"
                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                        SelectedItem="{Binding Produit.LesCouleurs}"
                         SelectionChanged="ListView_SelectionChanged"
                         SelectionMode="Multiple">
                         <ListView.ItemTemplate>
