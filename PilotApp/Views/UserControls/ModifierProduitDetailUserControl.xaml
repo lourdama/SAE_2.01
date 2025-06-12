@@ -14,7 +14,6 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <!--  DataGrid qui monte directement le dictionnaire LesSousCommandes  -->
         <ui:DataGrid
             x:Name="dgLignes"
             Grid.Column="0"

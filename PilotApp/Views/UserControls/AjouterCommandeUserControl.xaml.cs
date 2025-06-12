@@ -86,11 +86,7 @@ namespace PilotApp.Views.UserControls
                 if (ok)
                 {
                     nouveauRevendeur.Id = nouveauRevendeur.Create();
-                    // Ajoute le revendeur à la liste globale + locale
                     MainWindow.Instance.Pilot.LesRevendeurs.Add(nouveauRevendeur);
-                    
-
-                    // Sélectionne automatiquement le nouveau revendeur
                     this.UneCommande.UnRevendeur = nouveauRevendeur;
                 }
             };
@@ -120,7 +116,6 @@ namespace PilotApp.Views.UserControls
             {
                 if (ok)
                 {
-                    // Met à jour le revendeur dans la liste
                     var original = MainWindow.Instance.Pilot.LesRevendeurs.FirstOrDefault(r => r.Id == copie.Id);
                     if (original != null)
                     {
@@ -129,8 +124,6 @@ namespace PilotApp.Views.UserControls
                         original.Ville = copie.Ville;
                         original.CodePostal = copie.CodePostal;
                     }
-
-                    // Mise à jour automatique de l'affichage
                     CollectionViewSource.GetDefaultView(vm.LesRevendeurs).Refresh();
                 }
             };

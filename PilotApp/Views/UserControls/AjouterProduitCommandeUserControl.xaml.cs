@@ -29,7 +29,6 @@ namespace PilotApp.Views.UserControls
         public decimal Prix { get; private set; }
         private List<Produit> lesProduitsDispos;
 
-        // Constructeur pour l'ajout
         public AjouterProduitCommandeUserControl(UserControl pagePrecedente)
         {
             InitializeComponent();
@@ -55,8 +54,6 @@ namespace PilotApp.Views.UserControls
             ProduitSelectionne = produitAModifier;
             Quantite = quantite;
             Prix = produitAModifier.PrixVente;
-
-            // Désactiver le changement de produit pour éviter de changer la clé du dictionnaire
             cmbProduits.IsEnabled = false;
         }
 
@@ -82,7 +79,7 @@ namespace PilotApp.Views.UserControls
         {
             if (cmbProduits.SelectedItem is Produit p)
             {
-                txtPrix.Text = p.PrixVente.ToString("F2"); // format avec 2 décimales
+                txtPrix.Text = p.PrixVente.ToString("F2"); 
             }
             else
             {

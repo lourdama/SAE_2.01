@@ -109,15 +109,15 @@ namespace PilotApp.Models
 
             set
             {
-               /* if (MiseEnForme.NEstPasNull(value))
-                    if (value.Count != 0)
-                    {
-                        foreach (KeyValuePair<Produit, decimal[]> uneSousCommande in value)
-                        {
-                            if (!MiseEnForme.EstEntre(uneSousCommande.Value[0], 0) || !MiseEnForme.EstEntre(uneSousCommande.Value[1], 0) || uneSousCommande.Key == null)
-                                throw new ArgumentException("Une sous commande ne doit pas contenir de produit null ni de quantié ou prix négatif");
-                        }*/
-                        lesSousCommandes = value;
+                 /*if (MiseEnForme.NEstPasNull(value))
+                     if (value.Count != 0)
+                     {
+                         foreach (KeyValuePair<Produit, decimal[]> uneSousCommande in value)
+                         {
+                             if (!MiseEnForme.EstEntre(uneSousCommande.Value[0], 0) || !MiseEnForme.EstEntre(uneSousCommande.Value[1], 0) || uneSousCommande.Key == null)
+                                 throw new ArgumentException("Une sous commande ne doit pas contenir de produit null ni de quantié ou prix négatif");
+                         }*/
+                lesSousCommandes = value;
                   /* }
                     else throw new ArgumentException("Les sous commandes ne peut être null ou ne rien contenir");*/
             }
@@ -400,13 +400,11 @@ namespace PilotApp.Models
 
         void ICrud<Commande>.Read()
         {
-            //Méthode existante mais utilisée d'une autre manière pour des raisons de la modélisation de la BDD
             throw new NotImplementedException();
         }
 
         List<Commande> ICrud<Commande>.FindAll()
         {
-            //Méthode existante mais utilisée d'une autre manière pour des raisons de la modélisation de la BDD
             throw new NotImplementedException();
         }
 

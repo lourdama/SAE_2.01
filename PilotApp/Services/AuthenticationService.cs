@@ -66,7 +66,6 @@ namespace PilotApp.Services
     }
 }
 
-// Enum pour les rôles (compatible avec votre classe Role)
 namespace PilotApp.Models
 {
     public enum roleUtilisateur

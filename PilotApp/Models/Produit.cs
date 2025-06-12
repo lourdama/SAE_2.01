@@ -399,13 +399,11 @@ namespace PilotApp.Models
 
         public void Read()
         {
-            //Méthode existante mais utilisée d'une autre manière pour des raisons de la modélisation de la BDD
             throw new NotImplementedException();
         }
 
         public List<Produit> FindAll()
         {
-            //Méthode existante mais utilisée d'une autre manière pour des raisons de la modélisation de la BDD
             throw new NotImplementedException();
         }
 

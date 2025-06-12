@@ -10,7 +10,6 @@
                 Icon="/logoPilot.ico">
 
     <Grid>
-        <!-- Arrière-plan plus sobre -->
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="#F8F9FA" Offset="0"/>
@@ -18,7 +17,6 @@
             </LinearGradientBrush>
         </Grid.Background>
 
-        <!-- Conteneur principal avec effet moderne mais discret -->
         <Border Background="#FFFFFF" 
                 CornerRadius="12" 
                 Margin="40,10,40,10"
@@ -33,7 +31,6 @@
             </Border.Effect>
 
             <Grid>
-                <!-- Bouton fermer -->
                 <ui:Button x:Name="CloseButton"
                           Content="✕"
                           Width="32"
@@ -59,11 +56,9 @@
                     </ui:Button.Style>
                 </ui:Button>
 
-                <!-- Contenu principal -->
                 <StackPanel Margin="50,0,50,0" 
                            VerticalAlignment="Center" Height="350">
 
-                    <!-- Header avec logo et titre -->
                     <Grid Margin="0,0,0,35">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -71,7 +66,6 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <!-- Icône sobre -->
                         <Border Grid.Row="0"
                                Width="56"
                                Height="56"
@@ -86,7 +80,6 @@
                                           VerticalAlignment="Center"/>
                         </Border>
 
-                        <!-- Titre principal -->
                         <TextBlock Grid.Row="1"
                                   Text="PILOT" 
                                   FontSize="32" 
@@ -95,7 +88,6 @@
                                   Foreground="#212529" 
                                   Margin="0,0,0,6"/>
 
-                        <!-- Sous-titre -->
                         <TextBlock Grid.Row="2"
                                   Text="Gestion des ventes" 
                                   FontSize="14" 
@@ -106,13 +98,11 @@
 
                     </Grid>
 
-                    <!-- Formulaire de connexion -->
 
                     <StackPanel Margin="0,0,0,20">
 
 
 
-                        <!-- Champ nom d'utilisateur -->
                         <ui:TextBox x:Name="UsernameTextBox"
                                    PlaceholderText="Nom d'utilisateur"
                                    Text="lourdama"
@@ -138,7 +128,6 @@
                             </ui:TextBox.Style>
                         </ui:TextBox>
 
-                        <!-- Champ mot de passe -->
                         <ui:PasswordBox x:Name="PasswordBoxMDP"
                                        PlaceholderText="Mot de passe"
                                        Text="g4MEfv"
@@ -167,7 +156,6 @@
                           Content="Rester connecté" Margin="0,-10,0,10"
                           />
 
-                        <!-- Message d'erreur -->
                         <Border x:Name="ErrorContainer"
                                Background="#F8D7DA"
                                BorderBrush="#F5C6CB"
@@ -199,7 +187,6 @@
                             </StackPanel>
                         </Border>
 
-                        <!-- Bouton de connexion -->
                         <ui:Button x:Name="LoginButton"
                                   Content="Se connecter"
                                   Height="32"
@@ -232,7 +219,6 @@
 
                     </StackPanel>
 
-                    <!-- Footer -->
                     <TextBlock Text="© 2025 Pilot App - Tous droits réservés"
                               HorizontalAlignment="Center"
                               Foreground="#ADB5BD"
