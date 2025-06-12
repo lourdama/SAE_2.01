@@ -56,5 +56,10 @@ namespace PilotApp.Views.UserControls
                 MessageBox.Show("Veuillez corriger les erreurs.");
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.vueActuelle.Content = pagePrecedente;
+        }
     }
 }

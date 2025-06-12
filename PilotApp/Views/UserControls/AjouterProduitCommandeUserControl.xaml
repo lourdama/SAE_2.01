@@ -10,7 +10,9 @@
     d:DesignWidth="350"
     mc:Ignorable="d">
     <Grid>
-
+        <ui:Button Appearance ="Transparent" Width="40" Height="40" VerticalAlignment="Top" Margin="0,20,0,0" Click="Button_Click">
+            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72B;" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </ui:Button>
         <StackPanel Margin="20">
 
             <Label HorizontalAlignment="Center" Content="Produit" />

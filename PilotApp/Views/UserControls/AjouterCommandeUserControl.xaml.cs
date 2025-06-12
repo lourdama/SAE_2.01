@@ -129,6 +129,11 @@ namespace PilotApp.Views.UserControls
             };
             MainWindow.Instance.vueActuelle.Content = modifierUC;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.vueActuelle.Content = pagePrecedente;
+        }
     }
 }
 

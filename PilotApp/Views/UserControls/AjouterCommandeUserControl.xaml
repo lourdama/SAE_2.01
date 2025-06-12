@@ -15,6 +15,10 @@
             <ColumnDefinition Width="309*" />
         </Grid.ColumnDefinitions>
 
+        <ui:Button Appearance ="Transparent" Width="40" Height="40" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="0,20,0,0" Click="Button_Click">
+            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72B;" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </ui:Button>
+
         <StackPanel
             x:Name="panelFormCommande"
             Margin="0,10,10,-19"

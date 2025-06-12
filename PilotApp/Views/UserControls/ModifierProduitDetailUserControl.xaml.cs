@@ -152,5 +152,10 @@ namespace PilotApp.Views.UserControls
 
 
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow.Instance.vueActuelle.Content = pagePrec;
+        }
     }
 }

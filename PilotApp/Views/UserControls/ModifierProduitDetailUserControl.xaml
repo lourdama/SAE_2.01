@@ -14,10 +14,13 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
+        <ui:Button Appearance ="Transparent" Width="40" Height="40" Grid.ColumnSpan="1" VerticalAlignment="Top" Margin="0,20,0,0" Click="Button_Click">
+            <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE72B;" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        </ui:Button>
         <ui:DataGrid
             x:Name="dgLignes"
             Grid.Column="0"
-            Margin="0,0,10,10"
+            Margin="40,0,10,10"
             AutoGenerateColumns="False"
             CanUserAddRows="False"
             ItemsSource="{Binding Commande.LesSousCommandes}">
