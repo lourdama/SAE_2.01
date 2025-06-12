@@ -7,7 +7,8 @@
     Width="1200"
     Height="800"
     Loaded="MainWindow_Loaded"
-    WindowStartupLocation="CenterScreen">
+    WindowStartupLocation="CenterScreen"
+    Icon="/logoPilot.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

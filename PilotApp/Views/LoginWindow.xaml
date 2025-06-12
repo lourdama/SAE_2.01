@@ -6,7 +6,8 @@
                 Height="450" 
                 Width="550"
                 WindowStartupLocation="CenterScreen"
-                ResizeMode="NoResize">
+                ResizeMode="NoResize"
+                Icon="/logoPilot.ico">
 
     <Grid>
         <!-- Arrière-plan plus sobre -->

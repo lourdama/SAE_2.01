@@ -86,9 +86,10 @@ namespace PilotApp.Views.UserControls
             {
                 if (ok)
                 {
+                    nouveauRevendeur.Id = nouveauRevendeur.Create();
                     // Ajoute le revendeur à la liste globale + locale
                     MainWindow.Instance.Pilot.LesRevendeurs.Add(nouveauRevendeur);
-                    ((AjouterCommandeViewModel)this.DataContext).LesRevendeurs.Add(nouveauRevendeur);
+                    
 
                     // Sélectionne automatiquement le nouveau revendeur
                     this.UneCommande.UnRevendeur = nouveauRevendeur;

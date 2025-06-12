@@ -15,6 +15,7 @@
     <None Remove="Images\image4.jpg" />
     <None Remove="Images\image5.jpg" />
     <None Remove="Images\image6.jpg" />
+    <None Remove="logoPilot.ico" />
     <None Remove="Sans titre.jpg" />
   </ItemGroup>
 
@@ -25,6 +26,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="logoPilot.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\image1.jpg" />
     <Resource Include="Images\image2.jpg" />
     <Resource Include="Images\image3.jpg" />
