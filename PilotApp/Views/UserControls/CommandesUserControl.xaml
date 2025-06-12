@@ -75,15 +75,24 @@
             Appearance="Primary"
             Click="butSupprimer_Click"
             Content="Supprimer" />
-
-        <ui:TextBox
-            Width="555"
-            Margin="0,72,0,0"
-            HorizontalAlignment="Center"
+        <ui:TextBox x:Name="rechercherRevendeur"
+            Width="140"
+            Margin="10,90,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            PlaceholderText="Effectuez une recherche..." />
+            PlaceholderText="Revendeur" TextChanged="rechercherRevendeur_TextChanged"  />
+        <ui:TextBox x:Name="rechercherTransport"
+        Width="140"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Top"
+        PlaceholderText="Transporteur" Margin="155,90,0,0" TextChanged="rechercherTransport_TextChanged"  />
+        <ui:TextBox x:Name="rechercherEmploye"
+            Width="140"
+            Visibility="Visible"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            PlaceholderText="Employe" Margin="295,90,0,0" TextChanged="rechercherEmploye_TextChanged"   />
 
-        <ContentControl x:Name="vueCommande" />
 
     </Grid>
 </UserControl>
