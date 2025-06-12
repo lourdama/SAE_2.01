@@ -33,6 +33,36 @@ namespace PilotApp.Views.UserControls
             InitializeComponent();
             ChercherLesCommandes();
             this.DataContext = listeCommandeDeEmploye;
+            this.Loaded += CommandeUserControl_Loaded;
+
+        }
+        private void CommandeUserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            var vue = CollectionViewSource.GetDefaultView(dgCommande.ItemsSource);
+            vue.Filter = RechercheMotClefProduit;
+        }
+
+        private bool RechercheMotClefProduit(object obj)
+        {
+            if (!(obj is Commande c))
+                return false;
+
+            if (rechercherRevendeur?.Text != null &&
+                !string.IsNullOrWhiteSpace(rechercherRevendeur.Text) &&
+                !c.UnRevendeur.RaisonSociale?.StartsWith(rechercherRevendeur.Text, StringComparison.OrdinalIgnoreCase) == true)
+                return false;
+
+            if (rechercherTransport?.Text != null &&
+                !string.IsNullOrWhiteSpace(rechercherTransport.Text) &&
+                !c.UnModeTransport.Nom?.StartsWith(rechercherTransport.Text, StringComparison.OrdinalIgnoreCase) == true)
+                return false;
+
+            if (rechercherEmploye?.Text != null &&
+                !string.IsNullOrWhiteSpace(rechercherEmploye.Text) &&
+                !c.UnEmploye.Nom?.StartsWith(rechercherEmploye.Text, StringComparison.OrdinalIgnoreCase) == true)
+                return false;
+
+            return true;
 
         }
 
@@ -84,6 +114,10 @@ namespace PilotApp.Views.UserControls
                 MessageBox.Show("Validation annulée.");
             }
 
+        }
+        private void RefreshDg()
+        {
+            CollectionViewSource.GetDefaultView(dgCommande.ItemsSource).Refresh();
         }
 
         private void butModifier_Click(object sender, RoutedEventArgs e)
@@ -164,6 +198,21 @@ namespace PilotApp.Views.UserControls
                 }
             
             }
+        }
+
+        private void rechercherTransport_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshDg();
+        }
+
+        private void rechercherRevendeur_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshDg();
+        }
+
+        private void rechercherEmploye_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshDg();
         }
     }
 }
