@@ -66,7 +66,7 @@ namespace PilotApp.Views.UserControls
                 else if (uie is NumberBox)
                 {
                     NumberBox nmb = (NumberBox)uie;
-                    nmb.GetBindingExpression(NumberBox.TextProperty).UpdateSource();
+                    nmb.GetBindingExpression(NumberBox.ValueProperty).UpdateSource();
                 }
                 else if (uie is ToggleSwitch)
                 {
@@ -90,6 +90,23 @@ namespace PilotApp.Views.UserControls
             else
             {
                 System.Windows.MessageBox.Show("Veuillez corriger les erreurs.");
+            }
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var listView = sender as System.Windows.Controls.ListView;
+            var viewModel = DataContext as AjouterProduitViewModel; // Assurez-vous de remplacer YourViewModelType par le type réel de votre ViewModel
+
+            if (viewModel != null)
+            {
+                List<Couleur> listCouleurTemp = new List<Couleur>();
+                foreach (var item in listView.SelectedItems)
+                {
+                    listCouleurTemp.Add(item as Couleur);
+
+                }
+                viewModel.Produit.LesCouleurs = listCouleurTemp;
             }
         }
     }
