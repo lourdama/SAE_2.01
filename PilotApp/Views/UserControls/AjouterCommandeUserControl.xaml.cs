@@ -76,10 +76,66 @@ namespace PilotApp.Views.UserControls
             this.mpdu = ajouterProduitCommande;
             MainWindow.Instance.vueActuelle.Content = this.mpdu;
 
-
-
         }
-        
+
+        private void butAjouterRevendeur_Click(object sender, RoutedEventArgs e)
+        {
+            Revendeur nouveauRevendeur = new Revendeur();
+            var ajouterUC = new AjouterRevendeurUserControl(this, nouveauRevendeur, Action.Creer);
+            ajouterUC.ValidationFaite += (ok) =>
+            {
+                if (ok)
+                {
+                    // Ajoute le revendeur à la liste globale + locale
+                    MainWindow.Instance.Pilot.LesRevendeurs.Add(nouveauRevendeur);
+                    ((AjouterCommandeViewModel)this.DataContext).LesRevendeurs.Add(nouveauRevendeur);
+
+                    // Sélectionne automatiquement le nouveau revendeur
+                    this.UneCommande.UnRevendeur = nouveauRevendeur;
+                }
+            };
+            MainWindow.Instance.vueActuelle.Content = ajouterUC;
+        }
+
+        private void butModifRevendeur_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = (AjouterCommandeViewModel)this.DataContext;
+            if (this.UneCommande.UnRevendeur == null)
+            {
+                MessageBox.Show("Veuillez sélectionner un revendeur à modifier.");
+                return;
+            }
+
+            var copie = new Revendeur()
+            {
+                Id = this.UneCommande.UnRevendeur.Id,
+                RaisonSociale = this.UneCommande.UnRevendeur.RaisonSociale,
+                Rue = this.UneCommande.UnRevendeur.Rue,
+                Ville = this.UneCommande.UnRevendeur.Ville,
+                CodePostal = this.UneCommande.UnRevendeur.CodePostal
+            };
+
+            var modifierUC = new AjouterRevendeurUserControl(this, copie, Action.Modifier);
+            modifierUC.ValidationFaite += (ok) =>
+            {
+                if (ok)
+                {
+                    // Met à jour le revendeur dans la liste
+                    var original = MainWindow.Instance.Pilot.LesRevendeurs.FirstOrDefault(r => r.Id == copie.Id);
+                    if (original != null)
+                    {
+                        original.RaisonSociale = copie.RaisonSociale;
+                        original.Rue = copie.Rue;
+                        original.Ville = copie.Ville;
+                        original.CodePostal = copie.CodePostal;
+                    }
+
+                    // Mise à jour automatique de l'affichage
+                    CollectionViewSource.GetDefaultView(vm.LesRevendeurs).Refresh();
+                }
+            };
+            MainWindow.Instance.vueActuelle.Content = modifierUC;
+        }
     }
 }
 
