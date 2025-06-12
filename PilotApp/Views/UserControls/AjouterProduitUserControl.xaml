@@ -40,13 +40,13 @@
                         Width="200"
                         DisplayMemberPath="Nom"
                         ItemsSource="{Binding LesTypesPointes}"
-                        SelectedItem="{Binding Produit.unTypePointe, Mode=TwoWay}" />
+                        SelectedItem="{Binding Produit.UnTypePointe, Mode=TwoWay}" />
                     <Label Width="200" Content="Type" />
                     <ComboBox
                         Width="200"
                         DisplayMemberPath="Nom"
                         ItemsSource="{Binding LesTypes}"
-                        SelectedItem="{Binding Produit.unType, Mode=TwoWay}" />
+                        SelectedItem="{Binding Produit.UnType, Mode=TwoWay}" />
 
                     <Label Width="200" Content="Quantité en Stock" />
                     <ui:NumberBox
@@ -87,8 +87,9 @@
                         Width="180"
                         Height="200"
                         ItemsSource="{Binding LesCouleurs}"
-                        ScrollViewer.VerticalScrollBarVisibility="Auto"
-                        SelectionMode="Extended">
+                        SelectionMode="Multiple"
+                        SelectedItem="{Binding Produit.LesCouleurs}"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ListView.ItemTemplate>
                             <DataTemplate DataType="{x:Type models:Couleur}">
                                 <TextBlock Margin="0,5,0,5" Text="{Binding Nom}" />
