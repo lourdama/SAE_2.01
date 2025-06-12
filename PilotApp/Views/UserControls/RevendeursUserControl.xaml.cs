@@ -29,7 +29,35 @@ namespace PilotApp.Views.UserControls
         {
             InitializeComponent();
             this.DataContext = MainWindow.Instance.Pilot.LesRevendeurs;
+            var vue = CollectionViewSource.GetDefaultView(dgRevendeur.ItemsSource);
+            //vue.Filter = RechercheMotClefProduit;
         }
+
+        private bool RechercheMotClefProduit(object obj)
+        {
+            if (!(obj is Revendeur r))
+                return false;
+
+
+            if (!string.IsNullOrWhiteSpace(rechercheRaison.Text) &&
+                !r.RaisonSociale.StartsWith(rechercheRaison.Text, StringComparison.OrdinalIgnoreCase))
+                return false;
+
+
+            if (!string.IsNullOrWhiteSpace(rechercheVille.Text) &&
+                !r.Ville.StartsWith(rechercheVille.Text, StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            if (!string.IsNullOrWhiteSpace(rechercheCP.Text) &&
+                !r.CodePostal.StartsWith(rechercheCP.Text, StringComparison.OrdinalIgnoreCase))
+                return false;
+
+
+
+            return true;
+
+        }
+    
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)
         {
