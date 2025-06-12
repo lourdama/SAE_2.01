@@ -13,7 +13,13 @@
     </TypeIdentifier>
   </Class>
   <Class Name="PilotApp.Models.Commande" BaseTypeListCollapsed="true">
-    <Position X="7.75" Y="4.25" Width="2.75" />
+    <Position X="6" Y="0.5" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Properties" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+      <Compartment Name="Events" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>JQQCABAAAEAQAgBKgAQYAAEgiAEAQERAAQQAACEAAgA=</HashCode>
       <FileName>Models\Commande.cs</FileName>
@@ -77,7 +83,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="PilotApp.Models.Produit" BaseTypeListCollapsed="true">
-    <Position X="2.75" Y="2.5" Width="1.5" />
+    <Position X="6.75" Y="4.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -105,7 +111,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="PilotApp.Models.Role">
-    <Position X="6.5" Y="2.5" Width="1.5" />
+    <Position X="4.75" Y="5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -117,7 +123,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="PilotApp.Models.Type">
-    <Position X="10.25" Y="2.5" Width="1.5" />
+    <Position X="9.75" Y="4.25" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
       <Compartment Name="Properties" Collapsed="true" />
@@ -159,6 +165,27 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAEAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\AuthenticationService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PilotApp.Services.FichierParametres">
+    <Position X="1" Y="4.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Services\ConnexionAuto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PilotApp.Services.GestionnaireParametres">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Services\ConnexionAuto.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="PilotApp.Models.ICrud&lt;T&gt;" Collapsed="true">
