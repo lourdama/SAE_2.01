@@ -287,14 +287,21 @@ namespace PilotApp.Models
 
         public int Update()
         {
-            using (var cmdUpdate = new NpgsqlCommand("update produit set numemploye =@numemploye ,  numtransport = @numtransport,  numrevendeur = @numrevendeur, " +
+            using (var cmdUpdate = new NpgsqlCommand("update commande set numemploye =@numemploye ,  numtransport = @numtransport,  numrevendeur = @numrevendeur, " +
                 "datecommande = @datecommande, datelivraison = @datelivraison, prixtotal = @prixtotal where numcommande =@id;"))
             {
                 cmdUpdate.Parameters.AddWithValue("numemploye", this.UnEmploye.Id);
                 cmdUpdate.Parameters.AddWithValue("numtransport", this.UnModeTransport.Id);
                 cmdUpdate.Parameters.AddWithValue("numrevendeur", this.UnRevendeur.Id);
                 cmdUpdate.Parameters.AddWithValue("datecommande", this.DateCommande);
-                cmdUpdate.Parameters.AddWithValue("datelivraison", this.DateLivraison);
+                if (this.DateLivraison.HasValue)
+                {
+                    cmdUpdate.Parameters.AddWithValue("datelivraison", this.DateLivraison.Value);
+                }
+                else
+                {
+                    cmdUpdate.Parameters.Add("datelivraison", NpgsqlTypes.NpgsqlDbType.Timestamp).Value = DBNull.Value;
+                }
                 cmdUpdate.Parameters.AddWithValue("prixtotal", this.Prix);
                 cmdUpdate.Parameters.AddWithValue("id", this.Id);
 

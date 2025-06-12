@@ -99,7 +99,7 @@ namespace PilotApp.Views.UserControls
                     commandeSelectionne.UnModeTransport, commandeSelectionne.UnRevendeur, commandeSelectionne.LesSousCommandes,
                     commandeSelectionne.DateCommande, commandeSelectionne.DateLivraison);
                 AjouterCommandeUserControl ajouterCommande = new AjouterCommandeUserControl(this, copie, Action.Modifier);
-                ajouterCommande.ValidationFaite += OnValidationFaiteAjouter;
+                ajouterCommande.ValidationFaite += OnValidationFaiteModifier;
                 this.acuc = ajouterCommande;
                 MainWindow.Instance.vueActuelle.Content = this.acuc;
                 
@@ -124,7 +124,7 @@ namespace PilotApp.Views.UserControls
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Le chien n'a pas pu être modifié.", "Attention",
+                    MessageBox.Show("La commande n'a pas pu être modifié.", "Attention",
                MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
