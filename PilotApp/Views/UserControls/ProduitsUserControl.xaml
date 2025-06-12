@@ -64,7 +64,14 @@
                 <DataGridTextColumn Binding="{Binding UnType.Nom}" Header="Num Type" />
                 <DataGridTextColumn Binding="{Binding PrixVente, StringFormat={}{0} €}" Header="PrixVente" />
                 <DataGridTextColumn Binding="{Binding QuantiteStock}" Header="Quantité" />
-                <DataGridCheckBoxColumn Binding="{Binding Disponible}" Header="Disponible" />
+                <DataGridTemplateColumn Header="Disponible">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox x:Name="checkDisponible"
+                                IsChecked="{Binding Disponible, Mode=TwoWay}" Click="checkDisponible_Click"  />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
             </ui:DataGrid.Columns>
         </ui:DataGrid>
