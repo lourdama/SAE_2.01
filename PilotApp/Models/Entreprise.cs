@@ -24,23 +24,18 @@ namespace PilotApp.Models
 
         public Entreprise(string nom)
         {
-            try
-            {
-                this.Nom = nom;
-                this.LesRoles = new ObservableCollection<Role>(new Role().FindAll());
-                this.LesEmployes = new ObservableCollection<Employe>(new Employe().FindAll(this));
-                this.LesCouleurs = new ObservableCollection<Couleur>(new Couleur().FindAll());
-                this.LesModesTransports = new ObservableCollection<ModeTransport>(new ModeTransport().FindAll());
-                this.LesRevendeurs = new ObservableCollection<Revendeur>(new Revendeur().FindAll());
-                this.LesCategories = new ObservableCollection<Categorie>(new Categorie().FindAll());
-                this.LesTypesPointes = new ObservableCollection<TypePointe>(new TypePointe().FindAll());
-                this.LesTypes = new ObservableCollection<Type>(new Type().FindAll(this));
-                this.LesProduits = new ObservableCollection<Produit>(new Produit().FindAll(this));
-                this.LesCommandes = new ObservableCollection<Commande>(new Commande().FindAll(this));
-            }
-            catch (Exception ex)
-            {
-            }
+            this.Nom = nom;
+            this.LesRoles = new ObservableCollection<Role>(new Role().FindAll());
+            this.LesEmployes = new ObservableCollection<Employe>(new Employe().FindAll(this));
+            this.LesCouleurs = new ObservableCollection<Couleur>(new Couleur().FindAll());
+            this.LesModesTransports = new ObservableCollection<ModeTransport>(new ModeTransport().FindAll());
+            this.LesRevendeurs = new ObservableCollection<Revendeur>(new Revendeur().FindAll());
+            this.LesCategories = new ObservableCollection<Categorie>(new Categorie().FindAll());
+            this.LesTypesPointes = new ObservableCollection<TypePointe>(new TypePointe().FindAll());
+            this.LesTypes = new ObservableCollection<Type>(new Type().FindAll(this));
+            this.LesProduits = new ObservableCollection<Produit>(new Produit().FindAll(this));
+            this.LesCommandes = new ObservableCollection<Commande>(new Commande().FindAll(this));
+            
         }
 
         public string Nom

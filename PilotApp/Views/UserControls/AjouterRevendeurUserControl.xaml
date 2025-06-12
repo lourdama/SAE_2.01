@@ -6,47 +6,47 @@
     xmlns:local="clr-namespace:PilotApp.Views.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-    d:DesignHeight="550"
+    Height="297"
     d:DesignWidth="350"
     mc:Ignorable="d">
     <Grid>
-        <ui:Card Margin="20" Background="#E4FFFFFF">
-            <StackPanel x:Name="panelFormProduit">
-                <Label Width="200" Content="Raison Sociale" />
-                <TextBox
-                    x:Name="textRaison"
-                    Width="200"
-                    Text="{Binding RaisonSociale, ValidatesOnExceptions=True}"
-                    TextWrapping="Wrap" />
-                <Label Width="200" Content="Adresse Rue" />
-                <TextBox
-                    x:Name="textAdresseRue"
-                    Width="200"
-                    Text="{Binding Rue, ValidatesOnExceptions=True}"
-                    TextWrapping="Wrap" />
 
-                <Label Width="200" Content="Adresse Ville" />
-                <TextBox
-                    x:Name="textAdresseVille"
-                    Width="200"
-                    Text="{Binding Ville, ValidatesOnExceptions=True}"
-                    TextWrapping="Wrap" />
+        <StackPanel x:Name="panelFormProduit">
+            <Label Width="200" Content="Raison Sociale" />
+            <TextBox
+                x:Name="textRaison"
+                Width="200"
+                Text="{Binding RaisonSociale, ValidatesOnExceptions=True}"
+                TextWrapping="Wrap" />
+            <Label Width="200" Content="Adresse Rue" />
+            <TextBox
+                x:Name="textAdresseRue"
+                Width="200"
+                Text="{Binding Rue, ValidatesOnExceptions=True}"
+                TextWrapping="Wrap" />
 
-                <Label Width="200" Content="Adresse CP" />
-                <TextBox
-                    x:Name="textAdresseCP"
-                    Width="200"
-                    Text="{Binding CodePostal, ValidatesOnExceptions=True}"
-                    TextWrapping="Wrap" />
-                <ui:Button
-                    x:Name="butAjouter"
-                    Width="200"
-                    Margin="0,20,0,0"
-                    HorizontalAlignment="Center"
-                    Appearance="Success"
-                    Click="butAjouter_Click"
-                    Content="Ajouter" />
-            </StackPanel>
-        </ui:Card>
+            <Label Width="200" Content="Adresse Ville" />
+            <TextBox
+                x:Name="textAdresseVille"
+                Width="200"
+                Text="{Binding Ville, ValidatesOnExceptions=True}"
+                TextWrapping="Wrap" />
+
+            <Label Width="200" Content="Adresse CP" />
+            <TextBox
+                x:Name="textAdresseCP"
+                Width="200"
+                Text="{Binding CodePostal, ValidatesOnExceptions=True}"
+                TextWrapping="Wrap" />
+            <ui:Button
+                x:Name="butAjouter"
+                Width="200"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                Appearance="Success"
+                Click="butAjouter_Click"
+                Content="Ajouter" />
+        </StackPanel>
+
     </Grid>
 </UserControl>
