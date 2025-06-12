@@ -10,8 +10,13 @@
     d:DesignWidth="724"
     mc:Ignorable="d">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="135*" />
+            <ColumnDefinition Width="46*" />
+        </Grid.ColumnDefinitions>
         <ui:Card
-            Height="525"
+            Grid.ColumnSpan="2"
+            Height="558"
             Margin="20,0,20,0"
             Background="#E4FFFFFF">
             <StackPanel
@@ -96,8 +101,28 @@
                     Content="ValiderCommande" />
 
 
+
+                <ui:Button
+                    x:Name="butModifRevendeur"
+                    Grid.Column="1"
+                    Width="200"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                    Appearance="Success"
+                    Click="butModifRevendeur_Click"
+                    Content="Modifier Revendeur" />
+
+                <ui:Button
+                    x:Name="butAjouterRevendeur"
+                    Width="200"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                    Appearance="Success"
+                    Click="butAjouterRevendeur_Click"
+                    Content="Ajouter Revendeur" />
+
             </StackPanel>
-            
+
         </ui:Card>
     </Grid>
 </UserControl>
