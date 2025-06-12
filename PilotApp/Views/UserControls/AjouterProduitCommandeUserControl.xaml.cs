@@ -69,8 +69,9 @@ namespace PilotApp.Views.UserControls
 
             ProduitSelectionne = (Produit)cmbProduits.SelectedItem;
             Quantite = quantite;
-            Prix = prix * quantite;
+            Prix = prix;
             ValidationFaite.Invoke(true);
+            Prix = Prix * quantite;
             MainWindow.Instance.vueActuelle.Content = this.pagePrecedente;
         }
 

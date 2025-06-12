@@ -9,7 +9,7 @@
     Height="525"
     d:DesignWidth="724"
     mc:Ignorable="d">
-    <Grid Background="Wheat">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="415*" />
             <ColumnDefinition Width="309*" />
@@ -17,8 +17,12 @@
 
         <StackPanel
             x:Name="panelFormChien"
-            Margin="0,0,10,-9"
+            Margin="0,10,10,-19"
             Cursor="">
+            <TextBlock
+                Margin="0,0,0,25"
+                HorizontalAlignment="Center"
+                Text="Commande" />
             <Label
                 Width="200"
                 VerticalAlignment="Stretch"
@@ -70,12 +74,15 @@
             <TextBlock
                 x:Name="txtNbProduits"
                 Width="200"
-                Margin="0,10"
-                FontWeight="Bold"
+                Margin="0,50,0,10"
+                FontWeight="DemiBold"
                 Text="0 produit(s) ajouté(s)"
                 TextAlignment="Center" />
 
 
+        </StackPanel>
+
+        <StackPanel Grid.ColumnSpan="2" Margin="410,90,0,226">
             <ui:Button
                 x:Name="butDetailProduit"
                 Width="200"
@@ -83,13 +90,14 @@
                 VerticalAlignment="Stretch"
                 Appearance="Primary"
                 Click="butDetailProduit_Click"
-                Content="Voir detail produit" />
+                Content="Voir detail commande" />
 
 
 
             <ui:Button
                 x:Name="butValiderCommande"
                 Width="200"
+                Margin="0,20,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Stretch"
                 Appearance="Primary"
@@ -102,6 +110,7 @@
                 x:Name="butModifRevendeur"
                 Grid.Column="1"
                 Width="200"
+                Margin="0,20,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Stretch"
                 Appearance="Primary"
@@ -111,13 +120,12 @@
             <ui:Button
                 x:Name="butAjouterRevendeur"
                 Width="200"
+                Margin="0,20,0,0"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Stretch"
                 Appearance="Primary"
                 Click="butAjouterRevendeur_Click"
                 Content="Ajouter Revendeur" />
-
         </StackPanel>
-
     </Grid>
 </UserControl>
