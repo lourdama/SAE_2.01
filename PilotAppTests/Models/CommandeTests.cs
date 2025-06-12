@@ -102,7 +102,6 @@ namespace PilotApp.Models.Tests
         public void DateCommande_ValeurNulle_DevraitLeverException()
         {
             var commande = new Commande();
-
             commande.DateCommande = default(DateTime);
         }
 

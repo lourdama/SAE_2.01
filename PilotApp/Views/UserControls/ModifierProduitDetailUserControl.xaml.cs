@@ -35,17 +35,15 @@ namespace PilotApp.Views.UserControls
         {
             InitializeComponent();
             this.Commande = commande;
-            DataContext = this;          // ce UserControl expose une propriété ‘Commande’
+            DataContext = this;          
             this.pagePrec = pagePrec;
 
         }
 
         private void butEnregistrerr_Click(object sender, RoutedEventArgs e)
         {
-            // LesSousCommandes a été mis à jour via TwoWay
             Commande.Update();
             MessageBox.Show("Produits mis à jour.", "OK", MessageBoxButton.OK, MessageBoxImage.Information);
-            // Retour à la liste des commandes
             MainWindow.Instance.vueActuelle.Content = new CommandesUserControl();
         }
 
@@ -53,10 +51,6 @@ namespace PilotApp.Views.UserControls
 
         private void butAjouter_Click(object sender, RoutedEventArgs e)
         {
-            //AjouterProduitCommande fenetre = new AjouterProduitCommande();
-            //fenetre.Owner = this;
-
-            //bool? result = fenetre.ShowDialog();
             AjouterProduitCommandeUserControl ajouterProduitCommande = new AjouterProduitCommandeUserControl(this);
             ajouterProduitCommande.ValidationFaite += OnValidationFaiteAjouter;
             this.apcuc = ajouterProduitCommande;
@@ -81,7 +75,6 @@ namespace PilotApp.Views.UserControls
                 MessageBox.Show("Ce produit est déjà dans la commande.");
             }
 
-            // 3) Mettre à jour l’affichage
             CollectionViewSource.GetDefaultView(dgLignes.ItemsSource).Refresh();
 
         }
@@ -106,19 +99,13 @@ namespace PilotApp.Views.UserControls
                     MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-
-            // Récupérer l'entrée sélectionnée dans le DataGrid
             var ligne = (KeyValuePair<Produit, decimal[]>)dgLignes.SelectedItem;
             Produit produit = ligne.Key;
             decimal quantite = ligne.Value[0];
             decimal prix = ligne.Value[1];
-
-            // Créer le UserControl de modification
             var modifierProduitUC = new AjouterProduitCommandeUserControl(this, produit, quantite, prix);
             modifierProduitUC.ValidationFaite += OnValidationFaiteModifier;
             this.apcuc = modifierProduitUC;
-
-            // Afficher l'interface de modification
             MainWindow.Instance.vueActuelle.Content = modifierProduitUC;
         }
 
@@ -160,13 +147,10 @@ namespace PilotApp.Views.UserControls
             {
                 MessageBox.Show("Erreur");
             }
-
-            // 3) Mettre à jour l’affichage
             CollectionViewSource.GetDefaultView(dgLignes.ItemsSource).Refresh();
 
 
 
         }
-
     }
 }

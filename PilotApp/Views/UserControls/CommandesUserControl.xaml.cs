@@ -95,11 +95,6 @@ namespace PilotApp.Views.UserControls
             ajouterCommande.ValidationFaite += OnValidationFaiteAjouter;
             this.acuc = ajouterCommande;
             MainWindow.Instance.vueActuelle.Content = this.acuc;
-            
-
-
-            //var fenetre = new AjouterCommande(nouvelleCommande, AjouterCommande.Action.Créer);
-            //bool? result = fenetre.ShowDialog();
         }
 
         private void OnValidationFaiteAjouter(bool estValide)

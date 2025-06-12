@@ -23,7 +23,6 @@ namespace PilotApp.Views
             InitializeComponent();
 
          
-            // Focus sur le champ username au démarrage
             Loaded += (s, e) => UsernameTextBox.Focus();
             var parametres = GestionnaireParametres.Charger();
             if (parametres.ResterConnecte)
@@ -51,8 +50,8 @@ namespace PilotApp.Views
                 var nouveau = new FichierParametres
                 {
                     ResterConnecte = reste,
-                    NomUtilisateur = reste ? UsernameTextBox.Text : "",
-                    MotDePasse = reste ? PasswordBoxMDP.Password : ""
+                    NomUtilisateur = reste ? UsernameTextBox.Text : "SAE201",
+                    MotDePasse = reste ? PasswordBoxMDP.Password : "EASTER EGG"
                 };
                 
                 GestionnaireParametres.Sauvegarder(nouveau);

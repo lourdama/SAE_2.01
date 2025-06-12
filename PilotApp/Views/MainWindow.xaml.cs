@@ -93,7 +93,6 @@ namespace PilotApp.Views
         }
         private void BoutonChangerTheme_Click(object sender, RoutedEventArgs e)
         {
-            // Basculer entre les thèmes clair et sombre
             var currentTheme = ApplicationThemeManager.GetAppTheme();
             if (currentTheme == ApplicationTheme.Light)
             {
