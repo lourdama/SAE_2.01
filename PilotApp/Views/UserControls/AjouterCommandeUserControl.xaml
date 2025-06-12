@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel
-            x:Name="panelFormChien"
+            x:Name="panelFormCommande"
             Margin="0,10,10,-19"
             Cursor="">
             <TextBlock
