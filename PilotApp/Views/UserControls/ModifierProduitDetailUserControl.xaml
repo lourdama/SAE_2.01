@@ -9,15 +9,16 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     mc:Ignorable="d">
-    <Grid Margin="10" Background="White">
+    <Grid Margin="10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="337*" />
-            <ColumnDefinition Width="53*" />
+            <ColumnDefinition />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <!--  DataGrid qui monte directement le dictionnaire LesSousCommandes  -->
         <ui:DataGrid
             x:Name="dgLignes"
             Grid.Column="0"
+            Margin="0,0,10,10"
             AutoGenerateColumns="False"
             CanUserAddRows="False"
             ItemsSource="{Binding Commande.LesSousCommandes}">
@@ -33,7 +34,7 @@
         </ui:DataGrid>
 
 
-        <Button
+        <ui:Button
             x:Name="butModifier"
             Grid.Column="1"
             Width="100"
@@ -41,9 +42,10 @@
             Margin="0,109,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
+            Appearance="Caution"
             Click="butModifier_Click"
             Content="Modifier" />
-        <Button
+        <ui:Button
             x:Name="butRetour"
             Grid.Column="1"
             Width="100"
@@ -51,10 +53,11 @@
             Margin="0,58,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
+            Appearance="Transparent"
             Click="butRetour_Click"
             Content="Retour" />
 
-        <Button
+        <ui:Button
             x:Name="butAjouter"
             Grid.Column="1"
             Width="100"
@@ -62,9 +65,10 @@
             Margin="0,162,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
+            Appearance="Success"
             Click="butAjouter_Click"
             Content="Ajouter" />
-        <Button
+        <ui:Button
             x:Name="butSupprimer"
             Grid.Column="1"
             Width="100"
@@ -72,6 +76,7 @@
             Margin="0,215,0,0"
             HorizontalAlignment="Center"
             VerticalAlignment="Top"
+            Appearance="Danger"
             Click="butSupprimer_Click"
             Content="Supprimer" />
     </Grid>
