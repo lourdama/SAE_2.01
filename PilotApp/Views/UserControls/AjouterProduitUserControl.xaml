@@ -5,56 +5,98 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:PilotApp.Views.UserControls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:PilotApp.Models"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
     d:DesignHeight="550"
-    d:DesignWidth="350"
+    d:DesignWidth="600"
     mc:Ignorable="d">
-    <Grid>
-        <ui:Card Margin="20" Background="#E4FFFFFF">
-            <StackPanel x:Name="panelFormProduit">
-                <Label Width="200" Content="Nom produit" />
-                <TextBox
-                    x:Name="textNom"
-                    Width="200"
-                    Text="{Binding unProduit.Nom, ValidatesOnExceptions=True}"
-                    TextWrapping="Wrap" />
-                <Label Width="200" Content="Code produit" />
-                <TextBox
-                    x:Name="textMaitre"
-                    Width="200"
-                    Text="{Binding unProduit.Code, ValidatesOnExceptions=True}"
-                    TextWrapping="Wrap" />
-                <Label Width="200" Content="Type Pointe" />
-                <ComboBox Width="200" ItemsSource="{Binding pilot.LesTypesPointes}"
-                 SelectedItem="{Binding unProduit.unTypePointe, Mode=TwoWay}" />
-                <Label Width="200" Content="Type" />
-                <ComboBox Width="200" ItemsSource="{Binding pilot.LesTypes}"
-                 SelectedItem="{Binding unProduit.unType, Mode=TwoWay}" />
-                <Label Width="200" Content="Quantité en Stock" />
-                <ui:NumberBox
-                    Width="200"
-                    Icon="Box24"
-                    Value="{Binding unProduit.QuantiteStock}" />
-                <Label Width="200" Content="Prix du produit" />
-                <ui:NumberBox
-                    Width="200"
-                    Icon="CurrencyDollarEuro24"
-                    Value="{Binding unProduit.PrixVente}" />
-                <Label Width="200" Content="Disponibilité" />
-                <ui:ToggleSwitch
-                    Width="200"
-                    HorizontalAlignment="Stretch"
-                    IsChecked="{Binding unProduit.Disponible}"
-                    OffContent="Indisponible"
-                    OnContent="Disponible" />
-                <ui:Button
-                    x:Name="butAjouter"
-                    Width="200"
-                    Margin="0,20,0,0"
-                    HorizontalAlignment="Center"
-                    Appearance="Success"
-                    Content="Ajouter" Click="butAjouter_Click" />
-            </StackPanel>
+    <Grid Margin="0,0,0,-69">
+        <ui:Card
+            Height="581"
+            Margin="20,0,10,0"
+            Background="#E4FFFFFF">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!--  Colonne 0 : Formulaire produit  -->
+                <StackPanel x:Name="panelFormProduit" Grid.Column="0">
+                    <Label Width="200" Content="Nom produit" />
+                    <TextBox
+                        x:Name="textNom"
+                        Width="200"
+                        Text="{Binding Produit.Nom, ValidatesOnExceptions=True}"
+                        TextWrapping="Wrap" />
+                    <Label Width="200" Content="Code produit" />
+                    <TextBox
+                        x:Name="textMaitre"
+                        Width="200"
+                        Text="{Binding Produit.Code, ValidatesOnExceptions=True}"
+                        TextWrapping="Wrap" />
+                    <Label Width="200" Content="Type Pointe" />
+                    <ComboBox
+                        Width="200"
+                        DisplayMemberPath="Nom"
+                        ItemsSource="{Binding LesTypesPointes}"
+                        SelectedItem="{Binding Produit.unTypePointe, Mode=TwoWay}" />
+                    <Label Width="200" Content="Type" />
+                    <ComboBox
+                        Width="200"
+                        DisplayMemberPath="Nom"
+                        ItemsSource="{Binding LesTypes}"
+                        SelectedItem="{Binding Produit.unType, Mode=TwoWay}" />
+
+                    <Label Width="200" Content="Quantité en Stock" />
+                    <ui:NumberBox
+                        Width="200"
+                        Icon="Box24"
+                        Value="{Binding Produit.QuantiteStock}" />
+                    <Label Width="200" Content="Prix du produit" />
+                    <ui:NumberBox
+                        Width="200"
+                        Icon="CurrencyDollarEuro24"
+                        Value="{Binding Produit.PrixVente}" />
+                    <Label Width="200" Content="Disponibilité" />
+                    <ui:ToggleSwitch
+                        Width="200"
+                        HorizontalAlignment="Stretch"
+                        IsChecked="{Binding Produit.Disponible}"
+                        OffContent="Indisponible"
+                        OnContent="Disponible" />
+
+                    <!--  Bouton centré  -->
+                    <ui:Button
+                        x:Name="butAjouter"
+                        Width="200"
+                        Margin="0,20,0,0"
+                        HorizontalAlignment="Center"
+                        Appearance="Success"
+                        Click="butAjouter_Click"
+                        Content="Ajouter" />
+                </StackPanel>
+
+                <!--  Colonne 1 : Liste des couleurs  -->
+                <StackPanel
+                    Grid.Column="1"
+                    Width="176"
+                    HorizontalAlignment="Center">
+                    <Label Width="200" Content="Couleurs" />
+                    <ListView
+                        Width="180"
+                        Height="200"
+                        ItemsSource="{Binding LesCouleurs}"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto"
+                        SelectionMode="Extended">
+                        <ListView.ItemTemplate>
+                            <DataTemplate DataType="{x:Type models:Couleur}">
+                                <TextBlock Margin="0,5,0,5" Text="{Binding Nom}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
+            </Grid>
         </ui:Card>
     </Grid>
 </UserControl>
