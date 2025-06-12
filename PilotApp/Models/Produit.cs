@@ -189,6 +189,42 @@ namespace PilotApp.Models
             }
         }
 
+        public TypePointe TypePointe
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
+        public Type Type
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
+        public Couleur Couleur
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is Produit produit &&

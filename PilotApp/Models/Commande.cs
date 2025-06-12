@@ -170,6 +170,41 @@ namespace PilotApp.Models
 
         }
 
+        public Employe Employe
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
+        public ModeTransport ModeTransport
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
+        public Revendeur Revendeur
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
 
         public override bool Equals(object? obj)
         {

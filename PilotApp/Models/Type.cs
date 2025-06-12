@@ -70,6 +70,18 @@ namespace PilotApp.Models
             }
         }
 
+        public Categorie Categorie
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+
+            set
+            {
+            }
+        }
+
         public override bool Equals(object? obj)
         {
             return obj is Type type &&
