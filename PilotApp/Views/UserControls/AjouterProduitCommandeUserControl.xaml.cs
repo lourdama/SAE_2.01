@@ -91,7 +91,14 @@ namespace PilotApp.Views.UserControls
         }
         private void RechercheProduitDisponible()
         {
-
+            lesProduitsDispos= new List<Produit>();
+            foreach(Produit produit in MainWindow.Instance.Pilot.LesProduits)
+            {
+                if (produit.Disponible)
+                {
+                    lesProduitsDispos.Add(produit);
+                }
+            }
         }
     }
 }

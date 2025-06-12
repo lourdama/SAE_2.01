@@ -125,25 +125,81 @@ namespace PilotApp.Views.UserControls
             {
                 try
                 {
-                    this.apuc.unProduit.Id = this.apuc.unProduit.Create();
-                    MainWindow.Instance.Pilot.LesProduits.Add(this.apuc.unProduit);
+                    if (this.apuc.unProduit.LesCouleurs == null || this.apuc.unProduit.LesCouleurs.Count == 0)
+                    {
+                        MessageBox.Show("Le produit doit avoir au moins une couleur.",
+                            "Erreur de validation", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        return;
+                    }
+
+                    int nouveauId = this.apuc.unProduit.Create();
+
+                    if (nouveauId > 0)
+                    {
+                        this.apuc.unProduit.Id = nouveauId;
+                        MainWindow.Instance.Pilot.LesProduits.Add(this.apuc.unProduit);
+                        MessageBox.Show("Produit créé avec succès !",
+                            "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erreur lors de la création du produit : ID non valide.",
+                            "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Le produit n'a pas pu être créé.",
-                        "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Le produit n'a pas pu être créé.\nErreur : {ex.Message}",
+                        "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    System.Diagnostics.Debug.WriteLine($"Erreur création produit : {ex}");
                 }
             }
             else
             {
                 MessageBox.Show("Validation annulée.");
             }
-
         }
 
         private void butModifier_Click(object sender, RoutedEventArgs e)
         {
+            if (dgProduits.SelectedItem == null)
+                MessageBox.Show("Veuillez sélectionner un produit", "Attention",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+            {
+                this.produitSelectionne = (Produit)dgProduits.SelectedItem;
+                this.copie = new Produit(produitSelectionne.Id, produitSelectionne.UnTypePointe, produitSelectionne.UnType, produitSelectionne.LesCouleurs,
+                    produitSelectionne.Code, produitSelectionne.Nom, produitSelectionne.PrixVente, produitSelectionne.QuantiteStock, produitSelectionne.Disponible);
+                AjouterProduitUserControl ajouterCommande = new AjouterProduitUserControl(this, copie, Action.Modifier);
+                ajouterCommande.ValidationFaite += OnValidationFaiteModifier;
+                this.apuc = ajouterCommande;
+                MainWindow.Instance.vueActuelle.Content = this.apuc;
 
+            }
+        }
+
+        private void OnValidationFaiteModifier(bool estValide)
+        {
+            if (estValide == true)
+            {
+                try
+                {
+                    produitSelectionne.Update();
+                    produitSelectionne.UnTypePointe = copie.UnTypePointe;
+                    produitSelectionne.UnType = copie.UnType;
+                    produitSelectionne.LesCouleurs = copie.LesCouleurs;
+                    produitSelectionne.Code = copie.Code;
+                    produitSelectionne.Nom = copie.Nom;
+                    produitSelectionne.PrixVente = copie.PrixVente;
+                    produitSelectionne.Disponible = copie.Disponible;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Le produit n'a pas pu être modifié.", "Attention",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void butSupprimer_Click(object sender, RoutedEventArgs e)

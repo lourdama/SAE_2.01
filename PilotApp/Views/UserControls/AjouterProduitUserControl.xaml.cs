@@ -59,34 +59,47 @@ namespace PilotApp.Views.UserControls
                 {
                     txt.GetBindingExpression(System.Windows.Controls.TextBox.TextProperty)?.UpdateSource();
                 }
-                else if (uie is ComboBox)
+                else if (uie is ComboBox cmb)
                 {
-                    ComboBox cmb = (ComboBox)uie;
                     cmb.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
                 }
-                else if (uie is NumberBox)
+                else if (uie is NumberBox nmb)
                 {
-                    NumberBox nmb = (NumberBox)uie;
-                    nmb.GetBindingExpression(NumberBox.ValueProperty).UpdateSource();
+                    nmb.GetBindingExpression(NumberBox.ValueProperty)?.UpdateSource();
                 }
-                else if (uie is ToggleSwitch)
+                else if (uie is ToggleSwitch tgs)
                 {
-                    ToggleSwitch tgs = (ToggleSwitch)uie;
-                    tgs.GetBindingExpression(ToggleSwitch.IsCheckedProperty).UpdateSource();
-                }
-                else if (uie is System.Windows.Controls.ListView)
-                {
-                    System.Windows.Controls.ListView lsv = (System.Windows.Controls.ListView)uie;
-                    lsv.GetBindingExpression(System.Windows.Controls.ListView.SelectedItemsProperty).UpdateSource();
+                    tgs.GetBindingExpression(ToggleSwitch.IsCheckedProperty)?.UpdateSource();
                 }
 
                 if (Validation.GetHasError(uie))
+                {
                     ok = false;
+                }
             }
+
+            if (this.Vm.Produit.LesCouleurs == null || this.Vm.Produit.LesCouleurs.Count == 0)
+            {
+                System.Windows.MessageBox.Show("Veuillez sélectionner au moins une couleur.");
+                ok = false;
+            }
+
+            if (this.Vm.Produit.UnTypePointe == null)
+            {
+                System.Windows.MessageBox.Show("Veuillez sélectionner un type de pointe.");
+                ok = false;
+            }
+
+            if (this.Vm.Produit.UnType == null)
+            {
+                System.Windows.MessageBox.Show("Veuillez sélectionner un type.");
+                ok = false;
+            }
+
             if (ok)
             {
                 this.unProduit = this.Vm.Produit;
-                ValidationFaite.Invoke(ok);
+                ValidationFaite?.Invoke(ok);
                 MainWindow.Instance.vueActuelle.Content = this.pagePrecedente;
             }
             else
@@ -104,10 +117,16 @@ namespace PilotApp.Views.UserControls
                 List<Couleur> listCouleurTemp = new List<Couleur>();
                 foreach (var item in listView.SelectedItems)
                 {
-                    listCouleurTemp.Add(item as Couleur);
-
+                    if (item is Couleur couleur)
+                    {
+                        listCouleurTemp.Add(couleur);
+                    }
                 }
-                this.Vm.Produit.LesCouleurs = listCouleurTemp;
+
+                if (listCouleurTemp.Count > 0)
+                {
+                    this.Vm.Produit.LesCouleurs = listCouleurTemp;
+                }
             }
         }
     }

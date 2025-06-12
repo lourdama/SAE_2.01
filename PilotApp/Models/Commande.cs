@@ -147,7 +147,11 @@ namespace PilotApp.Models
 
             set
             {
-                dateLivraison = value;
+                if (value == null || value > this.DateCommande)
+                {
+                    dateLivraison = value;
+                }
+                else throw new ArgumentException("La date de livraison doit être null ou supérieure à la datecommande");
             }
         }
 

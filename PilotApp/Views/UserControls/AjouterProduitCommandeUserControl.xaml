@@ -41,7 +41,7 @@
                     Width="200"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Stretch"
-                    Appearance="Success"
+                    Appearance="Primary"
                     Click="butValider_Click"
                     Content="Valider" />
             </StackPanel>

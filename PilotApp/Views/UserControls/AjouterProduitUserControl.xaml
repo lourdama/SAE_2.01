@@ -48,16 +48,29 @@
                         ItemsSource="{Binding LesTypes}"
                         SelectedItem="{Binding Produit.UnType, Mode=TwoWay}" />
 
+                    <!--  Quantité en Stock  -->
                     <Label Width="200" Content="Quantité en Stock" />
                     <ui:NumberBox
+                        x:Name="numberBoxQuantite"
                         Width="200"
                         Icon="Box24"
-                        Value="{Binding Produit.QuantiteStock}" />
+                        LargeChange="10"
+                        Minimum="0"
+                        SmallChange="1"
+                        SpinButtonPlacementMode="Inline"
+                        Value="{Binding Produit.QuantiteStock, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <!--  Prix du produit  -->
                     <Label Width="200" Content="Prix du produit" />
                     <ui:NumberBox
+                        x:Name="numberBoxPrix"
                         Width="200"
                         Icon="CurrencyDollarEuro24"
-                        Value="{Binding Produit.PrixVente}" />
+                        LargeChange="1"
+                        Minimum="0"
+                        SmallChange="0.01"
+                        SpinButtonPlacementMode="Inline"
+                        Value="{Binding Produit.PrixVente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <Label Width="200" Content="Disponibilité" />
                     <ui:ToggleSwitch
                         Width="200"
@@ -72,7 +85,7 @@
                         Width="200"
                         Margin="0,20,0,0"
                         HorizontalAlignment="Center"
-                        Appearance="Success"
+                        Appearance="Primary"
                         Click="butAjouter_Click"
                         Content="Ajouter" />
                 </StackPanel>
@@ -84,11 +97,11 @@
                     HorizontalAlignment="Center">
                     <Label Width="200" Content="Couleurs" />
                     <ListView
+                        x:Name="listViewCouleurs"
                         Width="180"
                         Height="200"
                         ItemsSource="{Binding LesCouleurs}"
                         ScrollViewer.VerticalScrollBarVisibility="Auto"
-                        SelectedItem="{Binding Produit.LesCouleurs}"
                         SelectionChanged="ListView_SelectionChanged"
                         SelectionMode="Multiple">
                         <ListView.ItemTemplate>
