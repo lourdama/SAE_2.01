@@ -30,9 +30,10 @@ namespace PilotApp.Views.UserControls
         public AjouterProduitUserControl(UserControl pagePrecedente, Produit unProduit, Action action)
         {
             InitializeComponent();
+            AjouterProduitViewModel vm = new AjouterProduitViewModel(unProduit);
             this.action = action;
             this.pagePrecedente = pagePrecedente;
-            this.DataContext = this;
+            this.DataContext = vm;
 
             if (action == Action.Creer)
             {
@@ -75,8 +76,15 @@ namespace PilotApp.Views.UserControls
                 if (Validation.GetHasError(uie))
                     ok = false;
             }
-            ValidationFaite.Invoke(ok);
-            MainWindow.Instance.vueActuelle.Content = this.pagePrecedente;
+            if (ok)
+            {
+                ValidationFaite.Invoke(ok);
+                MainWindow.Instance.vueActuelle.Content = this.pagePrecedente;
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Veuillez corriger les erreurs.");
+            }
         }
     }
 }

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Foreground="Black" Height="410" VerticalAlignment="Top" HorizontalAlignment="Left" Width="790" FontSize="15" Margin="10,40,0,0"><Run Text="Bonjour " FontSize="40" /><Run Text=" "/><Run Text="{Binding EmployeConnecte.Prenom}" FontSize="40" /><Run Text=" "/><Run Text="" FontSize="40" /><Run Text=" "/><Run Text="{Binding EmployeConnecte.Nom}" FontSize="40" /><LineBreak/><Run Text="Bienvenue dans votre espace" FontSize="30" /><Run Text=" "/><Run Text="" FontSize="30" /><Run Text=" "/><Run Text="{Binding EmployeConnecte.UnRole.Nom}" FontSize="30" /></TextBlock>
+        <TextBlock Height="410" VerticalAlignment="Top" HorizontalAlignment="Left" Width="790" FontSize="15" Margin="10,40,0,0"><Run Text="Bonjour " FontSize="40" /><Run Text=" "/><Run Text="{Binding EmployeConnecte.Prenom}" FontSize="40" /><Run Text=" "/><Run Text="" FontSize="40" /><Run Text=" "/><Run Text="{Binding EmployeConnecte.Nom}" FontSize="40" /><LineBreak/><Run Text="Bienvenue dans votre espace" FontSize="30" /><Run Text=" "/><Run Text="" FontSize="30" /><Run Text=" "/><Run Text="{Binding EmployeConnecte.UnRole.Nom}" FontSize="30" /></TextBlock>
 
     </Grid>
 </UserControl>

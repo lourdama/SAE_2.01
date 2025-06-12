@@ -24,6 +24,8 @@ namespace PilotApp.Views.UserControls
     public partial class ProduitsUserControl : UserControl
     {
         public AjouterProduitUserControl apuc;
+        public Produit produitSelectionne;
+        public Produit copie;
         public ProduitsUserControl()
         {
             InitializeComponent();
@@ -127,7 +129,7 @@ namespace PilotApp.Views.UserControls
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Le chien n'a pas pu être créé.",
+                    MessageBox.Show("Le produit n'a pas pu être créé.",
                         "Attention", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
