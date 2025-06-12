@@ -28,13 +28,14 @@ namespace PilotApp.Views.UserControls
         public Produit unProduit;
         private Entreprise pilot = MainWindow.Instance.Pilot;
         private Action action;
+        private AjouterProduitViewModel Vm;
         public AjouterProduitUserControl(UserControl pagePrecedente, Produit unProduit, Action action)
         {
             InitializeComponent();
-            AjouterProduitViewModel vm = new AjouterProduitViewModel(unProduit);
+            this.Vm = new AjouterProduitViewModel(unProduit);
             this.action = action;
             this.pagePrecedente = pagePrecedente;
-            this.DataContext = vm;
+            this.DataContext = Vm;
             this.unProduit = unProduit;
 
             if (action == Action.Creer)
@@ -84,6 +85,7 @@ namespace PilotApp.Views.UserControls
             }
             if (ok)
             {
+                this.unProduit = this.Vm.Produit;
                 ValidationFaite.Invoke(ok);
                 MainWindow.Instance.vueActuelle.Content = this.pagePrecedente;
             }
@@ -96,9 +98,8 @@ namespace PilotApp.Views.UserControls
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var listView = sender as System.Windows.Controls.ListView;
-            var viewModel = DataContext as AjouterProduitViewModel; // Assurez-vous de remplacer YourViewModelType par le type réel de votre ViewModel
 
-            if (viewModel != null)
+            if (this.Vm != null)
             {
                 List<Couleur> listCouleurTemp = new List<Couleur>();
                 foreach (var item in listView.SelectedItems)
@@ -106,7 +107,7 @@ namespace PilotApp.Views.UserControls
                     listCouleurTemp.Add(item as Couleur);
 
                 }
-                viewModel.Produit.LesCouleurs = listCouleurTemp;
+                this.Vm.Produit.LesCouleurs = listCouleurTemp;
             }
         }
     }

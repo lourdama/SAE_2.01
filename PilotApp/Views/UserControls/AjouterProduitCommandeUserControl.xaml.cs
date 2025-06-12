@@ -27,13 +27,15 @@ namespace PilotApp.Views.UserControls
         public event Action<bool> ValidationFaite;
         public decimal Quantite { get; private set; }
         public decimal Prix { get; private set; }
+        private List<Produit> lesProduitsDispos;
 
         // Constructeur pour l'ajout
         public AjouterProduitCommandeUserControl(UserControl pagePrecedente)
         {
             InitializeComponent();
             this.pagePrecedente = pagePrecedente;
-            cmbProduits.ItemsSource = MainWindow.Instance.Pilot.LesProduits;
+            RechercheProduitDisponible();
+            cmbProduits.ItemsSource = lesProduitsDispos;
             cmbProduits.DisplayMemberPath = "Nom";
         }
 
@@ -42,7 +44,8 @@ namespace PilotApp.Views.UserControls
         {
             InitializeComponent();
             this.pagePrecedente = pagePrecedente;
-            cmbProduits.ItemsSource = MainWindow.Instance.Pilot.LesProduits;
+            RechercheProduitDisponible();
+            cmbProduits.ItemsSource = lesProduitsDispos;
             cmbProduits.DisplayMemberPath = "Nom";
 
             cmbProduits.SelectedItem = produitAModifier;
@@ -85,6 +88,10 @@ namespace PilotApp.Views.UserControls
             {
                 txtPrix.Text = string.Empty;
             }
+        }
+        private void RechercheProduitDisponible()
+        {
+
         }
     }
 }

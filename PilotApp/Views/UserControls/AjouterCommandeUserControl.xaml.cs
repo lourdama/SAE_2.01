@@ -46,7 +46,7 @@ namespace PilotApp.Views.UserControls
         private void butValiderCommande_Click(object sender, RoutedEventArgs e)
         {
             bool ok = true;
-            foreach (UIElement uie in panelFormChien.Children)
+            foreach (UIElement uie in panelFormCommande.Children)
             {
                 if (uie is TextBox txt)
                     txt.GetBindingExpression(TextBox.TextProperty)?.UpdateSource();
