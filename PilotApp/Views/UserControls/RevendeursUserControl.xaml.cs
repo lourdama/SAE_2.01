@@ -29,8 +29,12 @@ namespace PilotApp.Views.UserControls
         {
             InitializeComponent();
             this.DataContext = MainWindow.Instance.Pilot.LesRevendeurs;
+            this.Loaded += RevendeursUserControl_Loaded;
+        }
+        private void RevendeursUserControl_Loaded(object sender, RoutedEventArgs e)
+        {
             var vue = CollectionViewSource.GetDefaultView(dgRevendeur.ItemsSource);
-            //vue.Filter = RechercheMotClefProduit;
+            vue.Filter = RechercheMotClefProduit;
         }
 
         private bool RechercheMotClefProduit(object obj)
@@ -38,21 +42,20 @@ namespace PilotApp.Views.UserControls
             if (!(obj is Revendeur r))
                 return false;
 
-
-            if (!string.IsNullOrWhiteSpace(rechercheRaison.Text) &&
-                !r.RaisonSociale.StartsWith(rechercheRaison.Text, StringComparison.OrdinalIgnoreCase))
+            if (rechercheRaison?.Text != null &&
+                !string.IsNullOrWhiteSpace(rechercheRaison.Text) &&
+                !r.RaisonSociale?.StartsWith(rechercheRaison.Text, StringComparison.OrdinalIgnoreCase) == true)
                 return false;
 
-
-            if (!string.IsNullOrWhiteSpace(rechercheVille.Text) &&
-                !r.Ville.StartsWith(rechercheVille.Text, StringComparison.OrdinalIgnoreCase))
+            if (rechercheVille?.Text != null &&
+                !string.IsNullOrWhiteSpace(rechercheVille.Text) &&
+                !r.Ville?.StartsWith(rechercheVille.Text, StringComparison.OrdinalIgnoreCase) == true)
                 return false;
 
-            if (!string.IsNullOrWhiteSpace(rechercheCP.Text) &&
-                !r.CodePostal.StartsWith(rechercheCP.Text, StringComparison.OrdinalIgnoreCase))
+            if (rechercheCP?.Text != null &&
+                !string.IsNullOrWhiteSpace(rechercheCP.Text) &&
+                !r.CodePostal?.StartsWith(rechercheCP.Text, StringComparison.OrdinalIgnoreCase) == true)
                 return false;
-
-
 
             return true;
 
@@ -167,17 +170,21 @@ namespace PilotApp.Views.UserControls
 
         private void rechercheRaison_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            RefreshDg();
         }
 
         private void rechercheVille_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            RefreshDg();
         }
 
         private void rechercheCP_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            RefreshDg();
+        }
+        private void RefreshDg()
+        {
+            CollectionViewSource.GetDefaultView(dgRevendeur.ItemsSource).Refresh();
         }
     }
 }
