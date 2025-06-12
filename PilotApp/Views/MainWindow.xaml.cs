@@ -51,6 +51,7 @@ namespace PilotApp.Views
 
         private void DeconnexionButton_Click(object sender, RoutedEventArgs e)
         {
+            GestionnaireParametres.Sauvegarder(new FichierParametres());
             EstCommercial = false;
             EstResponsable = false;
             EstAdmin = false;

@@ -21,7 +21,7 @@
         <!-- Conteneur principal avec effet moderne mais discret -->
         <Border Background="#FFFFFF" 
                 CornerRadius="12" 
-                Margin="40"
+                Margin="40,10,40,10"
                 BorderBrush="#DEE2E6"
                 BorderThickness="1">
             <Border.Effect>
@@ -163,6 +163,9 @@
                                 </Style>
                             </ui:PasswordBox.Style>
                         </ui:PasswordBox>
+                        <CheckBox x:Name="ResterConnecteCheckBox"
+                          Content="Rester connecté" Margin="0,-10,0,10"
+                          />
 
                         <!-- Message d'erreur -->
                         <Border x:Name="ErrorContainer"
@@ -195,15 +198,14 @@
                                           VerticalAlignment="Center"/>
                             </StackPanel>
                         </Border>
-                    
+
                         <!-- Bouton de connexion -->
                         <ui:Button x:Name="LoginButton"
                                   Content="Se connecter"
-                                  Height="44"
+                                  Height="32"
                                   FontSize="15"
                                   FontWeight="Medium"
                                   HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Top"
                                   Appearance="Primary" Click="LoginButton_Click" IsDefault="True">
                             <ui:Button.Style>
                                 <Style TargetType="{x:Type ui:Button}" BasedOn="{StaticResource {x:Type ui:Button}}">
@@ -226,7 +228,7 @@
                                 </Style>
                             </ui:Button.Style>
                         </ui:Button>
-                        
+
 
                     </StackPanel>
 

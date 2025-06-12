@@ -25,7 +25,17 @@ namespace PilotApp.Views
          
             // Focus sur le champ username au démarrage
             Loaded += (s, e) => UsernameTextBox.Focus();
+            var parametres = GestionnaireParametres.Charger();
+            if (parametres.ResterConnecte)
+            {
+                UsernameTextBox.Text = parametres.NomUtilisateur;
+                PasswordBoxMDP.Password = parametres.MotDePasse;
+                ResterConnecteCheckBox.IsChecked = true;
+                LoginButton_Click(LoginButton, null);
+            }
+
         }
+
 
 
 
@@ -36,7 +46,16 @@ namespace PilotApp.Views
             var mainWindow = new MainWindow();
             new AuthenticationService(UsernameTextBox.Text, PasswordBoxMDP.Password);
             if (MainWindow.Instance.connexion)
-            {          
+            {
+                bool reste = ResterConnecteCheckBox.IsChecked == true;
+                var nouveau = new FichierParametres
+                {
+                    ResterConnecte = reste,
+                    NomUtilisateur = reste ? UsernameTextBox.Text : "",
+                    MotDePasse = reste ? PasswordBoxMDP.Password : ""
+                };
+                
+                GestionnaireParametres.Sauvegarder(nouveau);
                 mainWindow.Show();
                 MainWindow.Instance.vueActuelle.Content = new Accueil();
                 this.Close();
