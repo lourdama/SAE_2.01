@@ -111,7 +111,7 @@
         <ui:TextBox
             x:Name="textBoxFiltreCode"
             Width="88"
-            Margin="10,69,0,0"
+            Margin="5,98,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             PlaceholderText="Filtre code"
@@ -119,7 +119,7 @@
         <ui:TextBox
             x:Name="textBoxFiltreNom"
             Width="88"
-            Margin="103,69,0,0"
+            Margin="98,98,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             PlaceholderText="Filtre nom"
@@ -127,7 +127,7 @@
         <ComboBox
             x:Name="comboBoxFiltreTypePointe"
             Height="36"
-            Margin="196,69,516,0"
+            Margin="191,98,521,0"
             VerticalAlignment="Top"
             DisplayMemberPath="Nom"
             SelectedItem="{Binding SelectedTypePointe, Mode=TwoWay}"
@@ -135,7 +135,7 @@
         <ComboBox
             x:Name="comboBoxFiltreType"
             Height="36"
-            Margin="289,69,423,0"
+            Margin="284,98,428,0"
             VerticalAlignment="Top"
             DisplayMemberPath="Nom"
             SelectedItem="{Binding SelectedType, Mode=TwoWay}"
@@ -143,7 +143,7 @@
 
         <ui:NumberBox
             x:Name="numberBoxFiltrePrixVente"
-            Margin="382,69,279,0"
+            Margin="377,98,284,0"
             VerticalAlignment="Top"
             Icon="NumberSymbolSquare24"
             PlaceholderText="Filtre Prix"
@@ -151,12 +151,12 @@
 
         <ui:NumberBox
             x:Name="numberBoxFiltreQuantite"
-            Margin="526,69,98,0"
+            Margin="521,98,103,0"
             VerticalAlignment="Top"
             Icon="NumberSymbolSquare24"
             PlaceholderText="Filtre Quantité"
             TextChanged="numberBoxFiltreQuantite_TextChanged" />
-        <StackPanel Grid.ColumnSpan="2" Margin="702,39,93,4">
+        <StackPanel Grid.ColumnSpan="2" Margin="702,68,93,0">
 
 
 
@@ -175,5 +175,8 @@
                 Unchecked="checkBoxDisponibiliteFalse_Unchecked" />
 
         </StackPanel>
+        <ui:TextBlock TextWrapping="Wrap" Margin="211,16,187,62" FontSize="44" Height="60" FontWeight="Bold">
+            <Run Language="fr-fr" Text="Les produits"/>
+        </ui:TextBlock>
     </Grid>
 </UserControl>

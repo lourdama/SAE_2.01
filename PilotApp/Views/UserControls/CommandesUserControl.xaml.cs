@@ -32,6 +32,10 @@ namespace PilotApp.Views.UserControls
         {
             InitializeComponent();
             ChercherLesCommandes();
+            if(MainWindow.Instance.EstAdmin)
+            {
+                rechercherEmploye.Visibility= Visibility.Visible;
+            }
             this.DataContext = listeCommandeDeEmploye;
             this.Loaded += CommandeUserControl_Loaded;
 
@@ -60,6 +64,11 @@ namespace PilotApp.Views.UserControls
             if (rechercherEmploye?.Text != null &&
                 !string.IsNullOrWhiteSpace(rechercherEmploye.Text) &&
                 !c.UnEmploye.Nom?.StartsWith(rechercherEmploye.Text, StringComparison.OrdinalIgnoreCase) == true)
+                return false;
+
+            if (rechercherDate?.Text != null &&
+                !string.IsNullOrWhiteSpace(rechercherDate.Text) &&
+                !c.DateCommande.ToString("dd/MM/yyyy")?.Contains(rechercherDate.Text, StringComparison.OrdinalIgnoreCase) == true)
                 return false;
 
             return true;
@@ -211,6 +220,11 @@ namespace PilotApp.Views.UserControls
         }
 
         private void rechercherEmploye_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            RefreshDg();
+        }
+
+        private void rechercherDate_TextChanged(object sender, TextChangedEventArgs e)
         {
             RefreshDg();
         }

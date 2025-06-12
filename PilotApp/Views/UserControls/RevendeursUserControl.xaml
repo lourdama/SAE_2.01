@@ -87,6 +87,9 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             PlaceholderText="Code Postal" Margin="335,90,0,0" TextChanged="rechercheCP_TextChanged" />
+        <ui:TextBlock TextWrapping="Wrap" Margin="211,16,187,62" FontSize="44" Height="60" FontWeight="Bold">
+            <Run Language="fr-fr" Text="Les revendeurs"/>
+        </ui:TextBlock>
 
     </Grid>
 </UserControl>
