@@ -21,13 +21,11 @@ namespace PilotApp.Models
         {
             Commande = commande;
 
-            // ⚠️ Afficher uniquement le revendeur lié à la commande
-            LesRevendeurs = new ObservableCollection<Revendeur>();
-            if (commande.UnRevendeur != null)
-                LesRevendeurs.Add(commande.UnRevendeur);
+            LesRevendeurs = MainWindow.Instance.Pilot.LesRevendeurs;
+
         }
 
-      
+
     }
 
 }

@@ -11,13 +11,14 @@
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="135*"/>
-            <ColumnDefinition Width="46*"/>
+            <ColumnDefinition Width="135*" />
+            <ColumnDefinition Width="46*" />
         </Grid.ColumnDefinitions>
         <ui:Card
+            Grid.ColumnSpan="2"
             Height="558"
             Margin="20,0,20,0"
-            Background="#E4FFFFFF" Grid.ColumnSpan="2">
+            Background="#E4FFFFFF">
             <StackPanel
                 x:Name="panelFormChien"
                 Height="534"
@@ -103,12 +104,13 @@
 
                 <ui:Button
                     x:Name="butModifRevendeur"
-                    Width="200"
                     Grid.Column="1"
+                    Width="200"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Stretch"
                     Appearance="Success"
-                    Content="Modifier Revendeur" Click="butModifRevendeur_Click"  />
+                    Click="butModifRevendeur_Click"
+                    Content="Modifier Revendeur" />
 
                 <ui:Button
                     x:Name="butAjouterRevendeur"
@@ -116,7 +118,8 @@
                     HorizontalAlignment="Center"
                     VerticalAlignment="Stretch"
                     Appearance="Success"
-                    Content="Ajouter Revendeur" Click="butAjouterRevendeur_Click" />
+                    Click="butAjouterRevendeur_Click"
+                    Content="Ajouter Revendeur" />
 
             </StackPanel>
 
