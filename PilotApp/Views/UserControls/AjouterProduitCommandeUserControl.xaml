@@ -10,36 +10,32 @@
     d:DesignWidth="350"
     mc:Ignorable="d">
     <Grid>
-        <ui:Card
-            Height="340"
-            Margin="20,0,20,0"
-            VerticalAlignment="Top"
-            Background="#E4FFFFFF">
-            <StackPanel Margin="20">
 
-                <Label HorizontalAlignment="Center" Content="Produit" />
-                <ComboBox
+        <StackPanel Margin="20">
+
+            <Label HorizontalAlignment="Center" Content="Produit" />
+            <ComboBox
                     x:Name="cmbProduits"
                     Width="240"
                     Margin="0,0,0,10"
                     DisplayMemberPath="Nom"
                     SelectionChanged="cmbProduits_SelectionChanged" />
 
-                <Label HorizontalAlignment="Center" Content="Quantité" />
-                <ui:NumberBox
+            <Label HorizontalAlignment="Center" Content="Quantité" />
+            <ui:NumberBox
                     Minimum="1"
                     SmallChange="1"
                     x:Name="txtQuantite"
                     Width="240"
                     Margin="0,0,0,10" />
 
-                <Label HorizontalAlignment="Center" Content="Prix unitaire (€)" />
-                <TextBox
+            <Label HorizontalAlignment="Center" Content="Prix unitaire (€)" />
+            <TextBox
                     x:Name="txtPrix"
                     IsEnabled="False"
                     Width="240"
                     Margin="0,0,0,20" />
-                <ui:Button
+            <ui:Button
                     x:Name="butAjouterProduit"
                     Width="200"
                     HorizontalAlignment="Center"
@@ -47,7 +43,6 @@
                     Appearance="Primary"
                     Click="butValider_Click"
                     Content="Valider" />
-            </StackPanel>
-        </ui:Card>
+        </StackPanel>
     </Grid>
 </UserControl>

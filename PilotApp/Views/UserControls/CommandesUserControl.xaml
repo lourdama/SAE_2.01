@@ -8,7 +8,7 @@
     Width="950"
     Height="724">
 
-    <Grid Background="White">
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="381*" />
             <ColumnDefinition Width="94*" />

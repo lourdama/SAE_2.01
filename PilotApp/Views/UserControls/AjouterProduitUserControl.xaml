@@ -11,10 +11,7 @@
     d:DesignWidth="600"
     mc:Ignorable="d">
     <Grid Margin="0,0,0,-69">
-        <ui:Card
-            Height="581"
-            Margin="20,0,10,0"
-            Background="#E4FFFFFF">
+        
             <Grid Margin="10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -47,7 +44,6 @@
                         ItemsSource="{Binding LesTypes}"
                         SelectedItem="{Binding Produit.UnType, Mode=TwoWay}" />
 
-                    <!--  Quantité en Stock  -->
                     <Label Width="200" Content="Quantité en Stock" />
                     <ui:NumberBox
                         x:Name="numberBoxQuantite"
@@ -59,7 +55,6 @@
                         SpinButtonPlacementMode="Inline"
                         Value="{Binding Produit.QuantiteStock, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                    <!--  Prix du produit  -->
                     <Label Width="200" Content="Prix du produit" />
                     <ui:NumberBox
                         x:Name="numberBoxPrix"
@@ -109,6 +104,6 @@
                     </ListView>
                 </StackPanel>
             </Grid>
-        </ui:Card>
+
     </Grid>
 </UserControl>

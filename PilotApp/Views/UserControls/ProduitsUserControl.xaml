@@ -11,7 +11,7 @@
         <CollectionViewSource x:Key="TypesSource" Source="{Binding Path=Pilot.LesTypes}" />
     </UserControl.Resources>
 
-    <Grid Background="White">
+    <Grid >
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="16*" />
             <ColumnDefinition Width="3*" />

@@ -160,12 +160,11 @@
                         </ui:NavigationViewItem>
 
 
-
-                        <Button
-                            x:Name="BoutonChangerTheme"
+                        <!--
+                        <Button x:Name="BoutonChangerTheme"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Click="BoutonChangerTheme_Click">
+                            Click="BoutonChangerTheme_Click"> 
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock
                                     Height="14"
@@ -175,6 +174,7 @@
                                 <TextBlock Text="Changer de Thème" />
                             </StackPanel>
                         </Button>
+                        -->
 
                     </ui:NavigationView.MenuItems>
                 </ui:NavigationView>
