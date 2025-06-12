@@ -21,7 +21,6 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <!--  Colonne 0 : Formulaire produit  -->
                 <StackPanel x:Name="panelFormProduit" Grid.Column="0">
                     <Label Width="200" Content="Nom produit" />
                     <TextBox
@@ -79,7 +78,6 @@
                         OffContent="Indisponible"
                         OnContent="Disponible" />
 
-                    <!--  Bouton centré  -->
                     <ui:Button
                         x:Name="butAjouter"
                         Width="200"
@@ -90,7 +88,6 @@
                         Content="Ajouter" />
                 </StackPanel>
 
-                <!--  Colonne 1 : Liste des couleurs  -->
                 <StackPanel
                     Grid.Column="1"
                     Width="176"

@@ -365,13 +365,11 @@ namespace PilotApp.Models
 
         void ICrud<Commande>.Read()
         {
-            //Méthode existante mais utilisée d'une autre manière pour des raisons de la modélisation de la BDD
             throw new NotImplementedException();
         }
 
         List<Commande> ICrud<Commande>.FindAll()
         {
-            //Méthode existante mais utilisée d'une autre manière pour des raisons de la modélisation de la BDD
             throw new NotImplementedException();
         }
 

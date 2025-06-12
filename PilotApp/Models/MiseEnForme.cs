@@ -9,7 +9,6 @@ namespace PilotApp.Models
 {
     public class MiseEnForme
     {
-        // Vérifie si la valeur est comprise entre deux bornes (inclusivement)
         public static bool EstEntre<T>(T valeur, T min, T max) where T : IComparable<T>
         {
             return valeur.CompareTo(min) >= 0 && valeur.CompareTo(max) <= 0;
@@ -20,7 +19,6 @@ namespace PilotApp.Models
             return valeur.CompareTo(min) >= 0;
         }
 
-        // Vérifie si la chaîne n'est pas null ou whitespace
         public static bool NEstPasNullOuWhitespace(string valeur)
         {
             return !string.IsNullOrWhiteSpace(valeur);
@@ -31,7 +29,6 @@ namespace PilotApp.Models
             return valeur != null;
         }
 
-        // Met en forme la chaîne : première lettre en majuscule, le reste en minuscules sauf celles après un espace
         public static string FormaterString(string valeur)
         {
             if (string.IsNullOrWhiteSpace(valeur))
