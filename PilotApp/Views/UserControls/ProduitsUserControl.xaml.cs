@@ -163,7 +163,43 @@ namespace PilotApp.Views.UserControls
 
         private void butModifier_Click(object sender, RoutedEventArgs e)
         {
+            if (dgProduits.SelectedItem == null)
+                MessageBox.Show("Veuillez sélectionner un produit", "Attention",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+            {
+                this.produitSelectionne = (Produit)dgProduits.SelectedItem;
+                this.copie = new Produit(produitSelectionne.Id, produitSelectionne.UnTypePointe, produitSelectionne.UnType, produitSelectionne.LesCouleurs,
+                    produitSelectionne.Code, produitSelectionne.Nom, produitSelectionne.PrixVente, produitSelectionne.QuantiteStock, produitSelectionne.Disponible);
+                AjouterProduitUserControl ajouterCommande = new AjouterProduitUserControl(this, copie, Action.Modifier);
+                ajouterCommande.ValidationFaite += OnValidationFaiteModifier;
+                this.apuc = ajouterCommande;
+                MainWindow.Instance.vueActuelle.Content = this.apuc;
 
+            }
+        }
+
+        private void OnValidationFaiteModifier(bool estValide)
+        {
+            if (estValide == true)
+            {
+                try
+                {
+                    produitSelectionne.Update();
+                    produitSelectionne.UnTypePointe = copie.UnTypePointe;
+                    produitSelectionne.UnType = copie.UnType;
+                    produitSelectionne.LesCouleurs = copie.LesCouleurs;
+                    produitSelectionne.Code = copie.Code;
+                    produitSelectionne.Nom = copie.Nom;
+                    produitSelectionne.PrixVente = copie.PrixVente;
+                    produitSelectionne.Disponible = copie.Disponible;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Le produit n'a pas pu être modifié.", "Attention",
+               MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
 
         private void butSupprimer_Click(object sender, RoutedEventArgs e)
