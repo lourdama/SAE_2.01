@@ -102,14 +102,20 @@ namespace PilotApp.Models
 
                 if (cmd.Connection.State != ConnectionState.Open)
                 {
-                    cmd.Connection.Open(); 
+                    cmd.Connection.Open();
                 }
-                nb = (int)cmd.ExecuteScalar();
 
+                var result = cmd.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    nb = Convert.ToInt32(result);
+                }
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 LogError.Log(ex, "Pb avec une requete insert " + cmd.CommandText);
-                throw; }
+                throw;
+            }
             return nb;
         }
 

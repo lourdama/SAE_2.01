@@ -323,7 +323,7 @@ namespace PilotApp.Models
             {
                 cmdInsertCP.Parameters.AddWithValue("numproduit", this.Id);
                 cmdInsertCP.Parameters.AddWithValue("numcouleur", couleur.Id);
-                return DataAccess.Instance.ExecuteInsert(cmdInsertCP);
+                return DataAccess.Instance.ExecuteSet(cmdInsertCP);
             }
         }
 
