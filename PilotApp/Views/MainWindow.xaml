@@ -42,7 +42,7 @@
                         Foreground="White"
                         Opacity="0.8"
                         Text=" - Gestion des ventes" />
-                    
+
                 </StackPanel>
 
                 <StackPanel
@@ -55,7 +55,7 @@
                         Foreground="White"
                         Symbol="Person24" />
 
-                    <TextBlock Foreground="White" Height="20">
+                    <TextBlock Height="20" Foreground="White">
                         <Run Text="{Binding EmployeConnecte.Nom}" />
                         <Run Text="{Binding EmployeConnecte.Prenom}" />
                         <Run Text=" | " />
@@ -74,17 +74,19 @@
                         Command="{Binding LogoutCommand}"
                         Content="Déconnexion"
                         Foreground="White" />
-                    <ui:Button x:Name="CloseButton"
-                          Content="✕"
-                          Width="32"
-                          Height="32"
-                          HorizontalAlignment="Right"
-                          VerticalAlignment="Top"
-                          Background="Transparent"
-                          Foreground="White"
-                          BorderThickness="0"
-                          FontSize="14"
-                          Click="CloseButton_Click" Margin="20,0,0,0"/>
+                    <ui:Button
+                        x:Name="CloseButton"
+                        Width="32"
+                        Height="32"
+                        Margin="20,0,0,0"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Click="CloseButton_Click"
+                        Content="✕"
+                        FontSize="14"
+                        Foreground="White" />
                 </StackPanel>
             </Grid>
         </Border>
@@ -100,7 +102,6 @@
             <Border
                 Grid.Column="0"
                 Background="#FFF5F5F5"
-                BorderBrush="#FFEEEEEE"
                 BorderThickness="0,0,1,0">
 
                 <ui:NavigationView
@@ -111,20 +112,26 @@
 
                     <ui:NavigationView.MenuItems>
                         <!--  Menu commun  -->
-                        <ui:NavigationViewItem x:Name="butAccueil"
-                             Content="Accueil"
-                             Icon="{ui:SymbolIcon Home24}"
-                             Tag="produits" Click="butAccueil_Click"  />
-                                                <ui:NavigationViewItem x:Name="butProduits"
-                             Content="Produits"
-                             Icon="{ui:SymbolIcon Box24}"
-                             Tag="produits" Click="butProduits_Click" />
+                        <ui:NavigationViewItem
+                            x:Name="butAccueil"
+                            Click="butAccueil_Click"
+                            Content="Accueil"
+                            Icon="{ui:SymbolIcon Home24}"
+                            Tag="produits" />
+                        <ui:NavigationViewItem
+                            x:Name="butProduits"
+                            Click="butProduits_Click"
+                            Content="Produits"
+                            Icon="{ui:SymbolIcon Box24}"
+                            Tag="produits" />
 
                         <!--  Menu Commercial  -->
-                        <ui:NavigationViewItem x:Name="butCommande"
+                        <ui:NavigationViewItem
+                            x:Name="butCommande"
+                            Click="butCommande_Click"
                             Content="Commandes"
                             Icon="{ui:SymbolIcon Cart24}"
-                            Tag="commandes" Click="butCommande_Click">
+                            Tag="commandes">
                             <ui:NavigationViewItem.Style>
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />
@@ -137,10 +144,12 @@
                             </ui:NavigationViewItem.Style>
                         </ui:NavigationViewItem>
 
-                        <ui:NavigationViewItem x:Name="butRevendeurs"
+                        <ui:NavigationViewItem
+                            x:Name="butRevendeurs"
+                            Click="butRevendeurs_Click"
                             Content="Revendeurs"
                             Icon="{ui:SymbolIcon StoreMicrosoft24}"
-                            Tag="revendeurs" Click="butRevendeurs_Click">
+                            Tag="revendeurs">
                             <ui:NavigationViewItem.Style>
                                 <Style TargetType="ui:NavigationViewItem">
                                     <Setter Property="Visibility" Value="Collapsed" />
@@ -153,22 +162,30 @@
                             </ui:NavigationViewItem.Style>
                         </ui:NavigationViewItem>
 
-                       
 
-                        <Button x:Name="BoutonChangerTheme" HorizontalAlignment="Center" VerticalAlignment="Center" Click="BoutonChangerTheme_Click">
+
+                        <Button
+                            x:Name="BoutonChangerTheme"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Click="BoutonChangerTheme_Click">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="&#xE708;" FontFamily="Segoe MDL2 Assets" Margin="0,0,5,0" Height="14"/>
-                                <TextBlock Text="Changer de Thème"/>
+                                <TextBlock
+                                    Height="14"
+                                    Margin="0,0,5,0"
+                                    FontFamily="Segoe MDL2 Assets"
+                                    Text="&#xE708;" />
+                                <TextBlock Text="Changer de Thème" />
                             </StackPanel>
                         </Button>
 
                     </ui:NavigationView.MenuItems>
                 </ui:NavigationView>
-                
+
             </Border>
 
-            <Border Grid.Column="1" Background="White" Height="728">
-                <ContentControl x:Name="vueActuelle"/>
+            <Border Grid.Column="1" Height="728">
+                <ContentControl x:Name="vueActuelle" />
             </Border>
 
 
