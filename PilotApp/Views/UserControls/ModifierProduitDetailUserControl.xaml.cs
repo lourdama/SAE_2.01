@@ -82,12 +82,18 @@ namespace PilotApp.Views.UserControls
             }
 
             // 3) Mettre à jour l’affichage
-            dgLignes.Items.Refresh();
+            CollectionViewSource.GetDefaultView(dgLignes.ItemsSource).Refresh();
 
         }
 
         private void butRetour_Click(object sender, RoutedEventArgs e)
         {
+            if (pagePrec is AjouterCommandeUserControl pageAjout)
+            {
+                pageAjout.txtNbProduits.Text = $"{Commande.LesSousCommandes.Count} produit(s) ajouté(s)";
+                pageAjout.txtPrixTotal.GetBindingExpression(TextBox.TextProperty)?.UpdateTarget();
+            }
+
             MainWindow.Instance.vueActuelle.Content = this.pagePrec;
 
         }
@@ -129,8 +135,8 @@ namespace PilotApp.Views.UserControls
                 Commande.LesSousCommandes[p] = nouvelleValeur;
                 MessageBox.Show("Produit modifié avec succès.");
             }
-            
-            dgLignes.Items.Refresh();
+
+            CollectionViewSource.GetDefaultView(dgLignes.ItemsSource).Refresh();
         }
 
 
@@ -156,10 +162,11 @@ namespace PilotApp.Views.UserControls
             }
 
             // 3) Mettre à jour l’affichage
-            dgLignes.Items.Refresh();
+            CollectionViewSource.GetDefaultView(dgLignes.ItemsSource).Refresh();
 
 
 
         }
+
     }
 }
