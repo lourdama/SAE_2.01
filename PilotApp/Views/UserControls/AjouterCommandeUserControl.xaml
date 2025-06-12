@@ -10,10 +10,14 @@
     d:DesignWidth="724"
     mc:Ignorable="d">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="135*"/>
+            <ColumnDefinition Width="46*"/>
+        </Grid.ColumnDefinitions>
         <ui:Card
-            Height="525"
+            Height="558"
             Margin="20,0,20,0"
-            Background="#E4FFFFFF">
+            Background="#E4FFFFFF" Grid.ColumnSpan="2">
             <StackPanel
                 x:Name="panelFormChien"
                 Height="534"
@@ -96,8 +100,26 @@
                     Content="ValiderCommande" />
 
 
+
+                <ui:Button
+                    x:Name="butModifRevendeur"
+                    Width="200"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                    Appearance="Success"
+                    Content="Modifier Revendeur" Click="butModifRevendeur_Click"  />
+
+                <ui:Button
+                    x:Name="butAjouterRevendeur"
+                    Width="200"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                    Appearance="Success"
+                    Content="Ajouter Revendeur" Click="butAjouterRevendeur_Click" />
+
             </StackPanel>
-            
+
         </ui:Card>
     </Grid>
 </UserControl>

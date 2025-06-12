@@ -133,10 +133,33 @@ namespace PilotApp.Views.UserControls
             dgLignes.Items.Refresh();
         }
 
+
+
+        private void dgReset()
+        {
+            CollectionViewSource.GetDefaultView(dgLignes.ItemsSource).Refresh();
+        }
         private void butSupprimer_Click(object sender, RoutedEventArgs e)
         {
-           
-            
+            var ligne = (KeyValuePair<Produit, decimal[]>)dgLignes.SelectedItem;
+            Produit p = ligne.Key;
+
+
+            if (Commande.LesSousCommandes.ContainsKey(p))
+            {
+                Commande.LesSousCommandes.Remove(p);
+                MessageBox.Show("Produit supprimer !");
+            }
+            else
+            {
+                MessageBox.Show("Erreur");
+            }
+
+            // 3) Mettre à jour l’affichage
+            dgLignes.Items.Refresh();
+
+
+
         }
     }
 }

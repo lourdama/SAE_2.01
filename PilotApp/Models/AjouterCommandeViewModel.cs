@@ -11,14 +11,23 @@ namespace PilotApp.Models
     public class AjouterCommandeViewModel
     {
         public Commande Commande { get; set; }
+
         public ObservableCollection<Employe> LesEmployes => MainWindow.Instance.Pilot.LesEmployes;
-        public ObservableCollection<Revendeur> LesRevendeurs => MainWindow.Instance.Pilot.LesRevendeurs;
         public ObservableCollection<ModeTransport> LesModesTransports => MainWindow.Instance.Pilot.LesModesTransports;
+
+        public ObservableCollection<Revendeur> LesRevendeurs { get; set; }
 
         public AjouterCommandeViewModel(Commande commande)
         {
             Commande = commande;
+
+            // ⚠️ Afficher uniquement le revendeur lié à la commande
+            LesRevendeurs = new ObservableCollection<Revendeur>();
+            if (commande.UnRevendeur != null)
+                LesRevendeurs.Add(commande.UnRevendeur);
         }
+
+      
     }
 
 }
