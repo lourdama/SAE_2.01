@@ -283,5 +283,13 @@ namespace PilotApp.Views.UserControls
         }
 
 
+        private void checkDisponible_Click(object sender, RoutedEventArgs e)
+        {
+            var cb = (CheckBox)sender;
+            if (cb.DataContext is Produit produit)
+            {
+                produit.UpdateDisponibilite();
+            }
+        }
     }
 }
