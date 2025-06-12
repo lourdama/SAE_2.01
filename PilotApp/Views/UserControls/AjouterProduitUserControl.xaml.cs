@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using PilotApp.Models;
 using Wpf.Ui.Controls;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace PilotApp.Views.UserControls
 {
@@ -34,6 +35,7 @@ namespace PilotApp.Views.UserControls
             this.action = action;
             this.pagePrecedente = pagePrecedente;
             this.DataContext = vm;
+            this.unProduit = unProduit;
 
             if (action == Action.Creer)
             {
@@ -52,15 +54,14 @@ namespace PilotApp.Views.UserControls
             bool ok = true;
             foreach (UIElement uie in panelFormProduit.Children)
             {
-                if (uie is System.Windows.Controls.TextBox)
+                if (uie is System.Windows.Controls.TextBox txt)
                 {
-                    System.Windows.Controls.TextBox txt = (System.Windows.Controls.TextBox)uie;
-                    txt.GetBindingExpression(System.Windows.Controls.TextBox.TextProperty).UpdateSource();
+                    txt.GetBindingExpression(System.Windows.Controls.TextBox.TextProperty)?.UpdateSource();
                 }
                 else if (uie is ComboBox)
                 {
                     ComboBox cmb = (ComboBox)uie;
-                    cmb.GetBindingExpression(ComboBox.TextProperty).UpdateSource();
+                    cmb.GetBindingExpression(ComboBox.SelectedItemProperty)?.UpdateSource();
                 }
                 else if (uie is NumberBox)
                 {
@@ -71,6 +72,11 @@ namespace PilotApp.Views.UserControls
                 {
                     ToggleSwitch tgs = (ToggleSwitch)uie;
                     tgs.GetBindingExpression(ToggleSwitch.IsCheckedProperty).UpdateSource();
+                }
+                else if (uie is System.Windows.Controls.ListView)
+                {
+                    System.Windows.Controls.ListView lsv = (System.Windows.Controls.ListView)uie;
+                    lsv.GetBindingExpression(System.Windows.Controls.ListView.SelectedItemsProperty).UpdateSource();
                 }
 
                 if (Validation.GetHasError(uie))
