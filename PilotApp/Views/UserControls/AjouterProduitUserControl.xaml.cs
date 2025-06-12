@@ -30,9 +30,10 @@ namespace PilotApp.Views.UserControls
         public AjouterProduitUserControl(UserControl pagePrecedente, Produit unProduit, Action action)
         {
             InitializeComponent();
+            AjouterProduitViewModel vm = new AjouterProduitViewModel(unProduit);
             this.action = action;
             this.pagePrecedente = pagePrecedente;
-            this.DataContext = this;
+            this.DataContext = vm;
 
             if (action == Action.Creer)
             {
