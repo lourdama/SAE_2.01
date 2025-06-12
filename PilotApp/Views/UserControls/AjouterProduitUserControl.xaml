@@ -47,16 +47,29 @@
                         ItemsSource="{Binding LesTypes}"
                         SelectedItem="{Binding Produit.UnType, Mode=TwoWay}" />
 
+                    <!--  Quantité en Stock  -->
                     <Label Width="200" Content="Quantité en Stock" />
                     <ui:NumberBox
+                        x:Name="numberBoxQuantite"
                         Width="200"
                         Icon="Box24"
-                        Value="{Binding Produit.QuantiteStock}" />
+                        LargeChange="10"
+                        Minimum="0"
+                        SmallChange="1"
+                        SpinButtonPlacementMode="Inline"
+                        Value="{Binding Produit.QuantiteStock, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+
+                    <!--  Prix du produit  -->
                     <Label Width="200" Content="Prix du produit" />
                     <ui:NumberBox
+                        x:Name="numberBoxPrix"
                         Width="200"
                         Icon="CurrencyDollarEuro24"
-                        Value="{Binding Produit.PrixVente}" />
+                        LargeChange="1"
+                        Minimum="0"
+                        SmallChange="0.01"
+                        SpinButtonPlacementMode="Inline"
+                        Value="{Binding Produit.PrixVente, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                     <Label Width="200" Content="Disponibilité" />
                     <ui:ToggleSwitch
                         Width="200"

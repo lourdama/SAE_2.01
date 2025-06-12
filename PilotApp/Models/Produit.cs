@@ -180,7 +180,7 @@ namespace PilotApp.Models
         {
             get
             {
-                // return  new BitmapImage (new Uri($"pack://application:,,,/Images/{this.Code}.jpeg"));
+                // return  new BitmapImage (new Uri($"pack://application:,,,/Images/{this.Code}.jpg"));
                 BitmapImage image = new BitmapImage();
                 Random random = new Random();
                 int randomNbImage = random.Next(1, 7);
