@@ -76,17 +76,17 @@
             Margin="10,90,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            PlaceholderText="Raison Sociale" TextChanged="rechercheRaison_TextChanged" />
+            PlaceholderText="Raison Sociale" TextChanged="filtre_TextChanged" />
         <ui:TextBox x:Name="rechercheVille"
         Width="140"
         HorizontalAlignment="Left"
         VerticalAlignment="Top"
-        PlaceholderText="Ville" Margin="178,90,0,0" TextChanged="rechercheVille_TextChanged" />
+        PlaceholderText="Ville" Margin="178,90,0,0" TextChanged="filtre_TextChanged" />
         <ui:TextBox x:Name="rechercheCP"
             Width="140"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            PlaceholderText="Code Postal" Margin="335,90,0,0" TextChanged="rechercheCP_TextChanged" />
+            PlaceholderText="Code Postal" Margin="335,90,0,0" TextChanged="filtre_TextChanged" />
         <ui:TextBlock TextWrapping="Wrap" Margin="211,16,187,62" FontSize="44" Height="60" FontWeight="Bold">
             <Run Language="fr-fr" Text="Les revendeurs"/>
         </ui:TextBlock>

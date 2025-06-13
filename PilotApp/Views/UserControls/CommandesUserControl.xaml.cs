@@ -203,24 +203,10 @@ namespace PilotApp.Views.UserControls
             }
         }
 
-        private void rechercherTransport_TextChanged(object sender, TextChangedEventArgs e)
+        private void filtre_TextChanged(object sender, TextChangedEventArgs e)
         {
             RefreshDg();
         }
 
-        private void rechercherRevendeur_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            RefreshDg();
-        }
-
-        private void rechercherEmploye_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            RefreshDg();
-        }
-
-        private void rechercherDate_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            RefreshDg();
-        }
     }
 }

@@ -122,7 +122,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             PlaceholderText="Filtre code"
-            TextChanged="textBoxFiltreCode_TextChanged" />
+            TextChanged="filtre_TextChanged" />
         <ui:TextBox
             x:Name="textBoxFiltreNom"
             Width="88"
@@ -130,7 +130,7 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             PlaceholderText="Filtre nom"
-            TextChanged="TextBox_TextChanged" />
+            TextChanged="filtre_TextChanged" />
         <ComboBox
             x:Name="comboBoxFiltreTypePointe"
             Height="36"
@@ -154,7 +154,7 @@
             VerticalAlignment="Top"
             Icon="NumberSymbolSquare24"
             PlaceholderText="Filtre Prix"
-            TextChanged="numberBoxFiltrePrixVente_TextChanged" />
+            TextChanged="filtre_TextChanged" />
 
         <ui:NumberBox
             x:Name="numberBoxFiltreQuantite"
@@ -162,7 +162,7 @@
             VerticalAlignment="Top"
             Icon="NumberSymbolSquare24"
             PlaceholderText="Filtre Quantité"
-            TextChanged="numberBoxFiltreQuantite_TextChanged" />
+            TextChanged="filtre_TextChanged" />
         <StackPanel Grid.ColumnSpan="2" Margin="702,68,93,0">
 
 

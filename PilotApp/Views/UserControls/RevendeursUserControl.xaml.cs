@@ -168,20 +168,11 @@ namespace PilotApp.Views.UserControls
             }
         }
 
-        private void rechercheRaison_TextChanged(object sender, TextChangedEventArgs e)
+        private void filtre_TextChanged(object sender, TextChangedEventArgs e)
         {
             RefreshDg();
         }
 
-        private void rechercheVille_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            RefreshDg();
-        }
-
-        private void rechercheCP_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            RefreshDg();
-        }
         private void RefreshDg()
         {
             CollectionViewSource.GetDefaultView(dgRevendeur.ItemsSource).Refresh();
