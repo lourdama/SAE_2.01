@@ -241,9 +241,6 @@ namespace PilotApp.Views.UserControls
             this.RefreshDg();
         }
 
-        
-        
-
         private void checkBoxDisponibiliteTrue_Checked(object sender, RoutedEventArgs e)
         {
             this.RefreshDg();
