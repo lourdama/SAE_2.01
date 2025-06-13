@@ -38,7 +38,7 @@ namespace PilotApp.Models.Tests
         [TestMethod()]
         public void CommandeTest_ConstructeurVide_DevraitCreerObjetAvecDictionnaireVide()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
 
             Assert.IsNotNull(commande.LesSousCommandes);
             Assert.AreEqual(commande.LesSousCommandes.Count, 0);
@@ -49,7 +49,7 @@ namespace PilotApp.Models.Tests
         {
             int id = 1;
 
-            var commande = new Commande(id, employeTest, modeTransportTest, revendeurTest,
+            Commande commande = new Commande(id, employeTest, modeTransportTest, revendeurTest,
                                       sousCommandesTest, dateCommandeTest, dateLivraisonTest);
 
             Assert.AreEqual(commande.Id, id);
@@ -65,7 +65,7 @@ namespace PilotApp.Models.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void Id_ValeurNulle_DevraitLeverException()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
 
             commande.Id = 0;
         }
@@ -74,7 +74,7 @@ namespace PilotApp.Models.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void UnEmploye_ValeurNulle_DevraitLeverException()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
 
             commande.UnEmploye = null;
         }
@@ -83,7 +83,7 @@ namespace PilotApp.Models.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void UnModeTransport_ValeurNulle_DevraitLeverException()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
 
             commande.UnModeTransport = null;
         }
@@ -92,7 +92,7 @@ namespace PilotApp.Models.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void UnRevendeur_ValeurNulle_DevraitLeverException()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
 
             commande.UnRevendeur = null;
         }
@@ -101,14 +101,14 @@ namespace PilotApp.Models.Tests
         [ExpectedException(typeof(ArgumentException))]
         public void DateCommande_ValeurNulle_DevraitLeverException()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
             commande.DateCommande = default(DateTime);
         }
 
         [TestMethod()]
         public void DateLivraison_ValeurNulle_DevraitEtreAcceptee()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
 
             commande.DateLivraison = null;
 
@@ -118,11 +118,11 @@ namespace PilotApp.Models.Tests
         [TestMethod()]
         public void Prix_CalculerPrix_DevraitRetournerSommeDesSousCommandes()
         {
-            var commande = new Commande();
-            var produit1 = new Produit();
-            var produit2 = new Produit();
+            Commande commande = new Commande();
+            Produit produit1 = new Produit();
+            Produit produit2 = new Produit();
 
-            var sousCommandes = new Dictionary<Produit, decimal[]>();
+            Dictionary<Produit, decimal[]> sousCommandes = new Dictionary<Produit, decimal[]>();
             sousCommandes.Add(produit1, new decimal[] { 2, 50.00m });
             sousCommandes.Add(produit2, new decimal[] { 3, 75.50m });
 
@@ -136,9 +136,9 @@ namespace PilotApp.Models.Tests
         [TestMethod()]
         public void EqualsTest_CommandesIdentiques_DevraitRetournerTrue()
         {
-            var commande1 = new Commande(1, employeTest, modeTransportTest, revendeurTest,
+            Commande commande1 = new Commande(1, employeTest, modeTransportTest, revendeurTest,
                                        sousCommandesTest, dateCommandeTest, dateLivraisonTest);
-            var commande2 = new Commande(1, employeTest, modeTransportTest, revendeurTest,
+            Commande commande2 = new Commande(1, employeTest, modeTransportTest, revendeurTest,
                                        new Dictionary<Produit, decimal[]>(), dateCommandeTest, null);
 
             bool result = commande1.Equals(commande2);
@@ -149,10 +149,10 @@ namespace PilotApp.Models.Tests
         [TestMethod()]
         public void EqualsTest_CommandesDifferentes_DevraitRetournerFalse()
         {
-            var autreEmploye = new Employe();
-            var commande1 = new Commande(1, employeTest, modeTransportTest, revendeurTest,
+            Employe autreEmploye = new Employe();
+            Commande commande1 = new Commande(1, employeTest, modeTransportTest, revendeurTest,
                                        sousCommandesTest, dateCommandeTest, dateLivraisonTest);
-            var commande2 = new Commande(1, autreEmploye, modeTransportTest, revendeurTest,
+            Commande commande2 = new Commande(1, autreEmploye, modeTransportTest, revendeurTest,
                                        sousCommandesTest, dateCommandeTest, dateLivraisonTest);
 
             bool result = commande1.Equals(commande2);
@@ -163,7 +163,7 @@ namespace PilotApp.Models.Tests
         [TestMethod()]
         public void EqualsTest_ObjetNull_DevraitRetournerFalse()
         {
-            var commande = new Commande(1, employeTest, modeTransportTest, revendeurTest,
+            Commande commande = new Commande(1, employeTest, modeTransportTest, revendeurTest,
                                       sousCommandesTest, dateCommandeTest, dateLivraisonTest);
 
             bool result = commande.Equals(null);
@@ -174,9 +174,9 @@ namespace PilotApp.Models.Tests
         [TestMethod()]
         public void EqualsTest_ObjetDifferentType_DevraitRetournerFalse()
         {
-            var commande = new Commande(1, employeTest, modeTransportTest, revendeurTest,
+            Commande commande = new Commande(1, employeTest, modeTransportTest, revendeurTest,
                                       sousCommandesTest, dateCommandeTest, dateLivraisonTest);
-            var autreObjet = "pas une commande";
+            string autreObjet = "pas une commande";
 
             bool result = commande.Equals(autreObjet);
 
@@ -187,10 +187,10 @@ namespace PilotApp.Models.Tests
         [Ignore("Nécessite une base de données de test ")]
         public void FindAllTest_AvecEntreprise_DevraitRetournerListeCommandes()
         {
-            var entreprise = new Entreprise("Entreprise");
-            var commande = new Commande();
+            Entreprise entreprise = new Entreprise("Entreprise");
+            Commande commande = new Commande();
 
-            var result = commande.FindAll(entreprise);
+            List<Commande> result = commande.FindAll(entreprise);
 
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result, typeof(List<Commande>));
@@ -200,7 +200,7 @@ namespace PilotApp.Models.Tests
         [Ignore("Nécessite une base de données de test ")]
         public void CreateTest_CommandeValide_DevraitRetournerIdNonZero()
         {
-            var commande = new Commande(0, employeTest, modeTransportTest, revendeurTest,
+            Commande commande = new Commande(0, employeTest, modeTransportTest, revendeurTest,
                                       sousCommandesTest, dateCommandeTest, dateLivraisonTest);
 
             int result = commande.Create();
@@ -213,9 +213,9 @@ namespace PilotApp.Models.Tests
         [Ignore("Nécessite une base de données de test ")]
         public void InsertPCTest_ProduitEtQuantiteValides_DevraitRetournerNonZero()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
             commande.Id = 1;
-            var produit = new Produit();
+            Produit produit = new Produit();
             int quantite = 5;
             decimal prix = 25.99m;
 
@@ -228,8 +228,8 @@ namespace PilotApp.Models.Tests
         [Ignore("Nécessite une base de données de test ")]
         public void ReadTest_IdExistant_DevraitChargerProprietes()
         {
-            var entreprise = new Entreprise("Entreprise");
-            var commande = new Commande();
+            Entreprise entreprise = new Entreprise("Entreprise");
+            Commande commande = new Commande();
             commande.Id = 1;
 
             commande.Read(entreprise);
@@ -244,7 +244,7 @@ namespace PilotApp.Models.Tests
         [Ignore("Nécessite une base de données de test ")]
         public void UpdateTest_CommandeModifiee_DevraitRetournerNonZero()
         {
-            var commande = new Commande(1, employeTest, modeTransportTest, revendeurTest,
+            Commande commande = new Commande(1, employeTest, modeTransportTest, revendeurTest,
                                       sousCommandesTest, dateCommandeTest, dateLivraisonTest);
 
             int result = commande.Update();
@@ -256,7 +256,7 @@ namespace PilotApp.Models.Tests
         [Ignore("Nécessite une base de données de test ")]
         public void DeleteTest_CommandeExistante_DevraitRetournerNonZero()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
             commande.Id = 1;
 
             int result = commande.Delete();
@@ -268,7 +268,7 @@ namespace PilotApp.Models.Tests
         [Ignore("Nécessite une base de données de test ")]
         public void DeletePCTest_CommandeExistante_DevraitRetournerNonZero()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
             commande.Id = 1;
 
             int result = commande.DeletePC();
@@ -279,9 +279,9 @@ namespace PilotApp.Models.Tests
         [TestMethod()]
         public void UpdateDateLivraisonTest_NouvelleDateValide_DevraitMettreAJourPropriete()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
             commande.Id = 1;
-            var nouvelleDateLivraison = new DateTime(2024, 2, 15);
+            DateTime nouvelleDateLivraison = new DateTime(2024, 2, 15);
 
             commande.DateLivraison = nouvelleDateLivraison;
 
@@ -292,9 +292,9 @@ namespace PilotApp.Models.Tests
         [Ignore("Nécessite une base de données de test ")]
         public void UpdateDateLivraisonTest_AvecBaseDeDonnees_DevraitRetournerNonZero()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
             commande.Id = 1;
-            var nouvelleDateLivraison = new DateTime(2024, 2, 15);
+            DateTime nouvelleDateLivraison = new DateTime(2024, 2, 15);
 
             int result = commande.UpdateDateLivraison(nouvelleDateLivraison);
 
@@ -306,7 +306,7 @@ namespace PilotApp.Models.Tests
         [Ignore("Nécessite une base de données de test ")]
         public void FindNbProduitTest_CommandeAvecProduits_DevraitRetournerNombre()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
             commande.Id = 1;
 
             int result = commande.FindNbProduit();
@@ -318,7 +318,7 @@ namespace PilotApp.Models.Tests
         [ExpectedException(typeof(NotImplementedException))]
         public void ICrudRead_DevraitLeverNotImplementedException()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
             ICrud<Commande> crudCommande = commande;
 
             crudCommande.Read();
@@ -328,7 +328,7 @@ namespace PilotApp.Models.Tests
         [ExpectedException(typeof(NotImplementedException))]
         public void ICrudFindAll_DevraitLeverNotImplementedException()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
             ICrud<Commande> crudCommande = commande;
 
             crudCommande.FindAll();
@@ -338,7 +338,7 @@ namespace PilotApp.Models.Tests
         [ExpectedException(typeof(NotImplementedException))]
         public void ICrudFindBySelection_DevraitLeverNotImplementedException()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
             ICrud<Commande> crudCommande = commande;
 
             crudCommande.FindBySelection("critere");
@@ -347,9 +347,9 @@ namespace PilotApp.Models.Tests
         [TestMethod()]
         public void LesSousCommandes_DictionnaireValide_DevraitEtreAccepte()
         {
-            var commande = new Commande();
-            var sousCommandes = new Dictionary<Produit, decimal[]>();
-            var produit = new Produit();
+            Commande commande = new Commande();
+            Dictionary<Produit, decimal[]> sousCommandes = new Dictionary<Produit, decimal[]>();
+            Produit produit = new Produit();
             sousCommandes.Add(produit, new decimal[] { 3, 45.99m });
 
             commande.LesSousCommandes = sousCommandes;
@@ -361,7 +361,7 @@ namespace PilotApp.Models.Tests
         [TestMethod()]
         public void Prix_DictionnaireVide_DevraitRetournerZero()
         {
-            var commande = new Commande();
+            Commande commande = new Commande();
 
             decimal prix = commande.Prix;
 
