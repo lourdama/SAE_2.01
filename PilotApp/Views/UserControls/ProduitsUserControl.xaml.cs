@@ -191,6 +191,7 @@ namespace PilotApp.Views.UserControls
                     produitSelectionne.LesCouleurs = copie.LesCouleurs;
                     produitSelectionne.Code = copie.Code;
                     produitSelectionne.Nom = copie.Nom;
+                    produitSelectionne.QuantiteStock = copie.QuantiteStock;
                     produitSelectionne.PrixVente = copie.PrixVente;
                     produitSelectionne.Disponible = copie.Disponible;
                     produitSelectionne.Update();
