@@ -80,24 +80,24 @@
             Margin="10,90,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            PlaceholderText="Revendeur" TextChanged="rechercherRevendeur_TextChanged"  />
+            PlaceholderText="Revendeur" TextChanged="filtre_TextChanged"  />
         <ui:TextBox x:Name="rechercherDate"
     Width="140"
     Margin="150,90,0,0"
     HorizontalAlignment="Left"
     VerticalAlignment="Top"
-    PlaceholderText="Date Commande" TextChanged="rechercherDate_TextChanged"   />
+    PlaceholderText="Date Commande" TextChanged="filtre_TextChanged"   />
         <ui:TextBox x:Name="rechercherTransport"
         Width="140"
         HorizontalAlignment="Left"
         VerticalAlignment="Top"
-        PlaceholderText="Transporteur" Margin="295,90,0,0" TextChanged="rechercherTransport_TextChanged"  />
+        PlaceholderText="Transporteur" Margin="295,90,0,0" TextChanged="filtre_TextChanged"  />
         <ui:TextBox x:Name="rechercherEmploye"
             Width="140"
             Visibility="Visible"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            PlaceholderText="Employe" Margin="440,90,0,0" TextChanged="rechercherEmploye_TextChanged"   />
+            PlaceholderText="Employe" Margin="440,90,0,0" TextChanged="filtre_TextChanged"   />
         <ui:TextBlock TextWrapping="Wrap" Margin="211,16,187,62" FontSize="44" Height="60" FontWeight="Bold">
             <Run Language="fr-fr" Text="Les commandes"/>
         </ui:TextBlock>

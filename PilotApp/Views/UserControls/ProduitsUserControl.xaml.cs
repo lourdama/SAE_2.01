@@ -236,26 +236,13 @@ namespace PilotApp.Views.UserControls
             CollectionViewSource.GetDefaultView(dgProduits.ItemsSource).Refresh();
         }
 
-        private void textBoxFiltreCode_TextChanged(object sender, TextChangedEventArgs e)
+        private void filtre_TextChanged(object sender, TextChangedEventArgs e)
         {
             this.RefreshDg();
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            this.RefreshDg();
-        }
-
-
-        private void numberBoxFiltrePrixVente_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            this.RefreshDg();
-        }
-
-        private void numberBoxFiltreQuantite_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            this.RefreshDg();
-        }
+        
+        
 
         private void checkBoxDisponibiliteTrue_Checked(object sender, RoutedEventArgs e)
         {
