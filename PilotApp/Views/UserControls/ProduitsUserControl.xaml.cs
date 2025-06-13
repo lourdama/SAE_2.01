@@ -185,7 +185,7 @@ namespace PilotApp.Views.UserControls
             {
                 try
                 {
-                    produitSelectionne.Update();
+                    
                     produitSelectionne.UnTypePointe = copie.UnTypePointe;
                     produitSelectionne.UnType = copie.UnType;
                     produitSelectionne.LesCouleurs = copie.LesCouleurs;
@@ -193,6 +193,7 @@ namespace PilotApp.Views.UserControls
                     produitSelectionne.Nom = copie.Nom;
                     produitSelectionne.PrixVente = copie.PrixVente;
                     produitSelectionne.Disponible = copie.Disponible;
+                    produitSelectionne.Update();
                 }
                 catch (Exception ex)
                 {
