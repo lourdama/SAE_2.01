@@ -115,11 +115,12 @@ namespace PilotApp.Views.UserControls
             {
                 try
                 {
-                    RevendeurSelectionne.Update();
+                    
                     RevendeurSelectionne.RaisonSociale = Copie.RaisonSociale;
                     RevendeurSelectionne.Rue = Copie.Rue;
                     RevendeurSelectionne.Ville = Copie.Ville;
                     RevendeurSelectionne.CodePostal = Copie.CodePostal;
+                    RevendeurSelectionne.Update();
                 }
                 catch (Exception ex)
                 {

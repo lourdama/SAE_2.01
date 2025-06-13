@@ -135,9 +135,9 @@ namespace PilotApp.Views.UserControls
                  this.copie = new Commande(commandeSelectionne.Id, commandeSelectionne.UnEmploye,
                     commandeSelectionne.UnModeTransport, commandeSelectionne.UnRevendeur, commandeSelectionne.LesSousCommandes,
                     commandeSelectionne.DateCommande, commandeSelectionne.DateLivraison);
-                AjouterCommandeUserControl ajouterCommande = new AjouterCommandeUserControl(this, copie, Action.Modifier);
-                ajouterCommande.ValidationFaite += OnValidationFaiteModifier;
-                this.acuc = ajouterCommande;
+                AjouterCommandeUserControl modifierCommande = new AjouterCommandeUserControl(this, copie, Action.Modifier);
+                modifierCommande.ValidationFaite += OnValidationFaiteModifier;
+                this.acuc = modifierCommande;
                 MainWindow.Instance.vueActuelle.Content = this.acuc;
                 
             }
@@ -151,13 +151,14 @@ namespace PilotApp.Views.UserControls
             {
                 try
                 {
-                    commandeSelectionne.Update();
+
                     commandeSelectionne.UnEmploye = copie.UnEmploye;
                     commandeSelectionne.UnModeTransport = copie.UnModeTransport;
                     commandeSelectionne.UnRevendeur = copie.UnRevendeur;
                     commandeSelectionne.LesSousCommandes = copie.LesSousCommandes;
                     commandeSelectionne.DateCommande = copie.DateCommande;
                     commandeSelectionne.DateLivraison = copie.DateLivraison;
+                    commandeSelectionne.Update();
                 }
                 catch (Exception ex)
                 {

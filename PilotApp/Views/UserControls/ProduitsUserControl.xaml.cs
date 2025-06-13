@@ -171,9 +171,9 @@ namespace PilotApp.Views.UserControls
                 this.produitSelectionne = (Produit)dgProduits.SelectedItem;
                 this.copie = new Produit(produitSelectionne.Id, produitSelectionne.UnTypePointe, produitSelectionne.UnType, produitSelectionne.LesCouleurs,
                     produitSelectionne.Code, produitSelectionne.Nom, produitSelectionne.PrixVente, produitSelectionne.QuantiteStock, produitSelectionne.Disponible);
-                AjouterProduitUserControl ajouterCommande = new AjouterProduitUserControl(this, copie, Action.Modifier);
-                ajouterCommande.ValidationFaite += OnValidationFaiteModifier;
-                this.apuc = ajouterCommande;
+                AjouterProduitUserControl modifierCommande = new AjouterProduitUserControl(this, copie, Action.Modifier);
+                modifierCommande.ValidationFaite += OnValidationFaiteModifier;
+                this.apuc = modifierCommande;
                 MainWindow.Instance.vueActuelle.Content = this.apuc;
 
             }
@@ -194,6 +194,7 @@ namespace PilotApp.Views.UserControls
                     produitSelectionne.PrixVente = copie.PrixVente;
                     produitSelectionne.Disponible = copie.Disponible;
                     produitSelectionne.Update();
+
                 }
                 catch (Exception ex)
                 {
